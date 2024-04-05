@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 21
+Specification-Title: apprentice
+Specification-Version: 1.0
+Implementation-Title: apprentice
+Implementation-Version: 1.0.0-SNAPSHOT
+Created-By: Maven Integration for Eclipse
+

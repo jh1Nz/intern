@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+	<style>
+body .ui-toolbar {
+	border: 1px solid #ffffff;
+	background: #ffffff;
+}
+</style>
+	<div class="ui-fluid">
+		<!-- Line 1 -->
+		
+		<p:panelGrid columns="9"
+			columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-1,
+						ui-grid-col-1,
+						ui-grid-col-0,
+						ui-grid-col-1,
+						ui-grid-col-2,
+						ui-grid-col-0,
+						ui-grid-col-1,
+						ui-grid-col-1"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel 
+							value="วันที่" 
+							style="float: left" 
+							for="e-selectOneMenu-selectDay" />
+							
+							
+			<p:selectOneMenu id="e-selectOneMenu-selectDay">
+				<f:selectItem itemLabel="1" itemValue="1" />
+				<f:selectItem itemLabel="2" itemValue="2" />
+			</p:selectOneMenu>
+				<p:outputLabel />
+				<p:outputLabel 
+							value="เดือน" 
+							style="float: left" 
+							for="e-selectOneMenu-selectMounth" />
+			<p:selectOneMenu id="e-selectOneMenu-selectMounth">
+				<f:selectItem itemLabel=" " itemValue="0" />
+				<f:selectItem itemLabel="มกราคม" itemValue="1" />
+				<f:selectItem itemLabel="กุมภาพันธ์" itemValue="2" />
+				<f:selectItem itemLabel="มีนาคม" itemValue="3" />
+				<f:selectItem itemLabel="เมษายน" itemValue="4" />
+				<f:selectItem itemLabel="พฤษภาคม" itemValue="5" />
+				<f:selectItem itemLabel="มิถุนายน" itemValue="6" />
+				<f:selectItem itemLabel="กรกฎาคม" itemValue="7" />
+				<f:selectItem itemLabel="สิงหาคม" itemValue="8" />
+				<f:selectItem itemLabel="กันยายน" itemValue="9" />
+				<f:selectItem itemLabel="ตุลาคม" itemValue="10" />
+				<f:selectItem itemLabel="พฤศจิกายน" itemValue="11" />
+				<f:selectItem itemLabel="ธันวาคม" itemValue="12" />
+			</p:selectOneMenu>
+			
+			<p:outputLabel />
+			<p:outputLabel 
+							value="ปี" 
+							style="float: left" 
+							for="e-inputText-year" />
+							
+			<p:inputText id="e-inputText-year">
+
+			</p:inputText>
+				
+
+					</p:panelGrid>
+					
+					
+					<p:panelGrid columns="3"
+			columnClasses="
+
+						ui-grid-col-2,
+						ui-grid-col-1,
+						ui-grid-col-5"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel 
+							value="ชื่อวันหยุด" 
+							style="float: left" 
+							for="e-inputText-nameHoliday" />
+							
+			<p:inputText id="e-inputText-nameHoliday">
+
+			</p:inputText>
+		
+		</p:panelGrid>
+		
+		
+		<p:panelGrid columns="3"
+			columnClasses="
+
+						ui-grid-col-2,
+						ui-grid-col-1,
+						ui-grid-col-5"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel 
+							value="ประเภทการมีผล" 
+							style="float: left" 
+							for="e-selectOneRadio-status" />
+							
+			<p:selectOneRadio id="e-selectOneRadio-status"
+				layout="lineDirection" disabled="false">
+				<f:selectItem itemLabel="มีผลทั้งหมด" itemValue="A" />
+				<f:selectItem itemLabel="มีผลเฉพาะ" itemValue="S" />
+				<f:selectItem itemLabel="ไม่มีผลเฉพาะ" itemValue="NS" />
+				
+				</p:selectOneRadio>
+		
+		</p:panelGrid>
+		
+		<p:panelGrid columns ="2"
+			columnClasses="
+						ui-grid-col-4,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel/>
+		<p:outputLabel
+		
+		value="เฉพาะกลุ่มพนักงานประกันสังคม"
+		style="float: left" 
+		
+		/>
+		
+		
+		
+		
+		</p:panelGrid>
+		
+		<p:panelGrid columns ="4"
+			columnClasses="
+						ui-grid-col-4,
+						ui-grid-col-2,
+						ui-grid-col-3"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel/>
+		<p:outputLabel
+		value="กลุ่มตำแหน่ง"
+		style="float: left"/>
+		
+		
+				<p:selectOneMenu id="e-selectOneMenu-department">
+				<f:selectItem itemLabel="ข้าราชการ" itemValue="1" />
+				<f:selectItem itemLabel="พนักงานประจำ" itemValue="3" />
+				<f:selectItem itemLabel="พนักงานชั่วคราว" itemValue="4" />
+				<f:selectItem itemLabel="ลูกจ้างประจำ" itemValue="5" />
+				
+			</p:selectOneMenu>
+		</p:panelGrid>
+		
+		<hr />
+		
+		<p:panelGrid columns="3"
+			columnClasses="
+
+						ui-grid-col-2,
+						ui-grid-col-3,
+						ui-grid-col-5"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel 
+							value="เงื่อนไขการมีผลเฉพาะหน่วยงาน" 
+							style="float: left" 
+							for="e-selectOneRadio-pecificDeparment" />
+							
+			<p:selectOneRadio id="e-selectOneRadio-pecificDeparment"
+				layout="lineDirection" disabled="false">
+				<f:selectItem itemLabel="มี" itemValue="Y" />
+				<f:selectItem itemLabel="ไม่มี" itemValue="N" />
+				
+				</p:selectOneRadio>
+		
+		</p:panelGrid>
+		
+		
+		
+		
+	
+
+	</div>
+</ui:composition>

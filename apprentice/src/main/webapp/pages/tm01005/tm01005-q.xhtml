@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+	<style>
+body .ui-toolbar {
+	border: 1px solid #ffffff;
+	background: #ffffff;
+}
+</style>
+	<div class="ui-fluid">
+		<!-- Line 1 -->
+		
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-4,
+						ui-grid-col-1,
+						ui-grid-col-1"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel 
+							value="ปีปัจจุบัน" 
+							style="float: left" 
+							for="q-inputText-CurrentYear" />
+							
+			<p:inputText id="q-inputText-CurrentYear">
+
+			</p:inputText>
+			
+		</p:panelGrid>
+		
+		
+		<!-- Line 2 -->
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-4,
+						ui-grid-col-1,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="เดือน" style="float: left"
+				for="q-selectOneMenu-eduLevel" />
+			<p:selectOneMenu id="q-selectOneMenu-eduLevel">
+				<f:selectItem itemLabel=" " itemValue="0" />
+				<f:selectItem itemLabel="มกราคม" itemValue="1" />
+				<f:selectItem itemLabel="กุมภาพันธ์" itemValue="2" />
+				<f:selectItem itemLabel="มีนาคม" itemValue="3" />
+				<f:selectItem itemLabel="เมษายน" itemValue="4" />
+				<f:selectItem itemLabel="พฤษภาคม" itemValue="5" />
+				<f:selectItem itemLabel="มิถุนายน" itemValue="6" />
+				<f:selectItem itemLabel="กรกฎาคม" itemValue="7" />
+				<f:selectItem itemLabel="สิงหาคม" itemValue="8" />
+				<f:selectItem itemLabel="กันยายน" itemValue="9" />
+				<f:selectItem itemLabel="ตุลาคม" itemValue="10" />
+				<f:selectItem itemLabel="พฤศจิกายน" itemValue="11" />
+				<f:selectItem itemLabel="ธันวาคม" itemValue="12" />
+
+
+			</p:selectOneMenu>
+		</p:panelGrid>
+		
+		<!-- Line 5 -->
+		
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-4,
+						ui-grid-col-1,
+						ui-grid-col-4"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel for="q-selectOneRadio-status"
+				value="สถานะการใช้งาน" style="float: left;" />
+
+			<p:selectOneRadio id="q-selectOneRadio-status"
+				layout="lineDirection" disabled="false">
+				<f:selectItem itemLabel="ใช้งาน" itemValue="Y" />
+				<f:selectItem itemLabel="ไม่ใช้งาน" itemValue="N" />
+
+
+			</p:selectOneRadio>
+			<p:outputLabel />
+			<p:outputLabel />
+			<p:outputLabel />
+		</p:panelGrid>
+		
+
+	</div>
+</ui:composition>
