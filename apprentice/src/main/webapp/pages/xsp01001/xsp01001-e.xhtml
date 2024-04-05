@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<ui:composition
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:ui="http://java.sun.com/jsf/facelets"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+          xmlns:p="http://primefaces.org/ui">
+        
+        
+        	<div class= "ui-fluid">
+        		<p:panelGrid
+					columns="6"
+					columnClasses="ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-1.5,
+								   ui-grid-col-1,
+								   ui-grid-col-2"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                     	value="Task ID"
+                        style="float: left;"/>
+                    <p:inputText
+                    	id="e-inputText-1"  
+                    	disabled="true"       	
+                    	value="#{xsp01001Bean.formEdit.id}">
+                    	<p:ajax
+                    		event="valueChange"
+                    		process="@this"
+                    		update="@this"/>
+                    </p:inputText>
+					<p:outputLabel
+                        value="Status"
+                        style="float: left;"
+                        for="e-selectOneMenu-status"/>
+                   	<p:selectOneMenu 
+		          		id="e-selectOneMenu-status"
+		          		required="true" 
+		          		value="#{xsp01001Bean.formEdit.taskStatus}">
+	                    <f:selectItem 
+	                    	itemLabel="Assign" 
+	                    	itemValue="A"/>
+	                    <f:selectItem 
+	                    	itemLabel="Pending" 
+	                    	itemValue="P"/>
+	                    <f:selectItem 
+	                    	itemLabel="Feedback" 
+	                    	itemValue="F"/>
+	                    <f:selectItem 
+	                    	itemLabel="Finish" 
+	                    	itemValue="S"/>
+	                    <p:ajax
+	                    	event="change"
+	                    	process="@this"
+	                    	update="@this"/>
+	                    <p:ajax
+	                    	event="itemSelect"
+	                    	process="@this"
+	                    	update="@this"/>
+                	</p:selectOneMenu>
+				</p:panelGrid>
+				
+				<p:panelGrid
+					columns="3"
+					columnClasses="ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-5"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                        value="Project"
+                        style="float: left;"
+                        for="e-autoComplete-Project"/>
+                    <p:autoComplete 
+						id="e-autoComplete-Project"
+						dropdown="true"
+						required="true"
+						value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+                        scrollHeight="250"
+                        converter="xspProjectConverter"
+                        completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+                        var="data"
+                        itemValue="#{data}"
+                        itemLabel="#{data.id} : #{data.projectName}"
+                        suggestMode="id"
+                        widgetVar="xspProjectName"
+                        forceSelection="true"
+                        emptyMessage="ไม่พบข้อมูล">
+                        <p:ajax
+                        	event="change"
+                        	process="@this"
+                        	update="@this"/>
+                   	</p:autoComplete>
+				</p:panelGrid>
+        		<p:panelGrid
+					columns="3"
+					columnClasses="ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-5"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                        value="Screen"
+                        style="float: left;"/>
+                    <p:autoComplete 
+						id="e-autoComplete-screen"
+						dropdown="true"
+						value="#{xsp01001Bean.formEdit.xspScreenNameRequest}"
+                        scrollHeight="250"
+                        converter="xspScreenConverter"
+                        completeMethod="#{xspScreenAutoComplete.suggestByCriteriaLikeReq}"
+                        var="data"
+                        itemValue="#{data}"
+                        itemLabel="#{data.id} : #{data.screenName}"
+                        suggestMode="id"
+                        widgetVar="xspScreenName"
+                        forceSelection="true"
+                        emptyMessage="ไม่พบข้อมูล">
+                        <p:ajax
+                        	event="change"
+                        	process="@this"
+                        	update="@this"/>
+                   	</p:autoComplete>
+				</p:panelGrid>
+				
+				<p:panelGrid
+					columns="3"
+					columnClasses="ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-5"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                        value="Task Description"
+                        style="float: left;"
+                        for="e-inputTextarea-description"/>
+                    <p:inputTextarea
+                    	id="e-inputTextarea-description"
+                    	required="true"     	
+                    	value="#{xsp01001Bean.formEdit.taskDescription}">
+                    	<p:ajax
+                    		event="valueChange"
+                    		process="@this"
+                    		update="@this"/>
+                    </p:inputTextarea>
+				</p:panelGrid>
+				
+				<p:panelGrid
+					columns="3"
+					columnClasses="ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-5"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                        value="Document link"
+                        style="float: left;"/>
+                    <p:inputText
+                    	id="e-inputText-link"              	
+                    	value="#{xsp01001Bean.formEdit.taskLink}">
+                    	<p:ajax
+                    		event="valueChange"
+                    		process="@this"
+                    		update="@this"/>
+                    </p:inputText>
+				</p:panelGrid>
+        		
+        		<p:panelGrid
+					columns="5"
+					columnClasses="ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                     	value="Assign By"
+                        style="float: left;"
+                        for="e-autoComplete-assignBy"/>
+                    <p:autoComplete 
+						id="e-autoComplete-assignBy"
+						required="true"
+						dropdown="true"
+						value="#{xsp01001Bean.formEdit.xspPersonAssignRequest}" 
+                        scrollHeight="250"
+                        converter="xspPersonConverter"
+                        completeMethod="#{xspPersonAutoComplete.suggestByCriteriaLikeReq}"
+                        var="data"
+                        itemValue="#{data}"
+                        itemLabel="#{data.personNickname}"
+                        suggestMode="personNickname"
+                        widgetVar="xspTaskActor"
+                        forceSelection="true"
+                        emptyMessage="ไม่พบข้อมูล">
+                        <p:ajax
+                        	event="change"
+                        	process="@this"
+                        	update="@this"/>
+                   	</p:autoComplete>
+					<p:outputLabel
+                        value="Assign Date"
+                        style="float: left;"/>
+                    <p:datePicker
+			            id="e-datePicker-Assigndate"
+						value="#{xsp01001Bean.formEdit.assignDatetimeUi}"
+			            locale="th"
+			            disabled="true"
+			            monthNavigator="true"
+			            yearNavigator="true"
+			            yearRange="-5:+5"
+			            pattern="dd/MM/yyyy"
+			            showIcon="true"
+			            showOnFocus="false"
+			            size="20">
+			            <p:ajax
+			                event="dateSelect"
+			                update="@this" />
+			            <p:ajax
+			                event="change"
+			                update="@this" />
+        			</p:datePicker>
+				</p:panelGrid>
+				
+				<p:panelGrid
+					columns="5"
+					columnClasses="ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                     	value="Actor"
+                        style="float: left;"
+                        for="e-autoComplete-actor"/>
+                    <p:autoComplete 
+						id="e-autoComplete-actor"
+						required="true"
+						dropdown="true"
+						value="#{xsp01001Bean.formEdit.xspPersonActorRequest}" 
+                        scrollHeight="250"
+                        converter="xspPersonConverter"
+                        completeMethod="#{xspPersonAutoComplete.suggestByCriteriaLikeReq}"
+                        var="data"
+                        itemValue="#{data}"
+                        itemLabel="#{data.personNickname}"
+                        suggestMode="personNickname"
+                        widgetVar="nameFund"
+                        forceSelection="true"
+                        emptyMessage="ไม่พบข้อมูล">
+                        <p:ajax
+                        	event="change"
+                        	process="@this"
+                        	update="@this"/>
+                   	</p:autoComplete>
+					<p:outputLabel
+                        value="Role"
+                        style="float: left;"
+                        for="e-selectOneMenu-role"/>
+                    <p:selectOneMenu 
+		          		id="e-selectOneMenu-role"
+		          		required="true" 
+		          		value="#{xsp01001Bean.formEdit.actorRole}">
+	                    <f:selectItem 
+	                    	itemLabel="Dev" 
+	                    	itemValue="D"/>
+	                    <f:selectItem 
+	                    	itemLabel="Qc" 
+	                    	itemValue="Q"/>
+	                    <f:selectItem 
+	                    	itemLabel="Design" 
+	                    	itemValue="A"/>
+	                    <p:ajax
+	                    	event="change"
+	                    	process="@this"
+	                    	update="@this"/>
+	                    <p:ajax
+	                    	event="itemSelect"
+	                    	process="@this"
+	                    	update="@this"/>
+                	</p:selectOneMenu>
+				</p:panelGrid>	
+				
+				<p:panelGrid
+					columns="5"
+					columnClasses="ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                        value="Plan Start Date"
+                        style="float: left;"/>        
+                   <p:datePicker
+			            id="e-datePicker-plSrart"
+						value="#{xsp01001Bean.formEdit.stPlanDateUi}"
+			            locale="th"
+			            monthNavigator="true"
+			            yearNavigator="true"
+			            yearRange="-5:+5"
+			            pattern="dd/MM/yyyy"
+			            showIcon="true"
+			            showOnFocus="false"
+						maxdate="#{xsp01001Bean.formEdit.fnPlanDateUi}"
+			            size="20">
+			            <p:ajax
+			                event="dateSelect"
+			                update="@this, e-datePicker-plEnd" />
+			            <p:ajax
+			                event="change"
+			                update="@this, e-datePicker-plEnd" />
+        			</p:datePicker>
+        			<p:outputLabel
+                        value="Actual Start Date"
+                        style="float: left;"/>        
+                   <p:datePicker
+			            id="e-datePicker-actualStart"
+						value="#{xsp01001Bean.formEdit.stActualDateUi}"
+			            locale="th"
+			            monthNavigator="true"
+			            yearNavigator="true"
+			            yearRange="-5:+5"
+			            pattern="dd/MM/yyyy"
+			            showIcon="true"
+			            showOnFocus="false"
+						maxdate="#{xsp01001Bean.formEdit.fnActualDateUi}"
+			            size="20">
+			            <p:ajax
+			                event="dateSelect"
+			                update="@this, e-datePicker-actualEnd" />
+			            <p:ajax
+			                event="change"
+			                update="@this, e-datePicker-actualEnd" />
+        			</p:datePicker>
+				</p:panelGrid>
+				
+				<p:panelGrid
+					columns="5"
+					columnClasses="ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                        value="Plan End Date"
+                        style="float: left;"/>        
+                   <p:datePicker
+			            id="e-datePicker-plEnd"
+						value="#{xsp01001Bean.formEdit.fnPlanDateUi}"
+			            locale="th"
+			            monthNavigator="true"
+			            yearNavigator="true"
+			            yearRange="-5:+5"
+			            pattern="dd/MM/yyyy"
+			            showIcon="true"
+			            showOnFocus="false"
+						mindate="#{xsp01001Bean.formEdit.stPlanDateUi}"
+			            size="20">
+			            <p:ajax
+			            	listener="#{xsp01001Bean.convestDate}"
+			                event="dateSelect"
+			                update="@this, e-datePicker-plSrart" />
+			            <p:ajax
+			                event="change"
+			                update="@this, e-datePicker-plSrart" />
+        			</p:datePicker>
+        			<p:outputLabel
+                        value="Actual End Date"
+                        style="float: left;"/>        
+                   <p:datePicker
+			            id="e-datePicker-actualEnd"
+						value="#{xsp01001Bean.formEdit.fnActualDateUi}"
+			            locale="th"
+			            monthNavigator="true"
+			            yearNavigator="true"
+			            yearRange="-5:+5"
+			            pattern="dd/MM/yyyy"
+			            showIcon="true"
+			            showOnFocus="false"
+						mindate="#{xsp01001Bean.formEdit.stActualDateUi}"
+			            size="20">
+			            <p:ajax
+			                event="dateSelect"
+			                update="@this, e-datePicker-actualStart" />
+			            <p:ajax
+			                event="change"
+			                update="@this, e-datePicker-actualStart" />
+        			</p:datePicker>
+				</p:panelGrid>
+				
+				<p:panelGrid
+					columns="5"
+					columnClasses="ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                        value="Plan Days"
+                        style="float: left;"/>
+                    <p:inputNumber
+                    	id="e-inputNumber-planDays"         	
+                    	value="#{xsp01001Bean.formEdit.planDays}">
+                    	<p:ajax
+                    		event="valueChange"
+                    		process="@this"
+                    		update="@this"/>
+                    </p:inputNumber>       
+					<p:outputLabel
+                        value="Actual Days"
+                        style="float: left;"/>
+                    <p:inputNumber
+                    	id="e-inputNumber-actualDays"         	
+                    	value="#{xsp01001Bean.formEdit.actualDays}">
+                    	<p:ajax
+                    		event="valueChange"
+                    		process="@this"
+                    		update="@this"/>
+                    </p:inputNumber>
+				</p:panelGrid>
+				
+				<p:panelGrid
+					columns="3"
+					columnClasses="ui-grid-col-6,
+								   ui-grid-col-1,
+								   ui-grid-col-2"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                        value="Actual Hours"
+                        style="float: left;"/>
+                    <p:inputNumber
+                    	id="e-inputNumber-actualHours"         	
+                    	value="#{xsp01001Bean.formEdit.workHrs}">
+                    	<p:ajax
+                    		event="valueChange"
+                    		process="@this"
+                    		update="@this"/>
+                    </p:inputNumber>
+				</p:panelGrid>
+				
+				<p:panelGrid
+					columns="3"
+					columnClasses="ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-5"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                        value="Actor Remark"
+                        style="float: left;"/>
+                    <p:inputTextarea
+                    	id="e-inputTextarea-remark"     	
+                    	value="#{xsp01001Bean.formEdit.actorRemark}">
+                    	<p:ajax
+                    		event="valueChange"
+                    		process="@this"
+                    		update="@this"/>
+                    </p:inputTextarea>
+				</p:panelGrid>
+				
+				<p:panelGrid
+					columns="5"
+					columnClasses="ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2"
+					layout="grid"
+					styleClass="ui-panelgrid-blank">
+					
+					<p:outputLabel/>
+					
+					<p:outputLabel
+                     	value="Forward To"
+                        style="float: left;"/>
+                    <p:autoComplete 
+						id="e-autoComplete-forwardTo"
+						dropdown="true"
+						value="#{xsp01001Bean.formEdit.xspPersonForwardRequest}" 
+                        scrollHeight="250"
+                        converter="xspPersonConverter"
+                        completeMethod="#{xspPersonAutoComplete.suggestByCriteriaLikeReq}"
+                        var="data"
+                        itemValue="#{data}"
+                        itemLabel="#{data.personNickname}"
+                        suggestMode="personNickname"
+                        widgetVar="xspPersonForward"
+                        forceSelection="true"
+                        emptyMessage="ไม่พบข้อมูล">
+                        <p:ajax
+                        	event="change"
+                        	process="@this"
+                        	update="@this"/>
+                   	</p:autoComplete>
+					<p:outputLabel
+                        value="Forward Date"
+                        style="float: left;"/>
+                    <p:datePicker
+			            id="e-datePicker-forwardDate"
+						value="#{xsp01001Bean.formEdit.sendToDatetimeUi}"
+			            locale="th"
+			            monthNavigator="true"
+			            yearNavigator="true"
+			            yearRange="-5:+5"
+			            pattern="dd/MM/yyyy"
+			            showIcon="true"
+			            showOnFocus="false"
+			            size="20">
+			            <p:ajax
+			                event="dateSelect"
+			                update="@this" />
+			            <p:ajax
+			                event="change"
+			                update="@this" />
+        			</p:datePicker>
+				</p:panelGrid>
+        	</div>
+        	
+        
+</ui:composition>

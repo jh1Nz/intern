@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	template="#{environment.templatePath}">
+	<ui:define name="viewname">
+		<li><p:link> CEP: 01002 </p:link></li>
+	</ui:define>
+
+	<ui:define name="center">
+		<!-- Mode ค้นหา -->
+		<p:panel rendered="#{cep01002Bean.mode eq 'S'}">
+			<p:accordionPanel id="q-accordionPanel">
+				<p:tab title="เงื่อนไขการค้นหา">
+					<ui:include src="cep01002/cep01002-q.xhtml" />
+					<ui:include src="cep01002/cep01002-q-btn.xhtml" />
+				</p:tab>
+			</p:accordionPanel>
+			
+			<p:accordionPanel id="q-accordionPanel_tb">
+				<p:tab title="เงื่อนไขการค้นหา">
+					<ui:include src="cep01002/cep01002-q-tb.xhtml" />
+				
+				</p:tab>
+			</p:accordionPanel>
+		</p:panel>
+		<!-- Mode บันทึก -->
+		<p:panel rendered="#{cep01002Bean.mode eq 'I' or cep01002Bean.mode eq 'U' }">
+			<p:accordionPanel id="e-accordionPanel-per">
+				<p:tab title="ข้อมูลบุคลากร">
+				<ui:include src="cep01002/cep01002-e.xhtml" />
+				</p:tab>
+			</p:accordionPanel>
+			<p:accordionPanel id="e-accordionPanel-kid">
+				<p:tab title="ข้อมูลบุตร">
+				<ui:include src="cep01002/cep01002-e-k.xhtml" />
+				</p:tab>
+			</p:accordionPanel>
+			<p:accordionPanel id="e-accordionPanel-kidH">
+				<p:tab title="ประวัติการศึกษาบุตร">
+				<ui:include src="cep01002/cep01002-e-kh.xhtml" />
+				</p:tab>
+			</p:accordionPanel>
+			<p:accordionPanel id="e-accordionPanel-doc">
+				<p:tab title="เอกสารแนบ">
+				<ui:include src="cep01002/cep01002-e-doc.xhtml" />
+				</p:tab>
+			</p:accordionPanel>
+			<ui:include src="cep01002/cep01002-e-dlg.xhtml" />
+			<ui:include src="cep01002/cep01002-e-btn.xhtml" />
+		</p:panel>
+		
+
+	</ui:define>
+</ui:composition>

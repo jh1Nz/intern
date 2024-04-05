@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:toolbar>
+		<f:facet name="left">
+			<p:commandButton icon="fa fa-search white" value="ค้นหา"
+				actionListener="#{xsp01001Bean.searchButtonOnClick}" update="@form" />
+			<p:commandButton icon="fa fa-refresh white" value="เริ่มใหม่"
+				update=":formc" process="@this" immediate="true"
+				onclick="PF('bui').show()" onsuccess="PF('bui').hide()"
+				actionListener="#{xsp01001Bean.resetSearch}">
+				<p:resetInput target=":formc" />
+			</p:commandButton>
+			<p:commandButton icon="fa fa-save white" value="บันทึก"
+				process="@form" update="@form" onclick="PF('bui').show()"
+				onsuccess="PF('bui').hide()"
+				actionListener="#{xsp01001Bean.insertButtonOnClick}" />
+		</f:facet>
+		<f:facet name="right">
+			<p:commandButton icon="fa fa-cog white"
+				value="ปรับปรุงข้อมูลจากระบบ DPIS6"
+				actionListener="#{xsp01001Bean.onPageInsert}" update=":formc"
+				immediate="true">
+				<p:resetInput target=":formc" />
+			</p:commandButton>
+			<p:commandButton icon="fa fa-external-link" value="นำเข้าข้อมูล"
+				actionListener="#{xsp01001Bean.onPageInsert}" update=":formc"
+				immediate="true">
+				<p:resetInput target=":formc" />
+			</p:commandButton>
+			<p:commandButton icon="fa fa-plus white" value="เพิ่มใหม่"
+				actionListener="#{xsp01001Bean.onPageInsert}" update=":formc"
+				immediate="true">
+				<p:resetInput target=":formc" />
+			</p:commandButton>
+
+		</f:facet>
+	</p:toolbar>
+
+
+</ui:composition>

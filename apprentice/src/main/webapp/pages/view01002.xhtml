@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	template="#{environment.templatePath}">
+	<ui:define name="viewname">
+		<li><p:link>
+          		VIEW:01002
+          	</p:link></li>
+	</ui:define>
+
+	<ui:define name="center">
+		<p:panel rendered="#{view01002Bean.mode eq view01002Bean.search or view01002Bean.mode eq view01002Bean.view }">
+			<p:accordionPanel id="e-accordionPanel_Search">
+				<p:tab title="ค้นหา">
+					<ui:include src="view01002/view01002-q-btn.xhtml" />
+					
+				</p:tab>
+			</p:accordionPanel>
+			
+		</p:panel>
+		
+		<p:panel rendered="#{view01002Bean.mode eq view01002Bean.view }">
+			<p:accordionPanel id="e-accordionPanel_table">
+				<p:tab title="ตารางผลการค้นหา">
+					<ui:include src="train-CEP01002/train-CEP01002-e-tb2.xhtml" />
+					
+				</p:tab>
+			</p:accordionPanel>
+			
+		</p:panel>
+		
+		<p:panel rendered="#{view01002Bean.mode eq view01002Bean.insert}">
+			<p:accordionPanel id="e-accordionPanel_In">
+				<p:tab title="Insert">
+					<ui:include src="view01002/view01002-e.xhtml" />
+					<ui:include src="view01002/view01002-e-btn.xhtml" />
+				</p:tab>
+			</p:accordionPanel>
+			
+		</p:panel>
+		
+		
+		
+		
+		
+		
+	</ui:define>
+
+</ui:composition>

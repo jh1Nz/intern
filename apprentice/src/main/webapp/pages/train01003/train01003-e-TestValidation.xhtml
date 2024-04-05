@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<ui:composition
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:ui="http://java.sun.com/jsf/facelets"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+          xmlns:p="http://primefaces.org/ui">
+		  <style>
+				.ui-outputlabel .ui-outputlabel-rfi {
+					color: red;
+						}
+		  </style>
+	<div class= "ui-fluid">
+	<p:panelGrid columns="6"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+								   
+			layout="grid" 
+			styleClass="ui-panelgrid-blank"
+			id = "lineOne">
+
+			<h:outputLabel 
+			for="name" 
+			value="Name:" />
+			
+			<p:inputText 
+			id="name" 
+			value="" 
+			required="true" 
+			label="Name"
+			placeholder="Fragment Field" />
+			
+			<p:message 
+			for="name" 
+			id="msg_name" />
+			
+			<h:outputLabel 
+			for="number" 
+			value="Number:" />
+			<p:inputMask id="number" 
+			value="" 
+			label="Number" 
+			mask="9-99"
+			validateMask="false">
+			
+			<f:validateLength 
+			minimum="2" 
+			maximum="3" />
+			
+			
+			</p:inputMask>
+			<p:message for="number" />
+
+		</p:panelGrid>
+		
+			
+			
+		<p:panelGrid columns="6"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+			
+			layout="grid" 
+			styleClass="ui-panelgrid-blank">
+			<h:outputLabel 
+			for="dd" 
+			value="Double:"/>
+			
+            <p:inputText 
+            id="dd" 
+            value=""
+            converterMessage="Cannot convert to double.">
+            
+            <f:validateDoubleRange 
+            minimum="5.5" 
+            maximum="8.5"/>
+            
+            </p:inputText>
+            <p:message 
+            for="dd"/>
+			</p:panelGrid>
+			
+			
+			
+			<p:panelGrid columns="6"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<h:outputLabel for="money" value="Currency ($):"/>
+            <p:inputText id="money" value="" label="Currency">
+                <f:convertNumber type="currency" currencySymbol="$"/>
+            </p:inputText>
+            <p:message for="money"/>
+			</p:panelGrid>
+			
+			
+			
+			<p:panelGrid columns="6"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			 <h:outputLabel for="regex" value="Regex (^[a-zA-Z]+$):"/>
+            <p:inputText id="regex" value=""
+                            validatorMessage="Value does not match pattern.">
+                <f:validateRegex pattern="^[a-zA-Z]+$"/>
+            </p:inputText>
+            <p:message for="regex"/>
+			</p:panelGrid>
+			
+			
+			
+			<p:panelGrid columns="6"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			  <h:outputLabel for="date" value="Date (java.util.Date)"/>
+            <p:inputText id="date" value="" label="Date (java.util.Date)" showTime="true" timeInput="true">
+                <f:convertDateTime pattern="MM/dd/yyyy"/>
+            </p:inputText>
+            <p:message for="date"/>
+            
+            
+            <h:outputLabel for="date2" value="Date (java.util.Date; PF Calendar)" showTime="true" timeInput="true"/>
+            <p:calendar id="date2" value="" pattern="MM/dd/yyyy"
+                        label="Date (java.util.Date; PF Calendar)">
+                <f:convertDateTime pattern="MM/dd/yyyy"/>
+            </p:calendar>
+            <p:message for="date2"/>
+            
+            
+			</p:panelGrid>
+			
+			
+			
+			<p:panelGrid columns="6"
+			columnClasses="
+								   ui-grid-col-4,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+			layout="grid" 
+			styleClass="ui-panelgrid-blank">
+			
+			<p:datePicker 
+			id="date3" 
+			value="" 
+			pattern="MM/dd/yyyy"
+            label="Date (java.util.Date; PF DatePicker)"
+            showTime="true" 
+            timeInput="true"
+            inline="true">
+            <f:convertDateTime 
+            pattern="MM/dd/yyyy"
+                />
+                
+            </p:datePicker>
+            <p:message for="date3"/>
+			</p:panelGrid>
+			
+			
+			
+			<p:panelGrid columns="6"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<h:outputLabel for="desc" value="Description"/>
+            <p:inputTextarea id="desc" value="" required="true"
+                                label="Description">
+                <f:validateLength minimum="3" maximum="10"/>
+            </p:inputTextarea>
+            <p:message for="desc"/>
+			</p:panelGrid>
+		
+		
+		                <p:panelGrid
+                    columns="6"
+                    columnClasses="ui-grid-col-new-2,
+									ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+                    layout="grid"
+                    styleClass="ui-panelgrid-blank">
+                    <p:outputLabel />
+                    <p:outputLabel
+                        id="e-outputLabel-test"
+                        value="เริ่มหักปี/เดือน"
+                        for="e-inputText-1" />
+                    <h:panelGrid
+                        columns="5">
+                        <p:inputText
+                            id="e-inputText-1"
+                            value="">
+                            <p:keyFilter
+                                regEx="/[0-9]/i" />
+                            <p:ajax
+                                process="@this"
+                                update="@this" />
+                        </p:inputText>
+                        <p:outputLabel
+                            value="/"
+                            style="padding:4px !important;" />
+                        <p:inputText
+                            id="e-inputText-2"
+                            value="" >
+                            <p:keyFilter
+                                regEx="/[0-9]/i" />
+                            <p:ajax
+                                process="@this"
+                                update="@this" />
+                        </p:inputText>
+                    </h:panelGrid>
+                    <p:outputLabel />
+                </p:panelGrid>
+
+
+		
+		
+	
+	</div>
+	</ui:composition>

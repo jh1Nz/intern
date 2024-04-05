@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+	<style>
+body .ui-datatable thead th {
+	background-color: #2196f3;
+	color: white;
+}
+</style>
+
+	<div class="ui-fluid">
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-1,
+					    ui-grid-col-10,
+						ui-grid-col-1"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:dataTable id="data-table-kh" value="#{cep01002Bean.eduList}"
+				var="dataEdu" rowIndexVar="index" row="5" emptyMessage="ไม่พบข้อมูล"
+				selectionMode="single" rowKey="#{dataEdu.educationHistoryId}" allowUnsorting="true"
+				sortMode="single" disabledSelection="true" style="text-align:center">
+				<p:column headerText="ลบ" width="5%" style="text-align:center;">
+					<p:commandButton update="@this,data-table-kh" process="@this"
+						icon="fa fa-minus" action="#{cep01002Bean.removeDataList(index)}" />
+				</p:column>
+				<p:column headerText="ลำดับ" width="3%;" style="text-align:center"
+					sortBy="">
+					<h:outputText
+						style="float:center !important; 
+		                text-align:left !important;"
+						value="#{dataEdu.noTable}"> 
+					</h:outputText>
+				</p:column>
+				<p:column headerText="ปีการศึกษา" style="text-align:center"
+					sortBy="#{dataEdu.eduYear}">
+					<h:outputText
+						style="float:center !important; text-align:left !important;"
+						value="#{dataEdu.eduYear}">
+					</h:outputText>
+				</p:column>
+				<p:column headerText="ชั้น/ปี ที่ศึกษา" style="text-align:center"
+					sortBy="#{dataEdu.eduLevel}">
+					<h:outputText
+						style="float:center !important; text-align:left !important;"
+						value="#{dataEdu.eduLevel}">
+					</h:outputText>
+				</p:column>
+				<p:column headerText="ชื่อ-นามสกุล" style="text-align:center"
+					sortBy="#{dataEdu.kidFullname}">
+					<h:outputText
+						style="float:center !important; text-align:left !important;"
+						value="#{dataEdu.kidFullname}">
+					</h:outputText>
+				</p:column>
+				<p:column headerText="ระดับการศึกษา" style="text-align:center"
+					sortBy="#{dataEdu.eduGran}">
+					<h:outputText
+						style="float:center !important; text-align:left !important;"
+						value="#{dataEdu.eduGran}">
+					</h:outputText>
+				</p:column>
+				<p:column headerText="สาขาวิชา" style="text-align:center"
+					sortBy="#{dataEdu.eduBranch}">
+					<h:outputText
+						style="float:center !important; text-align:left !important;"
+						value="#{dataEdu.eduBranch}">
+					</h:outputText>
+				</p:column>
+				<p:column headerText="ชื่อสถานศึกษา" style="text-align:center"
+					sortBy="#{dataEdu.eduPlace}">
+					<h:outputText
+						style="float:center !important; text-align:left !important;"
+						value="#{dataEdu.eduPlace}">
+					</h:outputText>
+				</p:column>
+			</p:dataTable>
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-5,
+						ui-grid-col-2,
+						ui-grid-col-5"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:commandButton icon="fa fa-plus white" value="เพิ่มรายการ"
+				update=":formc" immediate="true" oncomplete="PF('dlg002').show();"
+				actionListener="#{cep01002Bean.setdialogEdu}">
+				<p:resetInput target=":formc" />
+			</p:commandButton>
+			<p:outputLabel />
+
+		</p:panelGrid>
+	</div>
+
+</ui:composition>

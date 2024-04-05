@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+	<style>
+body .ui-toolbar {
+	border: 1px solid #ffffff;
+	background: #ffffff;
+}
+</style>
+
+	<p:dialog id="veiw003-dlg" widgetVar="dlg001" header="ทดสอบ Dialog"
+		modal="true" dynamic="false" resizable="false" showEffect="clip"
+		hideEffect="clip" width="960px" height="450px" closable="true"
+		draggable="false">
+
+		<p:panelGrid columns="6"
+			columnClasses="
+								   ui-grid-col-1,
+								   ui-grid-col-5,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-3,
+								   ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<h:outputLabel value="วันที่" />
+
+			<p:datePicker id="date3" value="#{view01003Bean.formDialog.dateUi}"
+				pattern="dd/MM/yyyy" label="Date (java.util.Date; PF DatePicker)"
+				monthNavigator="true" yearNavigator="true" showIcon="true" size="20"
+				showOnFocus="false" locale="th">
+				<p:ajax update="@this,namedate" process="@this"
+					listener="#{view01003Bean.convertdateTodayofweek}">
+
+				</p:ajax>
+
+
+			</p:datePicker>
+
+			<h:outputLabel value="ชื่อวัน" />
+
+			<p:inputText id="namedate"
+				value="#{view01003Bean.formDialog.nameDay}">
+
+			</p:inputText>
+
+		</p:panelGrid>
+
+		<p:toolbar>
+			<f:facet name="left">
+				<p:commandButton icon="fa fa-plus white" value="เพิ่มข้อมูล"
+					actionListener="#{view01003Bean.addList}" update="@this,data-table" />
+				<p:commandButton icon="fa fa-search white" value="ค้นหา"
+					actionListener="#{view01003Bean.getMonth}"
+					update="@this,data-table" />
+
+
+			</f:facet>
+		</p:toolbar>
+
+		<p:dataTable id="data-table" value="#{view01003Bean.dateTimeList}"
+			var="data" emptyMessage="ไม่พบข้อมูล" selectionMode="single"
+			rowKey="#{data.id}" allowUnsorting="true" sortMode="single"
+			disabledSelection="true">
+
+			<p:column headerText="ลบ" width="5%" style="text-align:center;">
+				<p:commandButton update="@this,data-table" process="@this"
+					icon="fa fa-minus" action="#{view01003Bean.removeDataList(index)}" />
+			</p:column>
+			<p:column headerText="วันที่" style="text-align:center"
+				sortBy="#{data.dateUi}">
+				<h:outputText id="outputText-dateUi" value="#{data.dateUi}"
+					converter="universalConverter" validator="universalValidator"
+					category="calendar" pattern="dd/mm/yyyy"
+					style="float:center !important; text-align:left !important;">
+				</h:outputText>
+
+			</p:column>
+
+			<p:column headerText="วัน" style="text-align:center"
+				sortBy="#{data.nameDay}">
+				<h:outputText
+					style="float:center !important; text-align:left !important;"
+					value="#{data.nameDay}">
+				</h:outputText>
+			</p:column>
+
+
+
+
+		</p:dataTable>
+
+
+
+	</p:dialog>
+</ui:composition>

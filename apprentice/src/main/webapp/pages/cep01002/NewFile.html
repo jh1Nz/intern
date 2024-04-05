@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+	<style>
+body .ui-toolbar {
+	border: 1px solid #ffffff;
+	background: #ffffff;
+}
+</style>
+
+
+	<div class="ui-fluid">
+		<!-- Dialog 1 -->
+		<p:dialog id="cep01002-dlg" widgetVar="dlg001" header="ข้อมูลบุตร"
+			modal="true" dynamic="false" resizable="false" showEffect="clip"
+			hideEffect="drop" width="1080px" height="550px" closable="true"
+			draggable="false">
+			<!-- Line 1 -->
+			<p:panelGrid columns="6"
+				columnClasses="    ui-grid-col-1,
+           ui-grid-col-2,
+           ui-grid-col-3,
+           ui-grid-col-1,
+           ui-grid-col-3,
+           ui-grid-col-2"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="ประเภทบุตร" for="e-SelectOneMenu-typeKid" />
+				<p:selectOneMenu id="e-SelectOneMenu-typeKid">
+					<f:selectItem itemLabel="บุตร" itemValue="บุตร" />
+					<f:selectItem itemLabel="บุตรแทนที่" itemValue="บุตรแทนที่" />
+				</p:selectOneMenu>
+				<p:outputLabel value="เพศ" for="e-selectOneRadio-kidSex" />
+				<p:selectOneRadio id="e-selectOneRadio-kidSex"
+					layout="lineDirection" value="#{cep01002Bean.formEdit.kidSex}">
+					<f:selectItem itemLabel="ชาย" itemValue="ชาย" />
+					<f:selectItem itemLabel="หญิง" itemValue="หญิง" />
+				</p:selectOneRadio>
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- Line 2 -->
+			<p:panelGrid columns="7"
+				columnClasses="    ui-grid-col-1,
+           ui-grid-col-2,
+           ui-grid-col-2,
+           ui-grid-col-1,
+           ui-grid-col-2,
+           ui-grid-col-1,
+           ui-grid-col-2"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="คำนำหน้าชื่อ" for="e-SelectOneMenu-kidIname" />
+				<p:selectOneMenu id="e-SelectOneMenu-kidIname" required="true"
+					value="#{cep01002Bean.formEdit.kidIname}">
+					<f:selectItem itemLabel="นาย" itemValue="นาย" />
+					<f:selectItem itemLabel="นาง" itemValue="นาง" />
+					<f:selectItem itemLabel="นางสาว" itemValue="นางสาว" />
+					<f:selectItem itemLabel="เด็กชาย" itemValue="เด็กชาย" />
+					<f:selectItem itemLabel="เด็กหญิง" itemValue="เด็กหญิง" />
+				</p:selectOneMenu>
+				<p:outputLabel value="ชื่อ" for="e-InputText-kidFname" />
+				<p:inputText id="e-InputText-kidFname" required="true"
+					value="#{cep01002Bean.formEdit.kidFname}" />
+				<p:outputLabel value="นามสกุล" for="e-InputText-kidLname" />
+				<p:inputText id="e-InputText-kidLname" required="true"
+					value="#{cep01002Bean.formEdit.kidLname}" />
+			</p:panelGrid>
+			<!-- Line 3 -->
+			<p:panelGrid columns="6"
+				columnClasses="    ui-grid-col-1,
+           ui-grid-col-2,
+           ui-grid-col-3,
+           ui-grid-col-2,
+           ui-grid-col-3,
+           ui-grid-col-1"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="เลขประจำตัวประชาชน" />
+				<p:inputText />
+				<p:outputLabel value="วัน/เดือน/ปี เกิด" for="e-datePicker-birthDay" />
+				<p:datePicker id="e-datePicker-birthDay" pattern="dd/MM/yyyy"
+					label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
+					yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
+					locale="th" required="true" yearRange="1950:2024"
+					value="#{cep01002Bean.formEdit.kidbirthDay}">
+				</p:datePicker>
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- Line 4 -->
+			<p:panelGrid columns="6"
+				columnClasses="    ui-grid-col-1,
+           ui-grid-col-2,
+           ui-grid-col-3,
+           ui-grid-col-2,
+           ui-grid-col-3,
+           ui-grid-col-1"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="บุตรลำดับที่ของมารดา" for="e-InputText-kidMom" />
+				<p:inputText id="e-InputText-kidMom"
+					value="#{cep01002Bean.formEdit.kidMom}" />
+				<p:outputLabel value="บุตรลำดับที่ของบิดา" for="e-InputText-kidDad" />
+				<p:inputText id="e-InputText-kidDad"
+					value="#{cep01002Bean.formEdit.kidDad}" />
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- Line 5 -->
+			<p:panelGrid columns="6"
+				columnClasses="    ui-grid-col-1,
+           ui-grid-col-2,
+           ui-grid-col-3,
+           ui-grid-col-2,
+           ui-grid-col-3,
+           ui-grid-col-1"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="สถานะการมีชีวิต" />
+				<p:selectOneRadio id="e-selectOneRadio-kidStat"
+					layout="lineDirection"
+					value="#{cep01002Bean.formEdit.checkKidStatus}">
+					<f:selectItem itemLabel="มีชีวิตอยู่" itemValue="true" />
+					<f:selectItem itemLabel="ถึงเเก่กรรม" itemValue="false" />
+					<p:ajax update="e-datePicker-deadDay" />
+				</p:selectOneRadio>
+				<p:outputLabel value="เมื่อวันที่"
+					disabled="#{cep01002Bean.formEdit.checkKidStatus}" />
+				<p:datePicker id="e-datePicker-deadDay" pattern="dd/MM/yyyy"
+					label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
+					yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
+					locale="th" disabled="#{cep01002Bean.formEdit.checkKidStatus}">
+				</p:datePicker>
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- Line 6 -->
+			<p:panelGrid columns="6"
+				columnClasses="    ui-grid-col-1,
+           ui-grid-col-2,
+           ui-grid-col-4,
+           ui-grid-col-2,
+           ui-grid-col-2,
+           ui-grid-col-1"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel />
+				<p:selectBooleanCheckbox
+					value="#{cep01002Bean.formEdit.checkKid2Status}"
+					itemLabel="กรณีเป็นบุตรแทนที่บุตรซึ่งถึงแก่กรรมเเล้ว">
+					<!-- Ajax -->
+					<p:ajax
+						update="e-SelectOneMenu-kidNo e-SelectOneMenu-kid2Iname e-InputText-kid2Fname e-InputText-kid2Lname e-datePicker-birth2Day e-datePicker-dead2Day" />
+				</p:selectBooleanCheckbox>
+				<p:outputLabel value="เเทนที่บุตรลำดับที่" />
+				<p:selectOneMenu id="e-SelectOneMenu-kidNo"
+					disabled="#{!cep01002Bean.formEdit.checkKid2Status}">
+					<f:selectItem itemLabel="1" itemValue="1" />
+					<f:selectItem itemLabel="2" itemValue="2" />
+					<f:selectItem itemLabel="3" itemValue="3" />
+
+				</p:selectOneMenu>
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- Line 7 -->
+			<p:panelGrid columns="7"
+				columnClasses="    ui-grid-col-1,
+           ui-grid-col-2,
+           ui-grid-col-2,
+           ui-grid-col-1,
+           ui-grid-col-2,
+           ui-grid-col-1,
+           ui-grid-col-2"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="คำนำหน้าชื่อ" for="e-SelectOneMenu-kid2Iname"
+					disabled="#{!cep01002Bean.formEdit.checkKid2Status}" />
+				<p:selectOneMenu id="e-SelectOneMenu-kid2Iname"
+					disabled="#{!cep01002Bean.formEdit.checkKid2Status}">
+					<f:selectItem itemLabel="นาย" itemValue="นาย" />
+					<f:selectItem itemLabel="นาง" itemValue="นาง" />
+					<f:selectItem itemLabel="นางสาว" itemValue="นางสาว" />
+					<f:selectItem itemLabel="เด็กชาย" itemValue="เด็กชาย" />
+					<f:selectItem itemLabel="เด็กหญิง" itemValue="เด็กหญิง" />
+				</p:selectOneMenu>
+				<p:outputLabel value="ชื่อ" for="e-InputText-kid2Fname"
+					disabled="#{!cep01002Bean.formEdit.checkKid2Status}" />
+				<p:inputText id="e-InputText-kid2Fname"
+					disabled="#{!cep01002Bean.formEdit.checkKid2Status}" />
+				<p:outputLabel value="นามสกุล" for="e-InputText-kid2Lname"
+					disabled="#{!cep01002Bean.formEdit.checkKid2Status}" />
+				<p:inputText id="e-InputText-kid2Lname"
+					disabled="#{!cep01002Bean.formEdit.checkKid2Status}" />
+			</p:panelGrid>
+			<!-- Line 8 -->
+			<p:panelGrid columns="6"
+				columnClasses="    ui-grid-col-1,
+           ui-grid-col-2,
+           ui-grid-col-3,
+           ui-grid-col-2,
+           ui-grid-col-3,
+           ui-grid-col-1"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="วัน/เดือน/ปี เกิด"
+					for="e-datePicker-birth2Day"
+					disabled="#{!cep01002Bean.formEdit.checkKid2Status}" />
+				<p:datePicker id="e-datePicker-birth2Day" pattern="dd/MM/yyyy"
+					label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
+					yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
+					locale="th" disabled="#{!cep01002Bean.formEdit.checkKid2Status}">
+				</p:datePicker>
+				<p:outputLabel value="ถึงแก่กรรมเมื่อ" for="e-datePicker-dead2Day"
+					disabled="#{!cep01002Bean.formEdit.checkKid2Status}" />
+				<p:datePicker id="e-datePicker-dead2Day" pattern="dd/MM/yyyy"
+					label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
+					yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
+					locale="th" disabled="#{!cep01002Bean.formEdit.checkKid2Status}">
+				</p:datePicker>
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- BTN DIA 1 -->
+			<p:toolbar>
+				<f:facet name="left">
+					<p:commandButton icon="fa fa-save white" value="บันทึก"
+						process="@form"
+						update="@this,formc:e-accordionPanel-kid:data-table"
+						actionListener="#{cep01002Bean.addKidList}" />
+				</f:facet>
+				<f:facet name="right">
+					<p:commandButton icon="fa fa-close white" value="ยกเลิก"
+						actionListener="#" update=":formc" />
+				</f:facet>
+			</p:toolbar>
+
+		</p:dialog>
+
+		<!-- Dialog 2 -->
+
+		<p:dialog id="cep01002-dlg2" widgetVar="dlg002" header="ข้อมูลบุตร2"
+			modal="true" dynamic="false" resizable="false" showEffect="clip"
+			hideEffect="drop" width="1080px" height="550px" closable="true"
+			draggable="false">
+
+			<!-- Line 1 -->
+			<p:panelGrid columns="7"
+				columnClasses="	   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="คำนำหน้าชื่อ"
+					for="e-SelectOneMenu-kidIname-dlg2" />
+				<p:selectOneMenu id="e-SelectOneMenu-kidIname-dlg2"
+					value="#{cep01002Bean.formDialog.kidIname}" required="true">
+					<p:ajax process="@this" update="@this" />
+					<f:selectItem itemLabel="นาย" itemValue="นาย" />
+					<f:selectItem itemLabel="นาง" itemValue="นาง" />
+					<f:selectItem itemLabel="นางสาว" itemValue="นางสาว" />
+					<f:selectItem itemLabel="เด็กชาย" itemValue="เด็กชาย" />
+					<f:selectItem itemLabel="เด็กหญิง" itemValue="เด็กหญิง" />
+				</p:selectOneMenu>
+				<p:outputLabel value="ชื่อ" for="e-InputText-kidFname-dlg2" />
+				<p:inputText id="e-InputText-kidFname-dlg2"
+					value="#{cep01002Bean.formDialog.kidFname}" required="true">
+					<p:ajax process="@this" update="@this" />
+				</p:inputText>
+				<p:outputLabel value="นามสกุล" for="e-InputText-kidLname-dlg2" />
+				<p:inputText id="e-InputText-kidLname-dlg2"
+					value="#{cep01002Bean.formDialog.kidLname}" required="true">
+					<p:ajax process="@this" update="@this" />
+				</p:inputText>
+			</p:panelGrid>
+			<!-- Line 2 -->
+			<p:panelGrid columns="6"
+				columnClasses="	   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-1"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="ลำดับที่" for="e-InputNumber-No" />
+				<p:inputText id="e-InputNumber-No"
+					value="#{cep01002Bean.formDialog.noTable}" disabled="true"
+					required="true">
+					<p:ajax process="@this" update="@this" />
+				</p:inputText>
+				<p:outputLabel value="ปีการศึกษา (พ.ศ.)" for="e-inputText-yearEdu" />
+				<p:inputText id="e-inputText-yearEdu"
+					value="#{cep01002Bean.formDialog.eduYear}" required="true">
+					<p:ajax process="@this" update="@this" />
+				</p:inputText>
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- Line 3 -->
+			<p:panelGrid columns="6"
+				columnClasses="	   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-1"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="ชั้น/ปี ที่ศึกษา" for="e-InputNumber-eduLevel" />
+				<p:inputText id="e-InputNumber-eduLevel"
+					value="#{cep01002Bean.formDialog.eduLevel}" required="true">
+					<p:ajax process="@this" update="@this" />
+				</p:inputText>
+				<p:outputLabel value="วันแรกที่เปิดภาคเรียน"
+					for="e-InputNumber-firstDateEdu" />
+				<p:datePicker id="e-InputNumber-firstDateEdu" pattern="dd/MM/yyyy"
+					label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
+					yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
+					locale="th" yearRange="1950:2024" required="true">
+				</p:datePicker>
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- Line 4 -->
+			<p:panelGrid columns="6"
+				columnClasses="	   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-1"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="ส่วนสถานศึกษา"
+					for="e-selectOneRadio-eduPlacePart" />
+				<p:selectOneRadio id="e-selectOneRadio-eduPlacePart"
+					layout="lineDirection" required="true"
+					value="#{cep01002Bean.formDialog.eduPlacePart}">
+					<f:selectItem itemLabel="ราชการ" itemValue="ราชการ" />
+					<f:selectItem itemLabel="เอกชน" itemValue="เอกชน" />
+				</p:selectOneRadio>
+				<p:outputLabel />
+				<p:outputLabel />
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- Line 5 -->
+			<p:panelGrid columns="6"
+				columnClasses="	   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-1"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="ประเภทสถานศึกษา"
+					for="e-selectOneRadio-eduPlaceType" />
+				<p:selectOneRadio id="e-selectOneRadio-eduPlaceType"
+					layout="lineDirection"
+					value="#{cep01002Bean.formDialog.eduPlaceType}">
+					<f:selectItem itemLabel="สามัญศึกษา" itemValue="สามัญศึกษา" />
+					<f:selectItem itemLabel="อาชีวศึกษา" itemValue="อาชีวศึกษา" />
+				</p:selectOneRadio>
+				<p:outputLabel />
+				<p:outputLabel />
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- Line 6 -->
+			<p:panelGrid columns="6"
+				columnClasses="	   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-1,
+								   ui-grid-col-3,
+								   ui-grid-col-2"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="ระดับการศึกษา" for="e-SelectOneMenu-eduGran" />
+				<p:selectOneMenu id="e-SelectOneMenu-eduGran"
+					value="#{cep01002Bean.formDialog.eduGran}" required="true">
+					<p:ajax process="@this" update="@this" />
+					<f:selectItem itemLabel="ปริญญาตรี" itemValue="ปริญญาตรี" />
+					<f:selectItem itemLabel="ปริญญาโท" itemValue="ปริญญาโท" />
+					<f:selectItem itemLabel="ปริญญาเอก" itemValue="ปริญญาเอก" />
+				</p:selectOneMenu>
+				<p:outputLabel value="สาขาวิชา" for="e-selectOneMenu-eduBranch" />
+				<p:selectOneMenu id="e-selectOneMenu-eduBranch"
+					value="#{cep01002Bean.formDialog.eduBranch}">
+					<p:ajax process="@this" update="@this" />
+					<f:selectItem itemLabel="บริหารธุรกิจ" itemValue="บริหารธุรกิจ" />
+					<f:selectItem itemLabel="วิศวกรรม" itemValue="วิศวกรรม" />
+					<f:selectItem itemLabel="เทคโนโลยีสารสนเทศ"
+						itemValue="เทคโนโลยีสารสนเทศ" />
+				</p:selectOneMenu>
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- Line 7 -->
+			<p:panelGrid columns="6"
+				columnClasses="	   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-1,
+								   ui-grid-col-3,
+								   ui-grid-col-2"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="ชื่อสถานศึกษา" for="e-SelectOneMenu-eduPlace" />
+				<p:selectOneMenu id="e-SelectOneMenu-eduPlace"
+					value="#{cep01002Bean.formDialog.eduPlace}" required="true">
+					<p:ajax process="@this" update="@this" />
+					<f:selectItem itemLabel="มหาวิทยาลัยเเม่ฟ้าหลวง"
+						itemValue="มหาวิทยาลัยเเม่ฟ้าหลวง" />
+					<f:selectItem itemLabel="มหาวิทยาลัยเชียงใหม่"
+						itemValue="มหาวิทยาลัยเชียงใหม่" />
+					<f:selectItem itemLabel="มหาวิทยาลัยมหิดล"
+						itemValue="มหาวิทยาลัยมหิดล" />
+				</p:selectOneMenu>
+				<p:outputLabel value="จังหวัด" for="e-selectOneMenu-province" />
+				<p:selectOneMenu id="e-selectOneMenu-province" required="true">
+					<f:selectItem itemLabel="เชียงราย" itemValue="เชียงราย" />
+					<f:selectItem itemLabel="เชียงใหม่" itemValue="เชียงใหม่" />
+					<f:selectItem itemLabel="กรุงเทพมหานคร" itemValue="กรุงเทพมหานคร" />
+				</p:selectOneMenu>
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- Line 8 -->
+			<p:panelGrid columns="6"
+				columnClasses="	   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-1,
+								   ui-grid-col-3,
+								   ui-grid-col-2"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="อำเภอ" for="e-SelectOneMenu-district" />
+				<p:selectOneMenu id="e-SelectOneMenu-district">
+					<f:selectItem itemLabel="เมืองเชียงราย" itemValue="เมืองเชียงราย" />
+					<f:selectItem itemLabel="เมืองเชียงใหม่" itemValue="เมืองเชียงใหม่" />
+					<f:selectItem itemLabel="พุทธมณฑล" itemValue="พุทธมณฑล" />
+				</p:selectOneMenu>
+				<p:outputLabel value="ตำบล" for="e-selectOneMenu-Subdistrict" />
+				<p:selectOneMenu id="e-selectOneMenu-Subdistrict">
+					<f:selectItem itemLabel="ท่าสุด" itemValue="ท่าสุด" />
+					<f:selectItem itemLabel="ดอยสุเทพ" itemValue="ดอยสุเทพ" />
+					<f:selectItem itemLabel="พุทธมณฑล" itemValue="พุทธมณฑล" />
+				</p:selectOneMenu>
+				<p:outputLabel />
+			</p:panelGrid>
+			<!-- Line 9 -->
+			<p:panelGrid columns="6"
+				columnClasses="	   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-7,
+								   ui-grid-col-2,
+								   ui-grid-col-0,
+								   ui-grid-col-0"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:outputLabel value="หมายเหตุ" for="e-inputTextt-note" />
+				<p:inputText id="e-inputTextt-note" />
+				<p:outputLabel />
+				<p:outputLabel />
+				<p:outputLabel />
+			</p:panelGrid>
+
+
+			<p:toolbar>
+				<f:facet name="left">
+					<p:commandButton icon="fa fa-save white" value="บันทึก"
+						process="@this"
+						update="@this,formc:e-accordionPanel-kidH:data-table-kh"
+						actionListener="#{cep01002Bean.addEduList}" />
+				</f:facet>
+				<f:facet name="right">
+					<p:commandButton icon="fa fa-close white" value="ยกเลิก"
+						actionListener="#{cep01002Bean.closeDialogOnClick}"
+						update=":formc" />
+				</f:facet>
+			</p:toolbar>
+		</p:dialog>
+	</div>
+</ui:composition>

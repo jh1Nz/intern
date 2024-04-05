@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.summitthai.cr</groupId>
+    <artifactId>apprentice</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <name>apprentice</name>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Java Properties -->
+        <java.version>1.8</java.version>
+
+        <!-- Maven Build Plugin Properties -->
+        <maven.compiler>3.8.1</maven.compiler>
+        <maven.war>3.3.1</maven.war>
+        <maven.resources>2.6</maven.resources>
+        
+        <!-- Complied Scope -->
+        <my.com.summitthai.f2.faces-api>3.0.3</my.com.summitthai.f2.faces-api>
+        <my.com.summitthai.f2.dao-cdi-api>1.0.0</my.com.summitthai.f2.dao-cdi-api>
+        <my.com.summitthai.f2.reference>3.5.0-RC2</my.com.summitthai.f2.reference>
+        <my.org.primefaces>12.0.0</my.org.primefaces>
+		<my.webjars.font-awesome>5.9.0</my.webjars.font-awesome>
+		<my.org.eclipse.persistence>2.7.8</my.org.eclipse.persistence>
+		<my.jackson-databind>2.9.8</my.jackson-databind>
+        <my.jersey>2.28</my.jersey>
+		
+		<!-- Complied scope for runtime only -->
+        <my.f2-theme>1.0.1</my.f2-theme>
+	    <cdi-api.version>2.0.SP1</cdi-api.version>
+	    <javax.validation-api>1.1.0.Final</javax.validation-api>
+        <my.javax.faces>2.3.2</my.javax.faces>        
+	    <my.weld-servlet-shaded>3.1.9.Final</my.weld-servlet-shaded>
+	    
+	    <!-- Provided Scope -->
+        <my.javaee.web.api>8.0</my.javaee.web.api>
+        <my.lombok>1.18.20</my.lombok>
+        <javax.servlet-api.version>4.0.0</javax.servlet-api.version>
+
+        <!-- runtime -->
+        <runtime.scope>compile</runtime.scope>
+		
+		<!-- Test Scope -->
+        <my.junit>4.13.1</my.junit>
+        <my.sqlite-jdbc>3.20.0</my.sqlite-jdbc>
+        <my.dbunit>2.4.9</my.dbunit>
+        <my.org.apache.poi>3.2-FINAL</my.org.apache.poi>
+        <my.mysql-connector-java>5.1.6</my.mysql-connector-java>
+		
+		
+		
+    </properties>
+
+    <dependencies>
+		
+		<!-- ######### Compile scope #########-->
+        <dependency>
+            <groupId>com.summitthai.f2</groupId>
+            <artifactId>faces-api</artifactId>
+            <version>${my.com.summitthai.f2.faces-api}</version>
+            <classifier>classes</classifier>
+            <scope>compile</scope>
+        </dependency>
+		<dependency>
+            <groupId>com.summitthai.f2</groupId>
+            <artifactId>dao-cdi-api</artifactId>
+            <version>${my.com.summitthai.f2.dao-cdi-api}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+	        <groupId>com.summitthai.f2</groupId>
+	        <artifactId>reference</artifactId>
+	        <version>${my.com.summitthai.f2.reference}</version>
+	        <classifier>classes</classifier>
+	        <scope>compile</scope>
+	    </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>${my.org.primefaces}</version>
+			<scope>${runtime.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>${my.org.eclipse.persistence}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Rest Library configuration in project because J2EE support jax-rs 
+            but tomcat not support -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${my.jackson-databind}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- for mapping json to pojo object automatic -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>${my.jersey}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <version>${my.jackson-databind}</version>
+            <scope>compile</scope>
+        </dependency>
+		
+		<!-- Complied scope for runtime only -->
+        <dependency>
+              <groupId>com.summitthai.f2</groupId>
+            <artifactId>theme</artifactId>
+            <version>${my.f2-theme}</version>
+			<scope>${runtime.scope}</scope>
+            <classifier>classes</classifier>
+        </dependency> 
+		<!-- Font Awesome -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>font-awesome</artifactId>
+			<version>${my.webjars.font-awesome}</version>
+			<scope>${runtime.scope}</scope>
+		</dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${javax.validation-api}</version>
+			<scope>${runtime.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>${cdi-api.version}</version>
+			<scope>${runtime.scope}</scope>
+        </dependency>
+
+		 <dependency>
+		    <groupId>org.jboss.weld.servlet</groupId>
+		    <artifactId>weld-servlet-shaded</artifactId>
+		    <version>${my.weld-servlet-shaded}</version> 
+			<scope>${runtime.scope}</scope>
+		</dependency>
+
+    	<dependency>
+		   <groupId>org.glassfish</groupId>
+		   <artifactId>javax.faces</artifactId>
+		   <version>${my.javax.faces}</version>
+			<scope>${runtime.scope}</scope>
+		</dependency>
+     	<dependency>
+		    <groupId>org.glassfish.jersey.core</groupId>
+		    <artifactId>jersey-client</artifactId>
+		    <version>${my.jersey}</version>
+			<scope>${runtime.scope}</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.glassfish.jersey.inject</groupId>
+		    <artifactId>jersey-hk2</artifactId>
+		    <version>${my.jersey}</version>
+			<scope>${runtime.scope}</scope>
+		</dependency> 		
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-multipart</artifactId>
+			<version>${my.jersey}</version>
+			<scope>${runtime.scope}</scope>
+		</dependency>
+		
+		<!-- ######### Provided scope ######### -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>${my.javaee.web.api}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${my.lombok}</version>
+            <scope>provided</scope>
+        </dependency>
+		
+		
+        <!-- ######### Test scope ######### -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${my.junit}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>${my.sqlite-jdbc}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>${my.dbunit}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${my.org.apache.poi}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${my.mysql-connector-java}</version>
+            <scope>test</scope>
+        </dependency>
+		
+		<dependency>
+	    	<groupId>com.oracle</groupId>
+	  		<artifactId>ojdbc6</artifactId>
+	  		<version>11.2.0.3.0</version>
+	  		<scope>test</scope>
+	  	</dependency>
+	  	
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- DISABLE XVFB SINCE IT MAKES THE MACOS TO FAILED -->
+            <plugin>
+                <groupId>com.github.zetten</groupId>
+                <artifactId>xvfb-maven-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>start-xvfb</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop-xvfb</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.war}</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <attachClasses>true</attachClasses>
+                    <archiveClasses>true</archiveClasses>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <inherited>true</inherited>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources}</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${basedir}/target/classes
+                            </outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>
+                                        ${basedir}/src/main/webapp
+                                    </directory>
+                                    <includes>
+                                        <include>**/*</include>
+                                    </includes>
+                                    <excludes>
+                                        <exclude>WEB-INF/**</exclude>
+                                    </excludes>
+                                    <targetPath>
+                                        META-INF/resources
+                                    </targetPath>
+                                </resource>
+
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+
+                                <resource>
+                                    <directory>
+                                        ${basedir}/src/main/webapp/WEB-INF
+                                    </directory>
+                                    <includes>
+                                        <include>
+                                            faces-config.xml
+                                        </include>
+                                    </includes>
+                                    <targetPath>META-INF</targetPath>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

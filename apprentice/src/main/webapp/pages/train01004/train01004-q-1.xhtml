@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div class="ui-fluid">
+			<p:panelGrid columns="5"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+				layout="grid" 
+				styleClass="ui-panelgrid-blank">
+
+		<p:outputLabel />
+
+		<p:outputLabel 
+				value="ประเภทหน่วยงาน" style="float: left;" for="q-autoComplete-Jtype"
+				 />
+		<p:autoComplete 
+				id="q-autoComplete-Jtype" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" 
+				converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspJtype" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+
+		<p:outputLabel value="ระดับตำแหน่ง" style="float: left;" for="q-autoComplete-JRank" 
+				 />
+		<p:autoComplete 
+				id="q-autoComplete-JRank" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspJRank" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+		</p:panelGrid>
+		
+		
+		<p:panelGrid columns="5"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+				layout="grid" 
+				styleClass="ui-panelgrid-blank">
+
+		<p:outputLabel />
+
+		<p:outputLabel 
+				value="ตำแหน่งในการบริหาร" style="float: left;" for="q-autoComplete-PositionManage"
+				 />
+		<p:autoComplete 
+				id="q-autoComplete-PositionManage" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" 
+				converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspPositionManage" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+
+		<p:outputLabel value="กลุ่มค่าจ้าง" style="float: left;" for="q-autoComplete-butjet"
+				/>
+		<p:autoComplete 
+				id="q-autoComplete-butjet" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspbutjet" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+		</p:panelGrid>
+		
+		
+		<p:panelGrid columns="5"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-3"
+				layout="grid" 
+				styleClass="ui-panelgrid-blank">
+
+		<p:outputLabel />
+
+		<p:outputLabel 
+				value="กลุ่มงาน" style="float: left;" for="q-autoComplete-Jgroup"
+				/>
+		<p:autoComplete 
+				id="q-autoComplete-Jgroup" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" 
+				converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspJgroup" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+
+		<p:outputLabel value="กลุ่มตำแหน่ง" style="float: left;" for="q-autoComplete-Pgroup"
+				/>
+		<p:autoComplete 
+				id="q-autoComplete-Pgroup" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspPgroup" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+		</p:panelGrid>
+		
+		
+		<p:panelGrid columns="8"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-1,
+								   ui-grid-col-1,
+								   ui-grid-col-1,
+								   ui-grid-col-1,
+								   ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+
+			<p:outputLabel />
+			
+			<p:outputLabel id="q-outputLabel-StartSemester"
+				value="ปีที่เริ่มการศึกษา" 
+				style="float:left" 
+				for="q-inputText-StartSemester"/>
+				
+			<p:inputText id="q-inputText-StartSemester"
+				value="#{hmp01001Bean.formEdit.empPin}" 
+				maxlength="4"
+				disabled="#{not empty hmp01001Bean.impList}" 
+				required="true"
+				
+				converter="universalConverter" category="tinid">
+				<p:keyFilter regEx="/[0-9]/i" />
+            
+            
+ 
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
+			 <p:message for="q-inputText-StartSemester"/>
+			
+			<p:outputLabel 
+				id="q-outputLabel-EndSemester"
+				value="ปีที่สำเร็จการศึกษา" 
+				style="float:left"
+				for="q-inputText-EndSemester"
+				 />
+			<p:inputText id="q-inputText-EndSemester"
+				value="#{hmp01001Bean.formEdit.empPin}" maxlength="4"
+				disabled="#{not empty hmp01001Bean.impList}" required="true"
+				
+				converter="universalConverter" category="tinid">
+				<p:keyFilter regEx="/[0-9]/i" />
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
+			<p:message for="q-inputText-EndSemester"/>
+
+		</p:panelGrid>
+		
+		
+		
+		<p:panelGrid columns="6"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-3,
+								   ui-grid-col-2"
+				layout="grid" 
+				styleClass="ui-panelgrid-blank">
+
+		<p:outputLabel />
+
+		<p:outputLabel 
+				value="ระดับการศึกษา" style="float: left;" for="q-autoComplete-degree"
+				 />
+		<p:autoComplete 
+				id="q-autoComplete-degree" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" 
+				converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspdegree" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+
+		<p:outputLabel value="วุฒิการศึกษา" style="float: left;" for="q-autoComplete-EdQualification"
+				/>
+		<p:autoComplete 
+				id="q-autoComplete-EdQualification" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspEdQualification" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+		</p:panelGrid>
+		
+		
+		
+		<p:panelGrid columns="5"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+				layout="grid" 
+				styleClass="ui-panelgrid-blank">
+
+		<p:outputLabel />
+
+		<p:outputLabel 
+				value="สาขาวิชาเอก" style="float: left;" for="q-autoComplete-major"
+				 />
+		<p:autoComplete 
+				id="q-autoComplete-major" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" 
+				converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspmajor" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+
+		<p:outputLabel value="คณะ" style="float: left;" for="q-autoComplete-faculty"
+				/>
+		<p:autoComplete 
+				id="q-autoComplete-faculty" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspfaculty" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+		</p:panelGrid>
+		
+		
+		
+		<p:panelGrid columns="6"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-1"
+				layout="grid" 
+				styleClass="ui-panelgrid-blank">
+
+		<p:outputLabel />
+
+		<p:outputLabel 
+				value="สถานศึกษา" style="float: left;" for="q-autoComplete-University"
+				 />
+		<p:autoComplete 
+				id="q-autoComplete-University" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" 
+				converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspUniversity" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+
+		<p:outputLabel value="สถานบันอื่นๆ" style="float: left;" for="q-inputText-school"
+				/>
+		<p:inputText id="q-inputText-school" required="true" value="">
+		<p:ajax event="valueChange" process="@this" update="@this" />
+		</p:inputText>
+		<p:message for="q-inputText-school"/>
+		</p:panelGrid>
+		
+		
+		
+		<p:panelGrid columns="6"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-1"
+				layout="grid" 
+				styleClass="ui-panelgrid-blank">
+
+		<p:outputLabel />
+
+		<p:outputLabel 
+				value="ประเทศที่ศึกษา" style="float: left;" for="q-autoComplete-country"
+				 />
+		<p:autoComplete 
+				id="q-autoComplete-country" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" 
+				converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspcountry" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+
+		<p:outputLabel value="วันที่สำเร็จการศึกษา" style="float: left;" for="q-calendar-fnDateUi"
+				/>
+		<p:datePicker
+			            id="q-calendar-fnDateUi"
+			            value="#{xsp01001Bean.formCriteria.fnDateUi}"
+			            required="true"
+			            locale="th"
+			            monthNavigator="true"
+			            yearNavigator="true"
+			            yearRange="-5:+5"
+			            pattern="dd/MM/yyyy"
+			            showIcon="true"
+			            showOnFocus="false"
+			            
+			            size="20">
+			            <p:ajax
+			                event="dateSelect"
+			                update="@this" />
+			            <p:ajax
+			                event="change"
+			                update="@this" />
+        			</p:datePicker>
+        			<p:message for="q-calendar-fnDateUi" />
+		</p:panelGrid>
+		
+		
+		
+		<p:panelGrid columns="8"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-1,
+								   ui-grid-col-1,
+								   ui-grid-col-1,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+
+			<p:outputLabel />
+			
+			<p:outputLabel value="เกรดเฉลี่ย" style="float: left;" for="e-inputNumber-budgetAmt"/>
+			                <p:inputNumber
+                    id="e-inputNumber-budgetAmt"
+                    value=""
+                    required="true"
+                    maxValue="4.00"
+                    minValue="0"
+                    inputStyle="text-align: right">
+                    <p:ajax
+                        process="@this"
+                        update="@this" />
+                </p:inputNumber>
+                <p:message for="e-inputNumber-budgetAmt"/>
+                
+                
+                <p:outputLabel value="เกียรตินิยม" style="float: left;" for="e-inputNumber-budgetAmt-1"/>
+			                <p:inputNumber
+                    id="e-inputNumber-budgetAmt-1"
+                    value=""
+                    required="true"
+                    maxValue="99999999.99"
+                    minValue="0"
+                    inputStyle="text-align: right">
+                    <p:ajax
+                        process="@this"
+                        update="@this" />
+                </p:inputNumber>
+                <p:message for="e-inputNumber-budgetAmt-1"/>
+			
+			
+
+		</p:panelGrid>
+		
+		<p:panelGrid columns="3"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   "
+				layout="grid" 
+				styleClass="ui-panelgrid-blank">
+
+		<p:outputLabel />
+
+		<p:outputLabel 
+				value="ประเภททุน" style="float: left;" for="q-autoComplete-Fund"
+				 />
+		<p:autoComplete 
+				id="q-autoComplete-Fund" 
+				dropdown="true"
+				required="true" 
+				value="#{xsp01001Bean.formEdit.xspProjectRequest}"
+				scrollHeight="250" 
+				converter="xspProjectConverter"
+				completeMethod="#{xspProjectAutoComplete.suggestByCriteriaLikeReq}"
+				var="data" 
+				itemValue="#{data}"
+				itemLabel="#{data.id} : #{data.projectName}" 
+				suggestMode="id"
+				widgetVar="xspFund" 
+				forceSelection="true"
+				emptyMessage="ไม่พบข้อมูล">
+				
+		<p:ajax event="change" 
+				process="@this" 
+				update="@this" />
+		</p:autoComplete>
+		</p:panelGrid>
+		
+		<p:panelGrid columns="8"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+
+			<p:outputLabel />
+
+			<p:outputLabel value="หน่วยงานที่ให้ทุน" style="float: left;" for="q-inputText-FundDepartment"
+				 />
+
+				<p:inputText 
+				id="q-inputText-FundDepartment" 
+				required="true" 
+				value="">
+			<p:ajax 
+			event="valueChange" 
+			process="@this" 
+			update="@this" />
+		</p:inputText>
+		<p:message for="q-inputText-FundDepartment"/>
+
+
+
+		<p:outputLabel 
+				value="ประเทศเจ้าของทุน" style="float: left;" for="q-inputText-FundCountry"
+				/>
+
+		<p:inputText 
+				id="q-inputText-FundCountry" 
+				required="true" 
+				value="">
+		<p:ajax 
+				event="valueChange" 
+				process="@this" 
+				update="@this" />
+		</p:inputText>
+		<p:message for="q-inputText-FundCountry"/>
+		</p:panelGrid>
+		
+		
+		
+		<p:panelGrid columns="8"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-3"
+			layout="grid" styleClass="ui-panelgrid-blank">
+
+			<p:outputLabel />
+
+			<p:outputLabel value="เลขที่เอกสารทุน" style="float: left;" for="q-inputText-NumFund"
+				/>
+
+				<p:inputText 
+				id="q-inputText-NumFund" 
+				required="true" 
+				value="">
+			<p:ajax 
+			event="valueChange" 
+			process="@this" 
+			update="@this" />
+		</p:inputText>
+		<p:message for="q-inputText-NumFund"/>
+		
+		<p:outputLabel
+                        value="ลงวันที่" for="q-calendar-stDateUi"
+                        />      
+		<p:datePicker
+                    	id="q-calendar-stDateUi"
+			            locale="th"
+			            value="#{xsp01001Bean.formCriteria.stDateUi}"
+			            required="true"
+			            monthNavigator="true"
+			            yearNavigator="true"
+			            yearRange="-5:+5"
+			            pattern="dd/MM/yyyy"
+			            showIcon="true"
+			            showOnFocus="false"
+			           
+			            size="20">
+			            <p:ajax
+			            	
+			                event="dateSelect"
+			                update="@this" />
+			            <p:ajax
+			                event="change"
+			                update="@this" />
+                    </p:datePicker>
+			<p:message for="q-calendar-stDateUi"/>
+                    </p:panelGrid>
+                    
+		
+		<p:panelGrid columns="5"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-2,
+								   ui-grid-col-2,
+								   ui-grid-col-3"
+			layout="grid" styleClass="ui-panelgrid-blank">
+
+			<p:outputLabel />
+
+			<p:outputLabel value="หมายเหตุ" style="float: left;" for="q-inputText-Text"
+				/>
+
+				<p:inputText 
+				id="q-inputText-Text" 
+				required="true" 
+				value="">
+			<p:ajax 
+			event="valueChange" 
+			process="@this" 
+			update="@this" />
+		</p:inputText>
+		<p:message for="q-inputText-Text"/>
+		</p:panelGrid>
+		
+		
+		<p:panelGrid columns="4"
+			columnClasses="
+								   ui-grid-col-2,
+								   ui-grid-col-1,
+								   ui-grid-col-4
+								   ui-grid-col-1,
+								   "
+			layout="grid" styleClass="ui-panelgrid-blank">
+
+			<p:outputLabel />
+
+			<p:outputLabel value="ประเภทวุฒิการศึกษา" style="float: left;" for="q-selectManyCheckbox"/>
+			
+			<p:selectManyCheckbox 
+						id="q-selectManyCheckbox" 
+						widgetVar="blub"
+						value="#{xsp01001Bean.formCriteria.taskStatusList}"
+						required="true">
+            			<f:selectItem 
+            				itemLabel="วุฒิที่ใช้บรรจุ" 
+            				itemValue="A"/>
+            			<f:selectItem 
+            				itemLabel="วุฒิที่ใช้ในตำแหน่งปัจจุบัน" 
+            				itemValue="P"/>
+            			<f:selectItem 
+            				itemLabel="วุฒิการศึกษาสูงสุด" 
+            				itemValue="F"/>
+            			<f:selectItem 
+            				itemLabel="วุฒิอื่นๆ" 
+            				itemValue="S"/>
+        			</p:selectManyCheckbox>
+        			<p:message for="q-selectManyCheckbox"/>
+			</p:panelGrid>
+			
+	
+	</div>
+	</ui:composition>

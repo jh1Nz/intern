@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+	<style>
+body .ui-toolbar {
+	border: 1px solid #ffffff;
+	background: #ffffff;
+}
+</style>
+	<div class="ui-fluid">
+		<!-- Line 1 -->
+		<p:panelGrid columns="6"
+			columnClasses="
+						ui-grid-col-2,
+					    ui-grid-col-2,
+						ui-grid-col-3,
+						ui-grid-col-2,
+						ui-grid-col-0,
+						ui-grid-col-0"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ชื่อ-นามสกุล บุคลากร" style="float: left"
+				for="q-selectOneMenu-persoanlId" />
+			<p:selectOneMenu id="q-selectOneMenu-persoanlId">
+				<f:selectItem itemLabel="เลือกชื่อบุคลากร" itemValue="สวัสดี" />
+				<f:selectItem itemLabel="นาย เอ สมมุติ" itemValue="นายเอ" />
+				<f:selectItem itemLabel="นาง บี สมมุติ" itemValue="นายบี" />
+				<f:selectItem itemLabel="นาย ซี สมมุติ" itemValue="นายซี" />
+			</p:selectOneMenu>
+			<p:outputLabel />
+			<p:outputLabel />
+		</p:panelGrid>
+		<!-- Line 2 -->
+		<p:panelGrid columns="6"
+			columnClasses="
+						ui-grid-col-2,
+					    ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-1,
+						ui-grid-col-1,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ชื่อ-บุตร" style="float: left"
+				for="q-inputText-kidFname" />
+			<p:inputText id="q-inputText-kidFname">
+
+			</p:inputText>
+			<p:outputLabel />
+			<p:outputLabel value="นามสกุล-บุตร" style="float: left"
+				for="q-inputText-kidLname" />
+			<p:inputText id="q-inputText-kidLname">
+			</p:inputText>
+			<p:outputLabel />
+		</p:panelGrid>
+		<!-- Line 3 -->
+		<p:panelGrid columns="6"
+			columnClasses="
+						ui-grid-col-2,
+					    ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-1,
+						ui-grid-col-1,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ปีการศึกษา" style="float: left"
+				for="q-inputText-eduYear" />
+			<p:inputText id="q-inputText-eduYear">
+
+			</p:inputText>
+			<p:outputLabel />
+			<p:outputLabel value="ชั้นปีที่ศึกษา" style="float: left"
+				for="q-inputText-eduLevel" />
+			<p:inputText id="q-inputText-eduLevel">
+			</p:inputText>
+			<p:outputLabel />
+		</p:panelGrid>
+		<!-- Line 4 -->
+		<p:panelGrid columns="6"
+			columnClasses="
+						ui-grid-col-2,
+					    ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-1,
+						ui-grid-col-1,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ระดับการศึกษา" style="float: left"
+				for="q-selectOneMenu-eduLevel" />
+			<p:selectOneMenu id="q-selectOneMenu-eduLevel">
+				<f:selectItem itemLabel="เลือกระดับ" itemValue="เลือกระดับ" />
+				<f:selectItem itemLabel="ปี 1" itemValue="1" />
+				<f:selectItem itemLabel="ปี 2" itemValue="2" />
+				<f:selectItem itemLabel="ปี 3" itemValue="3" />
+				<f:selectItem itemLabel="ปี 4" itemValue="4" />
+
+			</p:selectOneMenu>
+			<p:outputLabel />
+			<p:outputLabel value="สาขาวิชา" style="float: left"
+				for="q-selectOneMenu-Branch" />
+			<p:selectOneMenu id="q-selectOneMenu-Branch">
+				<f:selectItem itemLabel="เลือกสาขา" itemValue="เลือกสาขา" />
+				<f:selectItem itemLabel="SE" itemValue="SE" />
+				<f:selectItem itemLabel="CE" itemValue="CE" />
+				<f:selectItem itemLabel="MTA" itemValue="MTA" />
+				<f:selectItem itemLabel="DTBI" itemValue="DTBI" />
+			</p:selectOneMenu>
+		</p:panelGrid>
+		<!-- Line 5 -->
+		<p:panelGrid columns="6"
+			columnClasses="
+						ui-grid-col-2,
+					    ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-1,
+						ui-grid-col-1,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ชื่อสถานศึกษา" style="float: left"
+				for="q-selectOneMenu-eduPlace" />
+			<p:selectOneMenu id="q-selectOneMenu-eduPlace">
+				<f:selectItem itemLabel="เลือกสาขา" itemValue="เลือกสาขา" />
+				<f:selectItem itemLabel="MFU" itemValue="MFU" />
+			</p:selectOneMenu>
+			<p:outputLabel />
+			<p:outputLabel />
+			<p:outputLabel />
+		</p:panelGrid>
+		<!-- Line 6 -->
+		<p:panelGrid columns="6"
+			columnClasses="
+						ui-grid-col-2,
+					  	ui-grid-col-2,
+						ui-grid-col-3,
+						ui-grid-col-1,
+						ui-grid-col-1,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel for="q-selectOneRadio-eduPlacePart"
+				value="ส่วนสถานศึกษา" style="float: left;" />
+
+			<p:selectOneRadio id="q-selectOneRadio-eduPlacePart"
+				layout="lineDirection" disabled="false">
+				<f:selectItem itemLabel="ทั้งหมด" itemValue="ทั้งหมด" />
+				<f:selectItem itemLabel="ราชการ" itemValue="ราชการ" />
+				<f:selectItem itemLabel="เอกชน" itemValue="เอกชน" />
+
+			</p:selectOneRadio>
+			<p:outputLabel />
+			<p:outputLabel />
+			<p:outputLabel />
+		</p:panelGrid>
+		<!-- Line 7 -->
+		<p:panelGrid columns="6"
+			columnClasses="
+						ui-grid-col-2,
+					  	ui-grid-col-2,
+						ui-grid-col-3,
+						ui-grid-col-2,
+						ui-grid-col-1,
+						ui-grid-col-1"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel for="q-selectOneRadio-eduPlaceType"
+				value="ประเภทสถานศึกษา" style="float: left;" />
+
+			<p:selectOneRadio required="false" id="q-selectOneRadio-eduPlaceType"
+				layout="lineDirection" disabled="false">
+				<f:selectItem itemLabel="ทั้งหมด" itemValue="allEdu" />
+				<f:selectItem itemLabel="สามัญศึกษา" itemValue="generalEdu" />
+				<f:selectItem itemLabel="อาชีวศึกษา" itemValue="vocationalEdu" />
+
+			</p:selectOneRadio>
+			<p:message for="q-selectOneRadio-eduPlaceType" />
+			<p:outputLabel />
+			<p:outputLabel />
+		</p:panelGrid>
+
+
+	</div>
+</ui:composition>

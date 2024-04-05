@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:sdd="http://java.sun.com/jsf/composite/sdd" 
+    template="#{environment.templatePath}">
+    
+    
+    <ui:param name="screenName" value="Home page of apprentice" />
+    
+    <ui:define name="viewname">
+        <li>
+            <p:link>
+                หน้าหลักระบบของเด็กฝึกงาน
+            </p:link>
+        </li>
+    </ui:define>
+    
+    <!-- ###################################################################### -->
+    <!-- ## Center Layout -->
+    <ui:define name="center">
+        <p:panel id                   = "home-panel">
+        
+        <div class="card">
+            <h5 style="margin-top:0">Basic</h5>
+            <p:panelGrid columns="2">
+                <p:panelGrid columns="2">
+	                <f:facet name="header">
+	                    <p:graphicImage name="/resources/images/fluke.jpg"
+	                                    width="350px"
+	                                    height="450px"/>
+	                </f:facet>
+	        
+	                <h:outputText value="Name:"/>
+	                <h:outputText value="Theerapat Sangpetch"/>
+	        
+	                <h:outputText value="Team:"/>
+	                <h:outputText value="Chiang Rai"/>
+	        
+	                <h:outputText value="Position:"/>
+	                <h:outputText value="Senior Developer"/>
+	        
+	                <h:outputText value="Deparetment:"/>
+	                <h:outputText value="Software Development Department"/>
+	                
+	                <h:outputText value="ทดสอบเรียก Bean"/>
+	                <p:commandButton value="Search" icon="pi pi-check" 
+	                                 process="@this" 
+                                     update="home-dt" 
+	                                 actionListener="#{homeBean.search}"/>
+                </p:panelGrid>
+                
+                <p:panelGrid columns="1"
+                             layout="grid" 
+                             styleClass="showcase-text-align-center"
+                             columnClasses="ui-g-12">
+                    <p:dataTable id="home-dt" var="data" value="#{homeBean.xspPersonList}" rowKey="#{data.personId}">
+			            <f:facet name="header">
+			                RightClick to View Options
+			            </f:facet>
+			
+			            <p:column headerText="PERSON_NICKNAME">
+			                <h:outputText value="#{data.personNickname}" />
+			            </p:column>
+			            <p:column headerText="PERSON_FULLNAME">
+			                <h:outputText value="#{data.personFullname}" />
+			            </p:column>
+			            <p:column headerText="PERSON_POSITION">
+			                <h:outputText value="#{data.personPosition}" />
+			            </p:column>
+			            <p:column headerText="DESCRIPTIONS">
+			                <h:outputText value="#{data.descriptions}" />
+			            </p:column>
+			        </p:dataTable>
+                </p:panelGrid>
+            </p:panelGrid>
+            
+        </div>
+        
+            <div class="card">
+                <h5>Responsive (Basic)</h5>
+                <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+            
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+            
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                </p:panelGrid>
+            </div>
+
+            <div class="card">
+                <h5>Responsive (ColumnClasses)</h5>
+                <p:panelGrid columns="4" layout="grid" styleClass="showcase-text-align-center"
+                             columnClasses="ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-3">
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+            
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+            
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                </p:panelGrid>
+            </div>
+            
+            <div class="card">
+                <h5>Responsive (PrimeFlex, Basic)</h5>
+                <p:panelGrid columns="3" layout="flex" styleClass="showcase-text-align-center">
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+            
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+            
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                </p:panelGrid>
+            </div>
+            
+            <div class="card">
+                <h5>Responsive (PrimeFlex, ColumnClasses)</h5>
+                <p:panelGrid columns="4" layout="flex" styleClass="showcase-text-align-center"
+                             columnClasses="col-12 md:col-6 lg:col-3, col-12 md:col-6 lg:col-3, col-12 md:col-6 lg:col-3, col-12 md:col-6 lg:col-3">
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+            
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+            
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                    <h:outputText value="Content"/>
+                </p:panelGrid>
+            </div>
+            
+            <div class="card">
+                <h5>Responsive (PrimeFlex, align-items-baseline)</h5>
+                <p:panelGrid columns="4" layout="flex"
+                             columnClasses="col-12 md:col-3 xl:col-2, col-12 md:col-9 xl:col-4, col-12 md:col-3 xl:col-2, col-12 md:col-9 xl:col-4"
+                             contentStyleClass="align-items-baseline ui-fluid">
+                    <p:outputLabel for="text1" value="Text 1"/>
+                    <p:inputText id="text1"/>
+            
+                    <p:outputLabel for="text2" value="Text 2"/>
+                    <p:inputText id="text2"/>
+            
+                    <p:outputLabel for="date" value="Date"/>
+                    <p:datePicker id="date" showIcon="true" style="width:auto"/>
+            
+                    <p:outputLabel for="checkbox" value="Checkbox"/>
+                    <p:selectBooleanCheckbox id="checkbox" itemLabel="Checkbox"/>
+            
+                    <p:outputLabel for="text3" value="Text 3"/>
+                    <p:inputText id="text3"/>
+            
+                    <p:outputLabel for="selectOne" value="SelectOne (misaligned)"/>
+                    <p:selectOneMenu id="selectOne">
+                        <f:selectItem itemLabel="Select One" itemValue=""/>
+                        <f:selectItem itemLabel="Xbox One" itemValue="Xbox One"/>
+                        <f:selectItem itemLabel="PS4" itemValue="PS4"/>
+                        <f:selectItem itemLabel="Wii U" itemValue="Wii U"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+            </div>
+            
+            <div class="card">
+                <h5>Responsive (PrimeFlex, align-items: center)</h5>
+                <p:panelGrid columns="4" layout="flex"
+                             columnClasses="col-12 md:col-3 xl:col-2, col-12 md:col-9 xl:col-4, col-12 md:col-3 xl:col-2, col-12 md:col-9 xl:col-4"
+                             styleClass="customPanelGrid" contentStyleClass="ui-fluid">
+                    <p:outputLabel for="textA1" value="Text 1"/>
+                    <p:inputText id="textA1"/>
+            
+                    <p:outputLabel for="textA2" value="Text 2"/>
+                    <p:inputText id="textA2"/>
+            
+                    <p:outputLabel for="dateA" value="Date"/>
+                    <p:datePicker id="dateA" showIcon="true" style="width:auto"/>
+            
+                    <p:outputLabel for="checkboxA" value="Checkbox"/>
+                    <p:selectBooleanCheckbox id="checkboxA" itemLabel="Checkbox"/>
+            
+                    <p:outputLabel for="text3A" value="Text 3"/>
+                    <p:inputText id="text3A"/>
+            
+                    <p:outputLabel for="selectOneA" value="SelectOne"/>
+                    <p:selectOneMenu id="selectOneA">
+                        <f:selectItem itemLabel="Select One" itemValue=""/>
+                        <f:selectItem itemLabel="Xbox One" itemValue="Xbox One"/>
+            

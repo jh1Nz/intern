@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:sdd="http://java.sun.com/jsf/composite/sdd" 
+    template="#{environment.templatePath}">
+    
+    
+    <ui:param name="screenName" value="Home page of apprentice" />
+    
+    <ui:define name="viewname">
+        <li>
+            <p:link>
+                หน้าหลักระบบของเด็กฝึกงาน
+            </p:link>
+        </li>
+    </ui:define>
+    
+    <!-- ###################################################################### -->
+    <!-- ## Center Layout -->
+    <ui:define name="center">
+        <p:panel id                   = "home-panel">
+        
+        <div class="card">
+				<h5 style="margin-top: 0">Resume</h5>
+				<p:panelGrid columns="2">
+					<p:panelGrid columns="2">
+						<f:facet name="header">
+							<p:graphicImage name="/resources/images/รูป2.jpg" width="350px"
+								height="450px" />
+						</f:facet>
+
+						<h:outputText styleClass="pi pi-envelope" value=" Email :" />
+						<h:outputText value="kamonchanokk.Pra@gmail.com" />
+
+						<h:outputText styleClass="pi pi-phone" value=" Phone :" />
+						<h:outputText value="095-917-2178" />
+
+						<h:outputText styleClass="pi pi-building" value=" Address:" />
+						<h:outputText value="123/3, moo 4,Chainarai,
+Chaibadan,Lopbury
+" />
+
+
+
+					</p:panelGrid>
+
+					<p:panelGrid columns="1" layout="grid"
+						styleClass="showcase-text-align-center" columnClasses="ui-g-12">
+						<div class="card"
+							style="background-color: #B19CF3; color: black; border: 15px;">
+							<h3 style="text-align: center;">
+							Kamonchanok Pradapkhai
+							</h3>
+							<h5 style="text-align: center;">Hi. My name is Kamonchanok
+								Pradapkhai (mint). I'm in fourth-grade at the Mae fah luang
+								university. I am a software engineering student looking for
+								internship experience and interested in learning new skills
+								about front-end developer and UXUI design. I want to develop
+								various skills in order to create effective jobs for the
+								organization</h5>
+								
+							<p:accordionPanel multiple="true" widgetVar="multiple">
+								<p:tab title="Education">
+									<p class="m-0">
+										<h:outputText styleClass="pi pi-book" value="  : Chaibadanwittaya school Science and Mathematics Program
+										Completed in 2018." />
+									</p>
+									<p class="m-0">
+										<h:outputText styleClass="pi pi-book"
+											value="  : Mae Fah Luang University Software Engineering Program Present in 2023" />
+									</p>
+
+								</p:tab>
+								<p:tab title="Experience">
+									<p class="m-0">Mae Fah Luang University | UX UI Research 2021 - 2022</p>
+									<p class="m-0">in this work i get a personality test, analyze,design web application and get requirement form user  </p>
+									<p class="m-0">Mae Fah Luang University | Research about game support for English learning  </p>
+									<p class="m-0">in this work i collect data form student and analyze data after that i design game and implement   </p>
+								</p:tab>
+								<p:tab title="Languages">
+									<p class="m-0">Thai : Native speaker</p>
+									<p class="m-0">English : Intermediate</p>
+								</p:tab>
+							</p:accordionPanel>
+						</div>
+					</p:panelGrid>
+				</p:panelGrid>
+
+			</div>
+			
+			<p:datePicker id="inline" value="#{calendarView.date1}"
+					inline="true" showTime="true" timeInput="true" />
+
+        
+            
+            
+                <!--
+                Note: Rows and columns can have style, styleClass, and id.
+                Note: A column with a defined styleClass will ignore the styleClass specified in the columnClasses list.
+                Note: Note the use of ui-fluid to ensure that components are sized correctly and the use of ui-panelgrid-blank to remove borders.
+                -->
+                
+           
+        </p:panel>
+    </ui:define>
+    
+</ui:composition>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<ui:composition
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:ui="http://java.sun.com/jsf/facelets"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+          xmlns:p="http://primefaces.org/ui">
+          
+          <p:accordionPanel id="q-Results">
+          	<p:tab title="ผลการค้นหา">
+          	<div class= "ui-fluid">
+          		<p:dataTable
+			        id="data-table"
+			        value="#{xsp01001Bean.xspAssignTaskList}"
+			        rowIndexVar="index"
+			        var="data"
+			        rows="10"
+			        widgetVar="lazy"
+			        lazy="true"
+			        paginator="true"
+			        rowsPerPageTemplate="5,10,15 ,20, 25,30"
+			        paginatorPosition="bottom"
+			        paginatorTemplate="{RowsPerPageDropdown} 
+			                           {FirstPageLink} 
+			                           {PreviousPageLink} 
+			                           {PageLinks} 
+			                           {CurrentPageReport} 
+			                           {NextPageLink} 
+			                           {LastPageLink}"
+			        reflow="true"
+			        style="text-align:center"
+			        emptyMessage="ไม่พบข้อมูล"
+			        selectionMode="single"
+        			selection="#{xsp01001Bean.formSelected}"
+        			rowKey="#{data.id}">
+			        <p:ajax
+			            event="rowSelect"
+			            process="@this"
+			            update=":formc"
+			            onstart="PF('bui').show()"
+			            onsuccess="PF('bui').hide()"
+			            listener = "#{xsp01001Bean.onRowSelect}"
+			            resetValues = "true"/>
+			         	
+
+		        	<p:column
+			            headerText="Number"
+			            width="3%;"
+			            style="text-align:center"
+			            sortBy="">
+		            <h:outputText
+		                style="float:center !important; 
+		                text-align:left !important;"
+		                value="#{index+1}">
+		            </h:outputText>
+		        	</p:column>
+		        	
+		        	<p:column
+			            headerText="Assign Date"
+			            width="10%;"
+			            style="text-align:center"
+			            sortBy="">
+		            <h:outputText
+		                value="#{data.assignDatetimeUi}"
+		                converter       =   "universalConverter"
+		                validator       =   "universalValidator"
+		                category        =   "calendar"
+		                pattern         =   "dd/mm/yyyy"
+		                style           =   "float:center !important; text-align:left !important;">
+		            </h:outputText>
+		        	</p:column>
+		        	
+		        	<p:column
+			            headerText="Assign By"
+			            width="10%;"
+			            style="text-align:center"
+			             sortBy="">
+		            <h:outputText
+		                style="float:center !important; 
+		                text-align:left !important;"
+		                value="#{data.xspPersonAssignRequest.personNickname}">
+		            </h:outputText>
+		        	</p:column>
+		        	
+		        	<p:column
+			            headerText="Actor"
+			            width="10%;"
+			            style="text-align:center"
+			            sortBy="">
+		            <h:outputText
+		                style="float:center !important; 
+		                text-align:left !important;"
+		                value="#{data.xspPersonActorRequest.personNickname}">
+		            </h:outputText>
+		        	</p:column>
+		        	
+		        	<p:column
+			            headerText="actor role"
+			            width="10%;"
+			            style="text-align:center"
+			            sortBy="">
+		            <h:outputText
+		                style="float:center !important; 
+		                text-align:left !important;"
+		                rendered="#{data.actorRole eq 'D'}"
+		                value="Dev">
+		            </h:outputText>
+		            <h:outputText
+		                style="float:center !important; 
+		                text-align:left !important;"
+		                rendered="#{data.actorRole eq 'Q'}"
+		                value="QC">
+		            </h:outputText>
+		            <h:outputText
+		                style="float:center !important; 
+		                text-align:left !important;"
+		                rendered="#{data.actorRole eq 'A'}"
+		                value="Design">
+		            </h:outputText>
+		        	</p:column>
+		        	
+		        	<p:column
+			            headerText="Screen Id"
+			            width="8%;"
+			            style="text-align:center"
+			            sortBy="">
+		            <h:outputText
+		                style="float:center !important; 
+		                text-align:left !important;"
+		                value="#{data.screenId}">
+		            </h:outputText>
+		        	</p:column>
+		        	
+		        	<p:column
+			            headerText="Screen Name"
+			            width="15%;"
+			            style="text-align:center"
+			            sortBy="">
+		            <h:outputText
+		                style="float:left !important; 
+		                text-align:left !important;"
+		                value="#{data.xspScreenNameRequest.screenName}">
+		            </h:outputText>
+		        	</p:column>
+		        	
+		        	<p:column
+			            headerText="Discription"
+			            width="10%;"
+			            style="text-align:center"
+			            sortBy="">
+		            <h:outputText
+		                style="float:center !important; 
+		                text-align:left !important;"
+		                value="#{data.taskDescription}">
+		            </h:outputText>
+		        	</p:column>
+		        	
+		        	<p:column
+			            headerText="Status"
+			            width="8%;"
+			            style="text-align:center"
+			            sortBy="">
+			        <h:outputText
+			        	styleClass="customer-badge status"
+		                style="float:center !important; 
+		                text-align:left !important; color=red;"
+		                rendered="#{data.taskStatus eq 'A'}"
+		                value="Assign">
+		            </h:outputText>    
+		            <h:outputText
+		            	styleClass="customer-badge status-negotiation"
+		                style="float:center !important; 
+		                text-align:left !important;"
+		                rendered="#{data.taskStatus eq 'P'}"
+		                value="Pending">
+		            </h:outputText>
+		           	<h:outputText
+		           		styleClass="customer-badge status-unqualified"
+		                style="float:center !important; 
+		                text-align:left !important;"
+		                rendered="#{data.taskStatus eq 'F'}"
+		                value="Feedback">
+		            </h:outputText>
+		            <h:outputText
+		            	styleClass="customer-badge status-qualified"
+		                style="float:center !important; 
+		                text-align:left !important;"
+		                rendered="#{data.taskStatus eq 'S'}"
+		                value="Finish">
+		            </h:outputText>
+		        	</p:column>
+		        	
+		        	<p:column
+			            headerText="actor work hrs"
+			            width="8%;"
+			            style="text-align:center"
+			            sortBy="">
+		            <h:outputText
+		                style="float:center !important; 
+		                text-align:left !important;"
+		                value="#{data.workHrs}">
+		            </h:outputText>
+		        	</p:column>
+		        	
+		        	<p:column
+			            headerText="actual status date"
+			            width="8%;"
+			            style="text-align:center"
+			            sortBy="">
+		            <h:outputText
+		                value="#{data.actualStartDateUi}"
+		                converter       =   "universalConverter"
+		                validator       =   "universalValidator"
+		                category        =   "calendar"
+		                pattern         =   "dd/mm/yyyy"
+		                style           =   "float:center !important; text-align:left !important;">
+		            </h:outputText>
+		        	</p:column>
+		        	
+		        	
+			     </p:dataTable>
+			   </div>
+			   </p:tab>
+			</p:accordionPanel>
+</ui:composition>
