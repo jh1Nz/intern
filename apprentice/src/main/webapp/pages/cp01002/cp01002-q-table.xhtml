@@ -24,10 +24,16 @@ body .ui-datatable thead th {
 						ui-grid-col-1"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:dataTable id="data-table" rowIndexVar="index" var="data" rows="10"
-				widgetVar="lazy" lazy="true" paginator="true"
+
+
+
+
+
+			<p:dataTable id="data-kid" rowIndexVar="index" var="data" rows="10"
+				widgetVar="lazy" lazy="false" paginator="true"
+				value="#{cep01002Bean.persanalList}"
 				rowsPerPageTemplate="5,10,15 ,20, 25,30" paginatorPosition="bottom"
-				paginatorTemplate="	   {RowsPerPageDropdown} 
+				paginatorTemplate="		{RowsPerPageDropdown} 
 			                           {FirstPageLink} 
 			                           {PreviousPageLink} 
 			                           {PageLinks} 
@@ -35,84 +41,54 @@ body .ui-datatable thead th {
 			                           {NextPageLink} 
 			                           {LastPageLink}"
 				reflow="true" style="text-align: center" emptyMessage="ไม่พบข้อมูล"
-				selectionMode="single" selection="#{xsp01001Bean.formSelected}"
-				rowKey="#{data.id}">
+				selectionMode="single" selection="#{cep01002Bean.formSelected}"
+				rowKey="#{data.persanalInfoId}">
 				<p:ajax event="rowSelect" process="@this" update=":formc"
 					onstart="PF('bui').show()" onsuccess="PF('bui').hide()"
-					listener="#{xsp01001Bean.onRowSelect}" resetValues="true" />
-				<!-- Col 1 -->
-				<p:column headerText="ลบ" width="2%;" style="text-align: center"
+					resetValues="true" listener="#{cep01002Bean.onRowSelect}" />
+
+
+				<p:column headerText="ลำดับ" width="3%;" style="text-align: center"
 					sortBy="">
 					<h:outputText
-						style="float: center !important; text-align: left !important"
-						value="#{index+1}">
-					</h:outputText>
+						style="float: center !important; 
+                text-align: left !important"
+						value="#{index+1}" />
 				</p:column>
 
-				<p:column headerText="ลำดับที่" width="5%;"
-					style="text-align: center" sortBy="">
+				<p:column headerText="ประเภทบุคลกร" width="5%;"
+					style="text-align: center" sortBy="#{data.empType}">
 					<h:outputText
-						style="float: center !important; text-align: left !important"
-						value="#{data.xspPersonActorRequest.personNickname}">
-					</h:outputText>
+						style="float: center !important; 
+                text-align: left !important"
+						value="#{data.empType}" />
 				</p:column>
-
-				<p:column headerText="ปีการศึกษา (พ.ศ.)" width="5%;"
-					style="text-align: center" sortBy="">
+				<p:column headerText="เลขที่ตำแหน่ง" width="5%;"
+					style="text-align: center" sortBy="#{data.posNum}">
 					<h:outputText
-						style="float: center !important; text-align: left !important"
-						rendered="#{data.actorRole eq 'D'}" value="Dev">
-					</h:outputText>
-					<h:outputText
-						style="float: center !important; text-align: left !important"
-						rendered="#{data.actorRole eq 'Q'}" value="QC">
-					</h:outputText>
-					<h:outputText
-						style="float: center !important; text-align: left !important"
-						rendered="#{data.actorRole eq 'A'}" value="Design">
-					</h:outputText>
+						style="float: center !important; 
+                text-align: left !important"
+						value="#{data.posNum}" />
 				</p:column>
-
-				<p:column headerText="ชั้น/ปีที่ศึกษา" width="3%;"
-					style="text-align: center" sortBy="">
+				<p:column headerText="ชื่อนามสกุล" width="5%;"
+					style="text-align: center"
+					sortBy="#{data.nameTitle} #{data.firstName} #{data.lastName}">
 					<h:outputText
-						style="float: center !important; text-align: left !important"
-						value="#{data.screenId}">
-					</h:outputText>
+						style="float: center !important; 
+                text-align: left !important"
+						value="#{data.nameTitle} #{data.firstName} #{data.lastName}" />
 				</p:column>
-
-				<p:column headerText="ชื่อ-นามสกุล" width="15%;"
-					style="text-align: center" sortBy="">
+				<p:column headerText="เลขบัตรประจำตัวประชาชน" width="10%;"
+					style="text-align: center" sortBy="#{data.perId}">
 					<h:outputText
-						style="float: left !important; text-align: left !important"
-						value="#{data.xspScreenNameRequest.screenName}">
-					</h:outputText>
-				</p:column>
-
-				<p:column headerText="ระดับการศึกษา" width="11%;"
-					style="text-align: center" sortBy="">
-					<h:outputText
-						style="float: center !important; text-align: left !important"
-						value="#{data.taskDescription}">
-					</h:outputText>
-				</p:column>
-				<p:column headerText="สาขาวิชา" width="11%;"
-					style="text-align: center" sortBy="">
-					<h:outputText
-						style="float: center !important; text-align: left !important"
-						value="#{index+1}">
-					</h:outputText>
-				</p:column>
-				<p:column headerText="ชื่อสถานศึกษา" width="15%;"
-					style="text-align: center" sortBy="">
-					<h:outputText
-						style="float: center !important; text-align: left !important"
-						value="#{index+1}">
-					</h:outputText>
+						style="float: center !important; 
+                text-align: left !important"
+						value="#{data.perId}" />
 				</p:column>
 			</p:dataTable>
-			<p:outputLabel />
 		</p:panelGrid>
+
+
 	</div>
 
 </ui:composition>

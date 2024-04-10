@@ -3,90 +3,98 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
- xmlns:f="http://java.sun.com/jsf/core"
- xmlns:h="http://java.sun.com/jsf/html"
- xmlns:ui="http://java.sun.com/jsf/facelets"
- xmlns:c="http://java.sun.com/jsp/jstl/core"
- xmlns:fn="http://java.sun.com/jsp/jstl/functions"
- xmlns:p="http://primefaces.org/ui">
- <style>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+	<style>
 body .ui-datatable thead th {
 	background-color: #5c6bc0;
 	color: white;
 }
+
 body .ui-button {
-    background: #5c6bc0;
-    color: #ffffff;
-    border: 1px solid #5c6bc0;
-    margin: 0;
-    outline: 0 none;
-    border-radius: 4px;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+	background: #5c6bc0;
+	color: #ffffff;
+	border: 1px solid #5c6bc0;
+	margin: 0;
+	outline: 0 none;
+	border-radius: 4px;
+	transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+		box-shadow 0.2s;
 }
 </style>
-<div class="ui-fluid">
+	<div class="ui-fluid">
 		<p:panelGrid columns="3"
 			columnClasses="
+
+						ui-grid-col-2,
+						ui-grid-col-3,
+						ui-grid-col-5"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="เงื่อนไขการมีผลเฉพาะหน่วยงาน"
+				style="float: left" for="e-selectOneRadio-pecificDeparment" />
+
+			<p:selectOneRadio id="e-selectOneRadio-pecificDeparment"
+				layout="lineDirection" disabled="false"
+				value="#{tmp01005Bean.formEdit.effectiveDepartment}">
+				<f:selectItem itemLabel="มี" itemValue="true" />
+				<f:selectItem itemLabel="ไม่มี" itemValue="false" />
+				<p:ajax process="@this" update="@this" />
+			</p:selectOneRadio>
+
+		</p:panelGrid>
+		
+			<p:panelGrid columns="3"
+				columnClasses="
       ui-grid-col-1,
          ui-grid-col-10,
       ui-grid-col-1"
-			layout="grid" styleClass="ui-panelgrid-blank">
-			<p:outputLabel />
- 		<p:dataTable 
- 				id="data-table" 
- 				
-				var="data" 
-				rowIndexVar="index" 
-				row="5" emptyMessage="ไม่พบข้อมูล"
-				selectionMode="single" 
-				rowKey="" 
-				allowUnsorting="true"
-				sortMode="single" 
-				disabledSelection="true" 
-				style="text-align:center">
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:dataTable id="data-table" var="data" rowIndexVar="index" row="5"
+					emptyMessage="ไม่พบข้อมูล" style="text-align:center">
 
-				<p:column headerText="ลำดับ"
-					style="text-align:center" >
-					<h:outputText
-						style="float:center !important; text-align:left !important;"
-						>
-					</h:outputText>
-				</p:column>
-				<p:column headerText="หน่วยงาน" style="text-align:center"
-					>
-					<h:outputText
-						style="float:center !important; text-align:left !important;"
-						>
-					</h:outputText>
-				</p:column>
-				<p:column headerText="ลบ" style="text-align:center"
-					>
-					<h:outputText
-						style="float:center !important; text-align:left !important;"
-						>
-					</h:outputText>
-				</p:column>
-				
-			
-			</p:dataTable>
-			<p:outputLabel />
-		</p:panelGrid>
-			
+					<p:column headerText="ลำดับ" width="5%" style="text-align:center">
+						<h:outputText
+							style="float:center !important; text-align:left !important;"
+							value="{index+1}">
+						</h:outputText>
+					</p:column>
+					<p:column headerText="หน่วยงาน" style="text-align:center">
+						<p:inputText value="#{tmp01005Bean.formEdit.department}">
+						<p:ajax process="@this" update="@this" />
+						</p:inputText>
+					</p:column>
+					<p:column headerText="ลบ" width="5%" style="text-align:center;">
+					<p:commandButton update="@this,data-table" process="@this"
+						icon="fa fa-minus"  />
+					</p:column>
+
+
+				</p:dataTable>
+				<p:outputLabel />
+			</p:panelGrid>
+
 			<p:panelGrid columns="3"
-			columnClasses="
+				columnClasses="
       ui-grid-col-5,
       ui-grid-col-2,
       ui-grid-col-5"
-			layout="grid" styleClass="ui-panelgrid-blank">
-			<p:outputLabel />
-			<p:commandButton icon="fa fa-plus white" value="เพิ่มรายการ"
-				update=":formc" immediate="true" oncomplete="PF('dlg001').show();"
-				>
-				<p:resetInput target=":formc" />
-			</p:commandButton>
-			<p:outputLabel />
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:outputLabel />
+				<p:commandButton icon="fa fa-plus white" value="เพิ่มรายการ"
+					update=":formc" immediate="true" oncomplete="PF('dlg001').show();">
+					<p:resetInput target=":formc" />
+				</p:commandButton>
+				<p:outputLabel />
 
-		</p:panelGrid>
-		</div>
+			</p:panelGrid>
+		
+
+	</div>
 
 </ui:composition>

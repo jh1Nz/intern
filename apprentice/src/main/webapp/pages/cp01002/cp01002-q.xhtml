@@ -36,17 +36,17 @@ body .ui-toolbar {
 				<f:selectItem itemLabel="นาย ซี สมมุติ" itemValue="นายซี" />
 			</p:selectOneMenu>
 			<p:outputLabel />
-			<p:outputLabel />
 		</p:panelGrid>
 		<!-- Line 2 -->
-		<p:panelGrid columns="6"
+		<p:panelGrid columns="7"
 			columnClasses="
 						ui-grid-col-2,
 					    ui-grid-col-2,
 						ui-grid-col-2,
 						ui-grid-col-1,
-						ui-grid-col-1,
-						ui-grid-col-2"
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-1"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:outputLabel value="ชื่อ-บุตร" style="float: left"
@@ -62,25 +62,26 @@ body .ui-toolbar {
 			<p:outputLabel />
 		</p:panelGrid>
 		<!-- Line 3 -->
-		<p:panelGrid columns="6"
+		<p:panelGrid columns="7"
 			columnClasses="
 						ui-grid-col-2,
 					    ui-grid-col-2,
 						ui-grid-col-2,
 						ui-grid-col-1,
-						ui-grid-col-1,
-						ui-grid-col-2"
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-1"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:outputLabel value="ปีการศึกษา" style="float: left"
 				for="q-inputText-eduYear" />
-			<p:inputText id="q-inputText-eduYear">
-
+			<p:inputText id="q-inputText-eduYear" maxlength="4" required="false">
+				<p:keyFilter regEx="/[0-9]/i" />
 			</p:inputText>
 			<p:outputLabel />
-			<p:outputLabel value="ชั้นปีที่ศึกษา" style="float: left"
-				for="q-inputText-eduLevel" />
-			<p:inputText id="q-inputText-eduLevel">
+			<p:outputLabel value="ชั้น/ปี ที่ศึกษา" style="float: left"
+				for="q-inputText-learnYear" />
+			<p:inputText id="q-inputText-learnYear" required="false">
 			</p:inputText>
 			<p:outputLabel />
 		</p:panelGrid>

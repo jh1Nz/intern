@@ -14,15 +14,16 @@
 	<p:toolbar>
 		<f:facet name="left">
 			<p:commandButton icon="fa fa-search white" value="ค้นหา"
-				actionListener="#{cep01002Bean.searchButtonOnclick}" update="@form" />
+				actionListener="#" update="@form" />
 			<p:commandButton icon="fa fa-refresh white" value="เริ่มใหม่"
-				update=":formc" process="@this" actionListener="#">
+				update=":formc" process="@this" 
+				actionListener="#">
 				<p:resetInput target=":formc" />
 			</p:commandButton>
 		</f:facet>
 		<f:facet name="right">
 			<p:commandButton icon="fa fa-plus white" value="เพิ่มใหม่"
-				actionListener="#{cep01002Bean.onPageInsert}" update=":formc">
+				actionListener="#" update=":formc">
 				<p:resetInput target=":formc" />
 			</p:commandButton>
 

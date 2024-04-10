@@ -27,11 +27,9 @@ body .ui-datatable thead th {
 
 
 
-
-
-			<p:dataTable id="data-kid" rowIndexVar="index" var="data" rows="10"
-				widgetVar="lazy" lazy="false" paginator="true"
-				rowsPerPageTemplate="5,10,15 ,20, 25,30" paginatorPosition="bottom"
+			<p:dataTable id="data-holiday" rowIndexVar="index" var="data" rows="10"
+				paginator="true" rowsPerPageTemplate="5,10,15 ,20, 25,30"
+				paginatorPosition="bottom"
 				paginatorTemplate="		{RowsPerPageDropdown} 
 			                           {FirstPageLink} 
 			                           {PreviousPageLink} 
@@ -44,13 +42,11 @@ body .ui-datatable thead th {
 				<p:ajax event="rowSelect" process="@this" update=":formc"
 					onstart="PF('bui').show()" onsuccess="PF('bui').hide()"
 					resetValues="true" />
-
-
 				<p:column headerText="ลำดับ" width="3%;" style="text-align: center"
 					sortBy="">
 					<h:outputText
 						style="float: center !important; 
-                text-align: left !important"
+              			text-align: left !important"
 						value="#{index+1}" />
 				</p:column>
 

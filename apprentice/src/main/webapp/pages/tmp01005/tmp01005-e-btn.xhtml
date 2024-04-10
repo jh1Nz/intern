@@ -15,18 +15,18 @@
 <p:toolbar>
 	 	<f:facet name="left">
 	 		<p:commandButton
-	 				rendered="#{cep01002Bean.mode eq 'I'}"
+	 				rendered="#{tmp01005Bean.mode eq 'I'}"
 	                icon="fa fa-save white" 
 	                value="บันทึก" 
 	                process="@this"
 	                update="@form"
 	                onclick="PF('bui').show()"
 	                onsuccess="PF('bui').hide()"
-	                
+	                actionListener="#{tmp01005Bean.insertButtonOnClick2}"
 	               />
 	               
-	               <p:commandButton
-				rendered="#{cep01002Bean.mode eq 'U'}"
+	            <p:commandButton
+				rendered="#{tmp01005Bean.mode eq 'U'}"
 				id="btn-edit" 
 				update=":formc" 
 				process="@this"
@@ -39,20 +39,6 @@
 
 			</p:commandButton>
 			
-			<p:commandButton
-				rendered="#{cep01002Bean.mode eq 'U'}"
-				id="btn-delete" 
-				update=":formc" 
-				process="@this"
-				onclick="PF('bui').show()" 
-				onsuccess="PF('bui').hide()" 
-				value="ลบ"
-				immediate="true" 
-				
-				icon="fa fa-times">
-
-			</p:commandButton>
-			
 	          <p:commandButton
 	                icon="fa fa-refresh white"
 	                value="เริ่มใหม่"
@@ -61,6 +47,7 @@
 	                immediate="true"
 	                onclick="PF('bui').show()"
 	                onsuccess="PF('bui').hide()"
+	                actionListener="#"
 	                >
 	                <p:resetInput
 	                    target=":formc" />
@@ -73,11 +60,9 @@
 	                id="btn-search"
 	                update=":formc"
 	                process="@this"
-	                onclick="PF('bui').show()"
-	                onsuccess="PF('bui').hide()"
 	                value="กลับค้นหา"
 	                immediate="true"
-	                actionListener="#"
+	                actionListener="#{tmp01005Bean.onPageSearch}"
 	                icon="fa fa-reply">
 	                <p:resetInput
 	                    target=":formc" />

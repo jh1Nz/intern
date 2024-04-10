@@ -14,19 +14,21 @@ body .ui-toolbar {
 	border: 1px solid #ffffff;
 	background: #ffffff;
 }
+
 body .ui-button {
-    background: #5c6bc0;
-    color: #ffffff;
-    border: 1px solid #5c6bc0;
-    margin: 0;
-    outline: 0 none;
-    border-radius: 4px;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+	background: #5c6bc0;
+	color: #ffffff;
+	border: 1px solid #5c6bc0;
+	margin: 0;
+	outline: 0 none;
+	border-radius: 4px;
+	transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+		box-shadow 0.2s;
 }
 </style>
 	<div class="ui-fluid">
 		<!-- Line 1 -->
-		
+
 		<p:panelGrid columns="9"
 			columnClasses="
 						ui-grid-col-2,
@@ -40,71 +42,45 @@ body .ui-button {
 						ui-grid-col-1"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:outputLabel 
-							value="วันที่" 
-							style="float: left" 
-							for="e-selectOneMenu-selectDay" />
-							
-							
-			<p:selectOneMenu id="e-selectOneMenu-selectDay">
+			<p:outputLabel value="วันที่" style="float: left"
+				for="e-selectOneMenu-days" />
+			<p:selectOneMenu id="e-selectOneMenu-days"
+				value="#{tmp01005Bean.formEdit.date}">
 				<f:selectItem itemLabel="1" itemValue="1" />
 				<f:selectItem itemLabel="2" itemValue="2" />
+				<p:ajax process="@this" update="@this" />
 			</p:selectOneMenu>
-				<p:outputLabel />
-				<p:outputLabel 
-							value="เดือน" 
-							style="float: left" 
-							for="e-selectOneMenu-selectMounth" />
-			<p:selectOneMenu id="e-selectOneMenu-selectMounth">
-				<f:selectItem itemLabel=" " itemValue="0" />
-				<f:selectItem itemLabel="มกราคม" itemValue="1" />
-				<f:selectItem itemLabel="กุมภาพันธ์" itemValue="2" />
-				<f:selectItem itemLabel="มีนาคม" itemValue="3" />
-				<f:selectItem itemLabel="เมษายน" itemValue="4" />
-				<f:selectItem itemLabel="พฤษภาคม" itemValue="5" />
-				<f:selectItem itemLabel="มิถุนายน" itemValue="6" />
-				<f:selectItem itemLabel="กรกฎาคม" itemValue="7" />
-				<f:selectItem itemLabel="สิงหาคม" itemValue="8" />
-				<f:selectItem itemLabel="กันยายน" itemValue="9" />
-				<f:selectItem itemLabel="ตุลาคม" itemValue="10" />
-				<f:selectItem itemLabel="พฤศจิกายน" itemValue="11" />
-				<f:selectItem itemLabel="ธันวาคม" itemValue="12" />
+			<p:outputLabel />
+			<p:outputLabel value="เดือน" style="float: left"
+				for="e-selectOneMenu-Month" />
+			<p:selectOneMenu id="e-selectOneMenu-Month"
+				value="#{tmp01005Bean.formEdit.month}">
+				<f:selectItem itemLabel="มกราคม" itemValue="มกราคม" />
+				<f:selectItem itemLabel="กุมภาพันธ์" itemValue="กุมภาพันธ์" />
+				<f:selectItem itemLabel="มีนาคม" itemValue="มีนาคม" />
+				<f:selectItem itemLabel="เมษายน" itemValue="เมษายน" />
+				<f:selectItem itemLabel="พฤษภาคม" itemValue="พฤษภาคม" />
+				<f:selectItem itemLabel="มิถุนายน" itemValue="มิถุนายน" />
+				<f:selectItem itemLabel="กรกฎาคม" itemValue="กรกฎาคม" />
+				<f:selectItem itemLabel="สิงหาคม" itemValue="สิงหาคม" />
+				<f:selectItem itemLabel="กันยายน" itemValue="กันยายน" />
+				<f:selectItem itemLabel="ตุลาคม" itemValue="ตุลาคม" />
+				<f:selectItem itemLabel="พฤศจิกายน" itemValue="พฤศจิกายน" />
+				<f:selectItem itemLabel="ธันวาคม" itemValue="ธันวาคม" />
+				<p:ajax process="@this" update="@this" />
 			</p:selectOneMenu>
-			
+
 			<p:outputLabel />
-			<p:outputLabel 
-							value="ปี" 
-							style="float: left" 
-							for="e-inputText-year" />
-							
-			<p:inputText id="e-inputText-year">
-
+			<p:outputLabel value="ปี" style="float: left" for="e-inputText-year" />
+			<p:inputText id="e-inputText-year"
+				value="#{tmp01005Bean.formEdit.year}">
+				<p:ajax process="@this" update="@this" />
 			</p:inputText>
-				
 
-					</p:panelGrid>
-					
-					
-					<p:panelGrid columns="3"
-			columnClasses="
 
-						ui-grid-col-2,
-						ui-grid-col-1,
-						ui-grid-col-5"
-			layout="grid" styleClass="ui-panelgrid-blank">
-			<p:outputLabel />
-			<p:outputLabel 
-							value="ชื่อวันหยุด" 
-							style="float: left" 
-							for="e-inputText-nameHoliday" />
-							
-			<p:inputText id="e-inputText-nameHoliday">
-
-			</p:inputText>
-		
 		</p:panelGrid>
-		
-		
+
+
 		<p:panelGrid columns="3"
 			columnClasses="
 
@@ -113,88 +89,84 @@ body .ui-button {
 						ui-grid-col-5"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:outputLabel 
-							value="ประเภทการมีผล" 
-							style="float: left" 
-							for="e-selectOneRadio-status" />
-							
-			<p:selectOneRadio id="e-selectOneRadio-status"
-				layout="lineDirection" disabled="false">
-				<f:selectItem itemLabel="มีผลทั้งหมด" itemValue="A" />
-				<f:selectItem itemLabel="มีผลเฉพาะ" itemValue="S" />
-				<f:selectItem itemLabel="ไม่มีผลเฉพาะ" itemValue="NS" />
-				
-				</p:selectOneRadio>
-		
+			<p:outputLabel value="ชื่อวันหยุด" style="float: left"
+				for="e-inputText-HolidayName" />
+			<p:inputText id="e-inputText-HolidayName"
+				value="#{tmp01005Bean.formEdit.holidayName}">
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
 		</p:panelGrid>
-		
-		<p:panelGrid columns ="2"
+
+
+		<p:panelGrid columns="4"
+			columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-3,
+						ui-grid-col-4"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ประเภทการมีผล" style="float: left"
+				for="e-selectOneRadio-status" />
+			<p:selectOneRadio id="e-selectOneRadio-status" layout="lineDirection"
+				disabled="false" value="#{tmp01005Bean.formEdit.effectiveType}">
+				<f:selectItem itemLabel="มีผลทั้งหมด" itemValue="มีผลทั้งหมด" />
+				<f:selectItem itemLabel="มีผลเฉพาะ" itemValue="มีผลเฉพาะ" />
+				<f:selectItem itemLabel="ไม่มีผลเฉพาะ" itemValue="ไม่มีผลเฉพาะ" />
+				<p:ajax process="@this" update="@this" />
+			</p:selectOneRadio>
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="2"
 			columnClasses="
 						ui-grid-col-4,
 						ui-grid-col-2"
 			layout="grid" styleClass="ui-panelgrid-blank">
-			<p:outputLabel/>
-		<p:outputLabel
-		
-		value="เฉพาะกลุ่มพนักงานประกันสังคม"
-		style="float: left" 
-		
-		/>
-		
-		
-		
-		
+			<p:outputLabel />
+			<p:outputLabel value="เฉพาะกลุ่มพนักงานประกันสังคม"
+				style="float: left" />
 		</p:panelGrid>
-		
-		<p:panelGrid columns ="4"
+
+		<p:panelGrid columns="4"
 			columnClasses="
 						ui-grid-col-4,
 						ui-grid-col-2,
 						ui-grid-col-3"
 			layout="grid" styleClass="ui-panelgrid-blank">
-			<p:outputLabel/>
-		<p:outputLabel
-		value="กลุ่มตำแหน่ง"
-		style="float: left"/>
-		
-		
-				<p:selectOneMenu id="e-selectOneMenu-department">
-				<f:selectItem itemLabel="ข้าราชการ" itemValue="1" />
-				<f:selectItem itemLabel="พนักงานประจำ" itemValue="3" />
-				<f:selectItem itemLabel="พนักงานชั่วคราว" itemValue="4" />
-				<f:selectItem itemLabel="ลูกจ้างประจำ" itemValue="5" />
-				
+			<p:outputLabel />
+			<p:outputLabel value="กลุ่มตำแหน่ง" style="float: left"
+				for="e-selectOneMenu-posGroup" />
+			<p:selectOneMenu id="e-selectOneMenu-posGroup"
+				value="#{tmp01005Bean.formEdit.posGroup}">
+				<f:selectItem itemLabel="ข้าราชการ" itemValue="ข้าราชการ" />
+				<f:selectItem itemLabel="พนักงานราชการ" itemValue="พนักงานราชการ" />
+				<f:selectItem itemLabel="พนักงานประกันสังคม"
+					itemValue="พนักงานประกันสังคม" />
+				<f:selectItem itemLabel="ลูกจ้างประจำ" itemValue="ลูกจ้างประจำ" />
+				<f:selectItem itemLabel="ลูกจ้างตามสัญญาจ้าง"
+					itemValue="ลูกจ้างตามสัญญาจ้าง" />
+				<p:ajax process="@this" update="@this" />
 			</p:selectOneMenu>
 		</p:panelGrid>
-		
-		<hr />
-		
-		<p:panelGrid columns="3"
+		<p:panelGrid columns="4"
 			columnClasses="
-
+						ui-grid-col-2,
 						ui-grid-col-2,
 						ui-grid-col-3,
-						ui-grid-col-5"
+						ui-grid-col-4"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:outputLabel 
-							value="เงื่อนไขการมีผลเฉพาะหน่วยงาน" 
-							style="float: left" 
-							for="e-selectOneRadio-pecificDeparment" />
-							
-			<p:selectOneRadio id="e-selectOneRadio-pecificDeparment"
-				layout="lineDirection" disabled="false">
-				<f:selectItem itemLabel="มี" itemValue="Y" />
-				<f:selectItem itemLabel="ไม่มี" itemValue="N" />
-				
-				</p:selectOneRadio>
-		
+			<p:outputLabel value="สถานะการใช้งาน" style="float: left"
+				for="e-selectOneRadio-activeStatus" />
+			<p:selectOneRadio id="e-selectOneRadio-activeStatus" layout="lineDirection"
+				disabled="false" value="#{tmp01005Bean.formEdit.activeFlag}">
+				<f:selectItem itemLabel="ใช้งาน" itemValue="true" />
+				<f:selectItem itemLabel="ไม่ใช้งาน" itemValue="false" />
+				<p:ajax process="@this" update="@this" />
+			</p:selectOneRadio>
+			<p:outputLabel />
 		</p:panelGrid>
-		
-		
-		
-		
-	
+		<hr />
 
 	</div>
 </ui:composition>

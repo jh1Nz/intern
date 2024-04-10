@@ -10,48 +10,47 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui"
 	template="#{environment.templatePath}">
-	 <style>
-	body .ui-datatable thead th {
+	<style>
+body .ui-datatable thead th {
 	background-color: #5c6bc0;
 	color: white;
-	}
+}
 </style>
 	<ui:define name="viewname">
-		<li><p:link> TM: 01005 </p:link></li>
+		<li><p:link> TM01005: บันทึกไปช่วยราชการ  </p:link></li>
 	</ui:define>
-	
+
 	<ui:define name="center">
 		<!-- Mode ค้นหา -->
-		<p:panel  >
+		<p:panel rendered="#{tmp01005Bean.mode eq 'S'}">
 			<p:accordionPanel id="q-accordionPanel">
 				<p:tab title="เงื่อนไขการค้นหา">
 					<ui:include src="tmp01005/tmp01005-q.xhtml" />
-					<ui:include src="tmp01005/tmp01005-q-btn.xhtml" /> 
+					<ui:include src="tmp01005/tmp01005-q-btn.xhtml" />
 				</p:tab>
 			</p:accordionPanel>
-			
+
 			<p:accordionPanel id="q-accordionPanel-table">
 				<p:tab title="ผลการค้นหา">
-					 <ui:include src="tmp01005/tmp01005-q-table.xhtml" /> 
+					<ui:include src="tmp01005/tmp01005-q-table.xhtml" />
 				</p:tab>
 			</p:accordionPanel>
 		</p:panel>
 
 		<!-- Mode บันทึก -->
-		<p:panel >
-			<p:accordionPanel id="e-accordionPanel_e">
+		<p:panel rendered="#{tmp01005Bean.mode eq 'I'}">
+			<p:accordionPanel id="e-accordionPanel-e">
 				<p:tab title="บันทึกวันหยุดราชการ">
-				<ui:include src="tmp01005/tmp01005-e.xhtml" />
-				<ui:include src="tmp01005/tmp01005-e-table.xhtml" />
-				<ui:include src="tmp01005/tmp01005-e-btn.xhtml" /> 
-				
+					<ui:include src="tmp01005/tmp01005-e.xhtml" />
+					 <ui:include src="tmp01005/tmp01005-e-table.xhtml" /> 
+					<ui:include src="tmp01005/tmp01005-e-btn.xhtml" />
+
 				</p:tab>
 			</p:accordionPanel>
-			
+
 		</p:panel>
-		
-		
+
+
 
 	</ui:define>
 </ui:composition>
-	

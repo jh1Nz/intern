@@ -10,28 +10,51 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui"
 	template="#{environment.templatePath}">
+	 <style>
+	body .ui-datatable thead th {
+	background-color: #5c6bc0;
+	color: white;
+	}
+</style>
 	<ui:define name="viewname">
-		<li><p:link> CEP: 01002 </p:link></li>
+		<li><p:link> CEP01002: บันทึกบุตร  </p:link></li>
 	</ui:define>
-
+	
 	<ui:define name="center">
 		<!-- Mode ค้นหา -->
-		<p:panel rendered="#{cep01002Bean.mode eq 'S'}">
+		<p:panel  >
 			<p:accordionPanel id="q-accordionPanel">
 				<p:tab title="เงื่อนไขการค้นหา">
-					<ui:include src="cp01002/cp01002-q.xhtml" />
-					<ui:include src="cp01002/cp01002-q-btn.xhtml" />
+					<ui:include src="cp01002/cp01002-q.xhtml"/>
+					<ui:include src="cp01002/cp01002-q-btn.xhtml"/>
 				</p:tab>
 			</p:accordionPanel>
 			
-			<p:accordionPanel id="q-accordionPanel_tb">
-				<p:tab title="เงื่อนไขการค้นหา">
-					<ui:include src="cp01002/cp01002-q-table.xhtml" />
-				
+			<p:accordionPanel id="q-accordionPanel-table">
+				<p:tab title="ผลการค้นหา">
+					<ui:include src="cp01002/cp01002-q-table.xhtml"/>
 				</p:tab>
 			</p:accordionPanel>
 		</p:panel>
+
+		<!-- Mode บันทึก -->
+		<p:panel >
+			<p:accordionPanel id="e-accordionPanel-person">
+				<p:tab title="ข้อมูลบุคลากร">
+				</p:tab>
+			</p:accordionPanel>
+			<p:accordionPanel id="e-accordionPanel-kid">
+				<p:tab title="ข้อมูลบุตร">
+				</p:tab>
+			</p:accordionPanel>
+			<p:accordionPanel id="e-accordionPanel-edu">
+				<p:tab title="ประวัติการศึกษา">
+				</p:tab>
+			</p:accordionPanel>		
+		</p:panel>
+		
 		
 
 	</ui:define>
 </ui:composition>
+	
