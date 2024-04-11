@@ -38,7 +38,7 @@ body .ui-datatable thead th {
 		</p:panel>
 
 		<!-- Mode บันทึก -->
-		<p:panel rendered="#{tmp01005Bean.mode eq 'I'}">
+		<p:panel rendered="#{tmp01005Bean.mode eq 'I' or tmp01005Bean.mode eq 'U'}">
 			<p:accordionPanel id="e-accordionPanel-e">
 				<p:tab title="บันทึกวันหยุดราชการ">
 					<ui:include src="tmp01005/tmp01005-e.xhtml" />

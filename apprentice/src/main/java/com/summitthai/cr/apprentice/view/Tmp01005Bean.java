@@ -13,13 +13,22 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.SelectEvent;
+
+import com.summitthai.cr.apprentice.deptH.manager.HolidayDeptManager;
 import com.summitthai.cr.apprentice.deptH.model.HolidayDeptRequest;
+import com.summitthai.cr.apprentice.deptH.model.HolidayDeptResponse;
 import com.summitthai.cr.apprentice.exception.DefaultException;
+import com.summitthai.cr.apprentice.history.model.DataKidEducationRequest;
+import com.summitthai.cr.apprentice.history.model.HistoryResponse;
 import com.summitthai.cr.apprentice.holiday.manager.HolidayManager;
 import com.summitthai.cr.apprentice.holiday.model.HolidayRequest;
 import com.summitthai.cr.apprentice.holiday.model.HolidayResponse;
+import com.summitthai.cr.apprentice.kids.model.DataKidRequest;
+import com.summitthai.cr.apprentice.kids.model.KidInfoResponse;
 import com.summitthai.cr.apprentice.massage.MassageComplete;
 import com.summitthai.cr.apprentice.massage.MassageError;
+import com.summitthai.cr.apprentice.persanal.model.PersanalRequest;
 import com.summitthai.cr.apprentice.persanal.model.PersanalResponse;
 import com.summitthai.cr.apprentice.status.SimpleStatus;
 import com.summitthai.cr.apprentice.utils.XspUtils;
@@ -45,14 +54,19 @@ public class Tmp01005Bean extends ViewBase implements Serializable {
 	private HolidayRequest formEdit;
 	private HolidayDeptRequest formEditTable;
 	private HolidayRequest formCriteria;
+	private HolidayRequest formSelected;
 
 	@Inject
 	private HolidayManager holidayManager;
+
+	@Inject
+	private HolidayDeptManager holidayDeptManager;
 
 	public Tmp01005Bean() {
 		this.formEdit = HolidayRequest.builder().build();
 		this.formEditTable = HolidayDeptRequest.builder().build();
 		this.formCriteria = HolidayRequest.builder().build();
+		this.formSelected = HolidayRequest.builder().build();
 	}
 
 	@PostConstruct
@@ -60,7 +74,7 @@ public class Tmp01005Bean extends ViewBase implements Serializable {
 		log.debug("Begin init");
 		this.onPageSearch();
 		HolidayResponse res = this.holidayManager.findByReq(HolidayRequest.builder().posGroup("ข้าราชการ").build());
-		log.debug("{}",res);
+		log.debug("{}", res);
 		log.debug("End init");
 	}
 
@@ -74,9 +88,8 @@ public class Tmp01005Bean extends ViewBase implements Serializable {
 
 	public void prepareInsert() {
 		log.debug("Begin prepareInsert");
-		this.formEdit = HolidayRequest.builder().date("1").month("มกราคม").effectiveType("มีผลทั้งหมด")
-				.posGroup("ข้าราชการ").activeFlag("true").build();
-		this.setdayLits();
+		this.formEdit = HolidayRequest.builder().date("1").month("มกราคม").effectiveType("true").posGroup("ข้าราชการ")
+				.activeFlag("ใช้งาน").resultDept("false").build();
 		this.deptList = new ArrayList<>();
 		this.formEdit.setDeptList(new ArrayList<>());
 		log.debug("End prepareInsert");
@@ -89,33 +102,22 @@ public class Tmp01005Bean extends ViewBase implements Serializable {
 		log.debug("End OnPageSearch");
 	}
 
-	public List<SelectItem> getDayItems() {
-		List<SelectItem> items = new ArrayList<>();
-		for (String day : dayList) {
-			items.add(new SelectItem(day, day));
-		}
-		return items;
-	}
 
-	private void setdayLits() {
-
-		this.dayList = new ArrayList<String>();
+	public List<SelectItem> getDaysOptions() {
+		List<SelectItem> options = new ArrayList<>();
 		for (int i = 1; i <= 31; i++) {
-
-			this.dayList.add(String.valueOf(i));
-
+			options.add(new SelectItem(i, String.valueOf(i)));
 		}
-
+		return options;
 	}
 
 	public void setTable() {
 		log.debug("Begin setTable");
 
-		 this.deptList.add(HolidayDeptRequest.builder().holidayDeptID(UUID.randomUUID().toString()).build());
+		this.deptList.add(HolidayDeptRequest.builder().holidayDeptID(UUID.randomUUID().toString()).build());
 
 		log.debug("End setTable");
 	}
-
 
 	private void prepareData() {
 		log.debug("Begin prepareData..");
@@ -129,6 +131,12 @@ public class Tmp01005Bean extends ViewBase implements Serializable {
 			log.debug("End prepareData..");
 		}
 
+	}
+
+	public void removeDataList(int index) {
+		log.debug("Begin removeDataList...");
+		this.deptList.remove(index);
+		log.debug("End removeDataList...");
 	}
 
 	public void insertButtonOnClick() {
@@ -162,24 +170,47 @@ public class Tmp01005Bean extends ViewBase implements Serializable {
 			log.debug("End insertButtonOnClick");
 		}
 	}
+
 	public void searchButtonOnclick() {
 		log.debug("Begin searchButtonOnclick");
 		HolidayResponse res = null;
 		this.holidayList = new ArrayList<>();
 		try {
 			res = this.holidayManager.findByReq(formCriteria);
-			
-			if(!res.getDataRequestList().isEmpty()) {
-				
+
+			if (!res.getDataRequestList().isEmpty()) {
+
 				this.holidayList.addAll(res.getDataRequestList());
 			}
-			
-			
+
 		} catch (Exception e) {
-			log.debug("Exception searchButtonOnclick {}",e);
-			
+			log.debug("Exception searchButtonOnclick {}", e);
+
 		}
-		
+
+	}
+
+	public void onRowSelect(SelectEvent event) {
+		log.debug("Begin onRowSelect...");
+		try {
+			this.mode = MODE_UPDATE;
+			this.formEdit = HolidayRequest.builder().build();
+			this.formEdit = this.formSelected;
+			HolidayDeptRequest req = HolidayDeptRequest.builder().holidayID(this.formEdit.getHolidayID()).build();
+			HolidayDeptResponse res = this.holidayDeptManager.findByReq(req);
+
+			if (res != null && !res.getDataRequestList().isEmpty()) {
+				this.deptList = res.getDataRequestList();
+			} else {
+				this.deptList = new ArrayList<>();
+			}
+
+		} catch (Exception e) {
+			log.error("Error : {}", e);
+		} finally {
+			log.debug("End onRowSelect...");
+		}
+
 	}
 
 }

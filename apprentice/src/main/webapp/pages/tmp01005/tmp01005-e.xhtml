@@ -15,6 +15,10 @@ body .ui-toolbar {
 	background: #ffffff;
 }
 
+body .ui-outputlabel-rfi {
+	color: red;
+}
+
 body .ui-button {
 	background: #5c6bc0;
 	color: #ffffff;
@@ -46,7 +50,7 @@ body .ui-button {
 				for="e-selectOneMenu-days" />
 			<p:selectOneMenu id="e-selectOneMenu-days"
 				value="#{tmp01005Bean.formEdit.date}">
-				<f:selectItems  value="#{tmp01005Bean.dayList}" />
+				<f:selectItems value="#{tmp01005Bean.daysOptions}" />
 				<p:ajax process="@this" update="@this" />
 			</p:selectOneMenu>
 			<p:outputLabel />
@@ -109,10 +113,10 @@ body .ui-button {
 				for="e-selectOneRadio-status" />
 			<p:selectOneRadio id="e-selectOneRadio-status" layout="lineDirection"
 				disabled="false" value="#{tmp01005Bean.formEdit.effectiveType}">
-				<f:selectItem itemLabel="มีผลทั้งหมด" itemValue="มีผลทั้งหมด" />
-				<f:selectItem itemLabel="มีผลเฉพาะ" itemValue="มีผลเฉพาะ" />
-				<f:selectItem itemLabel="ไม่มีผลเฉพาะ" itemValue="ไม่มีผลเฉพาะ" />
-				<p:ajax process="@this" update="@this" />
+				<f:selectItem itemLabel="มีผลทั้งหมด" itemValue="true" />
+				<f:selectItem itemLabel="มีผลเฉพาะ" itemValue="1" />
+				<f:selectItem itemLabel="ไม่มีผลเฉพาะ" itemValue="0" />
+				<p:ajax process="@this" update="@form" />
 			</p:selectOneRadio>
 			<p:outputLabel />
 		</p:panelGrid>
@@ -136,7 +140,9 @@ body .ui-button {
 			<p:outputLabel value="กลุ่มตำแหน่ง" style="float: left"
 				for="e-selectOneMenu-posGroup" />
 			<p:selectOneMenu id="e-selectOneMenu-posGroup"
-				value="#{tmp01005Bean.formEdit.posGroup}">
+				value="#{tmp01005Bean.formEdit.posGroup}"
+				disabled="#{tmp01005Bean.formEdit.effectiveType}"
+				required="#{!tmp01005Bean.formEdit.effectiveType}">
 				<f:selectItem itemLabel="ข้าราชการ" itemValue="ข้าราชการ" />
 				<f:selectItem itemLabel="พนักงานราชการ" itemValue="พนักงานราชการ" />
 				<f:selectItem itemLabel="พนักงานประกันสังคม"
@@ -157,15 +163,16 @@ body .ui-button {
 			<p:outputLabel />
 			<p:outputLabel value="สถานะการใช้งาน" style="float: left"
 				for="e-selectOneRadio-activeStatus" />
-			<p:selectOneRadio id="e-selectOneRadio-activeStatus" layout="lineDirection"
-				disabled="false" value="#{tmp01005Bean.formEdit.activeFlag}">
-				<f:selectItem itemLabel="ใช้งาน" itemValue="true" />
-				<f:selectItem itemLabel="ไม่ใช้งาน" itemValue="false" />
+			<p:selectOneRadio id="e-selectOneRadio-activeStatus"
+				layout="lineDirection" disabled="false"
+				value="#{tmp01005Bean.formEdit.activeFlag}">
+				<f:selectItem itemLabel="ใช้งาน" itemValue="ใช้งาน" />
+				<f:selectItem itemLabel="ไม่ใช้งาน" itemValue="ไม่ใช้งาน" />
 				<p:ajax process="@this" update="@this" />
 			</p:selectOneRadio>
 			<p:outputLabel />
 		</p:panelGrid>
 		<hr />
-		
+
 	</div>
 </ui:composition>

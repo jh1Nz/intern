@@ -39,10 +39,10 @@ body .ui-datatable thead th {
 			                           {LastPageLink}"
 				value="#{tmp01005Bean.holidayList}" rowKey="#{data.holidayID}"
 				reflow="true" style="text-align: center" emptyMessage="ไม่พบข้อมูล"
-				selectionMode="single">
+				selectionMode="single" selection="#{tmp01005Bean.formSelected}">
 				<p:ajax event="rowSelect" process="@this" update=":formc"
 					onstart="PF('bui').show()" onsuccess="PF('bui').hide()"
-					resetValues="true" />
+					resetValues="true" listener="#{tmp01005Bean.onRowSelect}" />
 				<p:column headerText="ลำดับ" width="3%;" style="text-align: center"
 					sortBy="">
 					<h:outputText

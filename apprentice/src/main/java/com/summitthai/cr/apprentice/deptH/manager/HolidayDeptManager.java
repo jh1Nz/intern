@@ -12,6 +12,9 @@ import com.summitthai.cr.apprentice.deptH.entity.HolidayDept;
 import com.summitthai.cr.apprentice.deptH.model.HolidayDeptRequest;
 import com.summitthai.cr.apprentice.deptH.model.HolidayDeptResponse;
 import com.summitthai.cr.apprentice.jpa.ApprenticeJpaService;
+import com.summitthai.cr.apprentice.kids.entity.Kidinfo;
+import com.summitthai.cr.apprentice.kids.model.DataKidRequest;
+import com.summitthai.cr.apprentice.kids.model.KidInfoResponse;
 import com.summitthai.cr.apprentice.status.SimpleStatus;
 
 import lombok.Data;
@@ -49,12 +52,13 @@ public class HolidayDeptManager implements HolidayDeptManageable {
 		try {
 			entityList = this.holidayDeptDao.findByReq(req);
 			res = HolidayDeptResponse.builder().dataRequestList(new ArrayList<>()).build();
-			
+			if (!entityList.isEmpty()) {
 			for(HolidayDept data : entityList) {
 				request = this.holidayDeptDto.entityToReq(data);
 				res.getDataRequestList().add(request);
 			}
-			res = HolidayDeptResponse.builder().status(SimpleStatus.SUCCESS).build();
+			}
+			res.setStatus(SimpleStatus.SUCCESS);
 			return res;
 
 		} catch (Exception e) {
