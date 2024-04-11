@@ -40,10 +40,7 @@ public class Holiday implements Serializable {
 	@Column(name = "ACTIVE_FLAG")
 	private String activeFlag;
 
-	@Column(name = "EFFECTIVE_DEPARTMENT")
-	private String effectiveDepartment;
-
-	@Column(name = "DEPARTMENT")
-	private String department;
+	@Column(name = "RESULT_DEPT")
+	private String resultDept;
 
 }

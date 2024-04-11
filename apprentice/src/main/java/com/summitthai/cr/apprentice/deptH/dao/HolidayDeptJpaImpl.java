@@ -1,4 +1,4 @@
-package com.summitthai.cr.apprentice.holiday.dao;
+package com.summitthai.cr.apprentice.deptH.dao;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,10 +13,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.summitthai.cr.apprentice.deptH.entity.HolidayDept;
+import com.summitthai.cr.apprentice.deptH.model.HolidayDeptRequest;
 import com.summitthai.cr.apprentice.holiday.entity.Holiday;
-import com.summitthai.cr.apprentice.holiday.model.HolidayRequest;
 import com.summitthai.cr.apprentice.jpa.ApprenticeJpaService;
-import com.summitthai.cr.apprentice.kids.entity.Kidinfo;
 import com.summitthai.sdd.dao.jpa.AbstractJpa;
 import com.summitthai.sdd.sys.util.StringUtils;
 
@@ -24,12 +24,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @ApplicationScoped
-public class HolidayJpaImpl extends AbstractJpa<Holiday> implements HolidayDao, Serializable {
+public class HolidayDeptJpaImpl extends AbstractJpa<HolidayDept> implements HolidayDeptDao, Serializable {
 	private static final long serialVersionUID = 1L;
 	private transient EntityManager em;
 
-	public HolidayJpaImpl(EntityManager em) {
-		this.setClazz(Holiday.class);
+	public HolidayDeptJpaImpl(EntityManager em) {
+		this.setClazz(HolidayDept.class);
 		this.em = em;
 	}
 
@@ -42,36 +42,30 @@ public class HolidayJpaImpl extends AbstractJpa<Holiday> implements HolidayDao, 
 		return (this.em != null) ? em : apprenticeJpaService.getEm();
 	}
 
-	public HolidayJpaImpl() {
-		setClazz(Holiday.class);
+	public HolidayDeptJpaImpl() {
+		setClazz(HolidayDept.class);
 	}
 
-	
-	
-	
 	@Override
-	public List<Holiday> findByReq(HolidayRequest req) {
+	public List<HolidayDept> findByReq(HolidayDeptRequest req) {
 		// TODO Auto-generated method stub
 		log.debug("Begin findByReq...");
 		CriteriaBuilder cb = this.getEm().getCriteriaBuilder();
-		CriteriaQuery<Holiday> cq = cb.createQuery(Holiday.class);
+		CriteriaQuery<HolidayDept> cq = cb.createQuery(HolidayDept.class);
 		List<Predicate> predicates = new ArrayList<>();
-		Root<Holiday> c = cq.from(Holiday.class);
-
+		Root<HolidayDept> c = cq.from(HolidayDept.class);
 		try {
 			if (req != null) {
 				if (!StringUtils.isNullOrEmpty(req.getHolidayID())) {
 					predicates.add(cb.equal(c.get("holidayID"), req.getHolidayID()));
 				}
 			}
-			
+
 			cq.where(predicates.toArray(new Predicate[] {}));
-			TypedQuery<Holiday> query = this.getEm().createQuery(cq);
+			TypedQuery<HolidayDept> query = this.getEm().createQuery(cq);
 			return query.getResultList();
 		} finally {
 			log.debug("End findByReq...");
 		}
 	}
-
-	
 }

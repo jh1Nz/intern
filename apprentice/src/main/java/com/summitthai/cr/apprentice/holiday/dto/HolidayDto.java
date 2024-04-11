@@ -27,8 +27,7 @@ public class HolidayDto implements Serializable{
 			req.setEffectiveType(entity.getEffectiveType());
 			req.setPosGroup(entity.getPosGroup());
 			req.setActiveFlag(entity.getActiveFlag());
-			req.setEffectiveDepartment(entity.getEffectiveDepartment());
-			req.setDepartment(entity.getDepartment());
+			req.setResultDept(entity.getResultDept());
 
 			return req;
 		} catch (Exception e) {
@@ -50,8 +49,8 @@ public class HolidayDto implements Serializable{
 		entity.setEffectiveType(req.getEffectiveType());
 		entity.setPosGroup(req.getPosGroup());
 		entity.setActiveFlag(req.getActiveFlag());
-		entity.setEffectiveDepartment(req.getEffectiveDepartment());
-		entity.setDepartment(req.getDepartment());
+		entity.setResultDept(req.getResultDept());
+		
 		return entity;
 	}
 }

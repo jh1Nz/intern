@@ -46,8 +46,7 @@ body .ui-button {
 				for="e-selectOneMenu-days" />
 			<p:selectOneMenu id="e-selectOneMenu-days"
 				value="#{tmp01005Bean.formEdit.date}">
-				<f:selectItem itemLabel="1" itemValue="1" />
-				<f:selectItem itemLabel="2" itemValue="2" />
+				<f:selectItems  value="#{tmp01005Bean.dayList}" />
 				<p:ajax process="@this" update="@this" />
 			</p:selectOneMenu>
 			<p:outputLabel />
@@ -167,6 +166,6 @@ body .ui-button {
 			<p:outputLabel />
 		</p:panelGrid>
 		<hr />
-
+		
 	</div>
 </ui:composition>

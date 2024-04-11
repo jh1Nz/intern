@@ -1,9 +1,14 @@
 package com.summitthai.cr.apprentice.holiday.model;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.summitthai.cr.apprentice.deptH.model.HolidayDeptRequest;
 
 import lombok.Builder;
 import lombok.Data;
@@ -48,11 +53,10 @@ public class HolidayRequest {
 
 	@XmlElement(name = "activeFlag")
 	private String activeFlag;
+	
+	@Column(name = "resultDept")
+	private String resultDept;
 
-	@XmlElement(name = "effectiveDepartment")
-	private String effectiveDepartment;
-
-	@XmlElement(name = "department")
-	private String department;
+	private List<HolidayDeptRequest> deptList;
 	
 }

@@ -40,60 +40,60 @@ body .ui-button {
 
 			<p:selectOneRadio id="e-selectOneRadio-pecificDeparment"
 				layout="lineDirection" disabled="false"
-				value="#{tmp01005Bean.formEdit.effectiveDepartment}">
+				value="#{tmp01005Bean.formEdit.resultDept}">
 				<f:selectItem itemLabel="มี" itemValue="true" />
 				<f:selectItem itemLabel="ไม่มี" itemValue="false" />
 				<p:ajax process="@this" update="@this" />
 			</p:selectOneRadio>
 
 		</p:panelGrid>
-		
-			<p:panelGrid columns="3"
-				columnClasses="
+
+		<p:panelGrid columns="3"
+			columnClasses="
       ui-grid-col-1,
          ui-grid-col-10,
       ui-grid-col-1"
-				layout="grid" styleClass="ui-panelgrid-blank">
-				<p:outputLabel />
-				<p:dataTable id="data-table" var="data" rowIndexVar="index" row="5"
-					emptyMessage="ไม่พบข้อมูล" style="text-align:center">
-
-					<p:column headerText="ลำดับ" width="5%" style="text-align:center">
-						<h:outputText
-							style="float:center !important; text-align:left !important;"
-							value="{index+1}">
-						</h:outputText>
-					</p:column>
-					<p:column headerText="หน่วยงาน" style="text-align:center">
-						<p:inputText value="#{tmp01005Bean.formEdit.department}">
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:dataTable id="data-table" var="data" rowIndexVar="index" row="5"
+				emptyMessage="ไม่พบข้อมูล" style="text-align:center" value="#{tmp01005Bean.deptList}" rowKey="#{data.holidayDeptID}">
+				<p:column headerText="ลำดับ" width="5%" style="text-align:center">
+					<h:outputText
+						style="float:center !important; text-align:left !important;"
+						value="#{index+1}">
+					</h:outputText>
+				</p:column>
+				<p:column headerText="หน่วยงาน" style="text-align:center">
+					<p:inputText value="#{data.holidayDept}">
 						<p:ajax process="@this" update="@this" />
-						</p:inputText>
-					</p:column>
-					<p:column headerText="ลบ" width="5%" style="text-align:center;">
+					</p:inputText>
+				</p:column>
+				<p:column headerText="ลบ" width="5%" style="text-align:center;">
 					<p:commandButton update="@this,data-table" process="@this"
-						icon="fa fa-minus"  />
-					</p:column>
+						icon="fa fa-minus" />
+				</p:column>
 
 
-				</p:dataTable>
-				<p:outputLabel />
-			</p:panelGrid>
+			</p:dataTable>
+			<p:outputLabel />
+		</p:panelGrid>
 
-			<p:panelGrid columns="3"
-				columnClasses="
+		<p:panelGrid columns="3"
+			columnClasses="
       ui-grid-col-5,
       ui-grid-col-2,
       ui-grid-col-5"
-				layout="grid" styleClass="ui-panelgrid-blank">
-				<p:outputLabel />
-				<p:commandButton icon="fa fa-plus white" value="เพิ่มรายการ"
-					update=":formc" immediate="true" oncomplete="PF('dlg001').show();">
-					<p:resetInput target=":formc" />
-				</p:commandButton>
-				<p:outputLabel />
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:commandButton icon="fa fa-plus white" value="เพิ่มรายการ"
+				update="@this,data-table" immediate="true"
+				actionListener="#{tmp01005Bean.setTable}">
+				<p:resetInput target=":formc" />
+			</p:commandButton>
+			<p:outputLabel />
 
-			</p:panelGrid>
-		
+		</p:panelGrid>
+
 
 	</div>
 
