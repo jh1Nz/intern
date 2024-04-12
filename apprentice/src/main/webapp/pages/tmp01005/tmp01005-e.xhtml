@@ -76,7 +76,8 @@ body .ui-button {
 			<p:outputLabel />
 			<p:outputLabel value="ปี" style="float: left" for="e-inputText-year" />
 			<p:inputText id="e-inputText-year"
-				value="#{tmp01005Bean.formEdit.year}">
+				value="#{tmp01005Bean.formEdit.year}" maxlength="4">
+				<p:keyFilter mask="num" />
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 
@@ -95,7 +96,7 @@ body .ui-button {
 			<p:outputLabel value="ชื่อวันหยุด" style="float: left"
 				for="e-inputText-HolidayName" />
 			<p:inputText id="e-inputText-HolidayName"
-				value="#{tmp01005Bean.formEdit.holidayName}">
+				value="#{tmp01005Bean.formEdit.holidayName}" required="true">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 		</p:panelGrid>

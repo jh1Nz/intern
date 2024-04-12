@@ -11,4 +11,6 @@ public interface HolidayManageable extends Serializable{
 	public HolidayResponse insert(HolidayRequest req);
 	
 	public HolidayResponse update(HolidayRequest req);
+	
+	public HolidayResponse delete(HolidayRequest req);
 }

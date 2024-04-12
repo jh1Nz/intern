@@ -34,8 +34,21 @@
 				onsuccess="PF('bui').hide()"
 				value="แก้ไข" 
 				immediate="true" 
-				
+				actionListener="#{tmp01005Bean.updateButtonOnClick}"
 				icon="fa fa-pencil">
+
+			</p:commandButton>
+			<p:commandButton
+				rendered="#{tmp01005Bean.mode eq 'U'}"
+				id="btn-delete" 
+				update=":formc" 
+				process="@this"
+				onclick="PF('bui').show()" 
+				onsuccess="PF('bui').hide()" 
+				value="ลบ"
+				immediate="true" 
+				actionListener="#{tmp01005Bean.deleteButtonOnClick}"
+				icon="fa fa-times">
 
 			</p:commandButton>
 			
@@ -47,7 +60,7 @@
 	                immediate="true"
 	                onclick="PF('bui').show()"
 	                onsuccess="PF('bui').hide()"
-	                actionListener="#"
+	                actionListener="#{tmp01005Bean.onPageInsert}"
 	                >
 	                <p:resetInput
 	                    target=":formc" />

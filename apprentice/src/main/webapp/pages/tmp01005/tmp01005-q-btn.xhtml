@@ -17,7 +17,7 @@
 				actionListener="#{tmp01005Bean.searchButtonOnclick}" update="@form" />
 			<p:commandButton icon="fa fa-refresh white" value="เริ่มใหม่"
 				update=":formc" process="@this" 
-				actionListener="#">
+				actionListener="#{tmp01005Bean.onPageSearch}">
 				<p:resetInput target=":formc" />
 			</p:commandButton>
 		</f:facet>

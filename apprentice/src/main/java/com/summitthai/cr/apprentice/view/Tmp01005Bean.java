@@ -98,10 +98,10 @@ public class Tmp01005Bean extends ViewBase implements Serializable {
 	public void onPageSearch() {
 		log.debug("Begin OnPageSearch ");
 		this.mode = MODE_SEARCH;
+		this.formCriteria = HolidayRequest.builder().build();
 		this.holidayList = new ArrayList<>();
 		log.debug("End OnPageSearch");
 	}
-
 
 	public List<SelectItem> getDaysOptions() {
 		List<SelectItem> options = new ArrayList<>();
@@ -125,12 +125,16 @@ public class Tmp01005Bean extends ViewBase implements Serializable {
 			if (this.mode.equals(MODE_INSERT)) {
 				this.formEdit.setHolidayID(UUID.randomUUID().toString());
 			}
+			 
 		} catch (Exception e) {
 			log.error("Exception prepareData", e);
 		} finally {
 			log.debug("End prepareData..");
 		}
 
+	}
+	public void resetTable() {
+		this.deptList = new ArrayList<>();
 	}
 
 	public void removeDataList(int index) {
@@ -198,7 +202,7 @@ public class Tmp01005Bean extends ViewBase implements Serializable {
 			this.formEdit = this.formSelected;
 			HolidayDeptRequest req = HolidayDeptRequest.builder().holidayID(this.formEdit.getHolidayID()).build();
 			HolidayDeptResponse res = this.holidayDeptManager.findByReq(req);
-
+			this.formEdit.setDeptList(res.getDataRequestList());
 			if (res != null && !res.getDataRequestList().isEmpty()) {
 				this.deptList = res.getDataRequestList();
 			} else {
@@ -209,6 +213,74 @@ public class Tmp01005Bean extends ViewBase implements Serializable {
 			log.error("Error : {}", e);
 		} finally {
 			log.debug("End onRowSelect...");
+		}
+
+	}
+
+	public void updateButtonOnClick() {
+		log.debug("Begin updateButtonOnClick ");
+		HolidayResponse holRes = null;
+
+		try {
+			this.prepareData();
+			if (!this.deptList.isEmpty()) {
+				this.formEdit.setDeptList(new ArrayList<>());
+				this.formEdit.getDeptList().addAll(this.deptList);
+			}
+			holRes = this.holidayManager.update(this.formEdit);
+			if (holRes.getStatus().equals("SUCCESS")) {
+
+				this.onPageSearch();
+				XspUtils.scrollToTop();
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "", MassageComplete.UPDATE_COMPLETE));
+			} else {
+				XspUtils.scrollToTop();
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "", MassageError.UPDATE_FAIL));
+				throw new DefaultException(MassageError.UPDATE_FAIL);
+
+			}
+
+		} catch (DefaultException ex) {
+			log.error("Exception :{}", ex);
+			messageError(ex);
+		} catch (Exception e) {
+			messageError(e);
+		} finally {
+			XspUtils.scrollToTop();
+
+			log.debug("End...updateButtonOnClick...");
+			holRes = null;
+		}
+
+	}
+
+	public void deleteButtonOnClick() {
+		log.debug("Begin deletButtonOnClick...");
+		
+		HolidayResponse resHol = null;
+
+		try {
+			resHol = this.holidayManager.delete(this.formEdit);
+
+			if (resHol.getStatus().equals("SUCCESS")) {
+				this.onPageSearch();
+				XspUtils.scrollToTop();
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "", MassageComplete.DELETE_COMPLETE));
+			} else {
+				XspUtils.scrollToTop();
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "", MassageError.DELETE_FAIL));
+				throw new DefaultException(MassageError.DELETE_FAIL);
+			}
+		} catch (Exception e) {
+			log.error("Exception :{}", e);
+			messageError(e);
+		} finally {
+			log.debug("End...deletButtonOnClick...");
+			resHol = null;
 		}
 
 	}

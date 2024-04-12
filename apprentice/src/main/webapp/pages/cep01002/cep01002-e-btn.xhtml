@@ -26,7 +26,7 @@
 	               />
 	               
 	               <p:commandButton
-				rendered="#{cep01002Bean.mode eq 'U'}"
+				rendered="#{tmp01005Bean.mode eq 'U'}"
 				id="btn-edit" 
 				update=":formc" 
 				process="@this"
@@ -34,7 +34,7 @@
 				onsuccess="PF('bui').hide()"
 				value="แก้ไข" 
 				immediate="true" 
-				actionListener="#{cep01002Bean.updateButtonOnClick}"
+				actionListener="#{tmp01005Bean.test}"
 				icon="fa fa-pencil">
 
 			</p:commandButton>

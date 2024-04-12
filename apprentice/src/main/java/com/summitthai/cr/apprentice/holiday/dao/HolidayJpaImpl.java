@@ -63,6 +63,15 @@ public class HolidayJpaImpl extends AbstractJpa<Holiday> implements HolidayDao, 
 				if (!StringUtils.isNullOrEmpty(req.getHolidayID())) {
 					predicates.add(cb.equal(c.get("holidayID"), req.getHolidayID()));
 				}
+				if (!StringUtils.isNullOrEmpty(req.getYear())) {
+					predicates.add(cb.equal(c.get("year"), req.getYear()));
+				}
+				if (!StringUtils.isNullOrEmpty(req.getMonth())) {
+					predicates.add(cb.equal(c.get("month"), req.getMonth()));
+				}
+				if (!StringUtils.isNullOrEmpty(req.getActiveFlag())) {
+					predicates.add(cb.equal(c.get("activeFlag"), req.getActiveFlag()));
+				}
 			}
 			
 			cq.where(predicates.toArray(new Predicate[] {}));

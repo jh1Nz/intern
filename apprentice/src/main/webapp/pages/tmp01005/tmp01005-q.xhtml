@@ -14,14 +14,19 @@ body .ui-toolbar {
 	border: 1px solid #ffffff;
 	background: #ffffff;
 }
+body .ui-outputlabel-rfi {
+	color: red;
+}
+
 body .ui-button {
-    background: #5c6bc0;
-    color: #ffffff;
-    border: 1px solid #5c6bc0;
-    margin: 0;
-    outline: 0 none;
-    border-radius: 4px;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+	background: #5c6bc0;
+	color: #ffffff;
+	border: 1px solid #5c6bc0;
+	margin: 0;
+	outline: 0 none;
+	border-radius: 4px;
+	transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+		box-shadow 0.2s;
 }
 </style>
 	<div class="ui-fluid">
@@ -35,10 +40,12 @@ body .ui-button {
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:outputLabel value="ปีปัจจุบัน" style="float: left"
-				for="q-inputText-CurrentYear" />
+				for="q-inputText-year" />
 
-			<p:inputText id="q-inputText-CurrentYear">
-
+			<p:inputText id="q-inputText-year"
+				value="#{tmp01005Bean.formCriteria.year}" maxlength="4" >
+				<p:keyFilter mask="num" />
+				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 
 		</p:panelGrid>
@@ -53,23 +60,23 @@ body .ui-button {
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:outputLabel value="เดือน" style="float: left"
-				for="q-selectOneMenu-eduLevel" />
-			<p:selectOneMenu id="q-selectOneMenu-eduLevel">
-				<f:selectItem itemLabel=" " itemValue="0" />
-				<f:selectItem itemLabel="มกราคม" itemValue="1" />
-				<f:selectItem itemLabel="กุมภาพันธ์" itemValue="2" />
-				<f:selectItem itemLabel="มีนาคม" itemValue="3" />
-				<f:selectItem itemLabel="เมษายน" itemValue="4" />
-				<f:selectItem itemLabel="พฤษภาคม" itemValue="5" />
-				<f:selectItem itemLabel="มิถุนายน" itemValue="6" />
-				<f:selectItem itemLabel="กรกฎาคม" itemValue="7" />
-				<f:selectItem itemLabel="สิงหาคม" itemValue="8" />
-				<f:selectItem itemLabel="กันยายน" itemValue="9" />
-				<f:selectItem itemLabel="ตุลาคม" itemValue="10" />
-				<f:selectItem itemLabel="พฤศจิกายน" itemValue="11" />
-				<f:selectItem itemLabel="ธันวาคม" itemValue="12" />
-
-
+				for="q-selectOneMenu-month" />
+			<p:selectOneMenu id="q-selectOneMenu-month"
+				value="#{tmp01005Bean.formCriteria.month}">
+				<f:selectItem itemLabel="" itemValue="" />
+				<f:selectItem itemLabel="มกราคม" itemValue="มกราคม" />
+				<f:selectItem itemLabel="กุมภาพันธ์" itemValue="กุมภาพันธ์" />
+				<f:selectItem itemLabel="มีนาคม" itemValue="มีนาคม" />
+				<f:selectItem itemLabel="เมษายน" itemValue="เมษายน" />
+				<f:selectItem itemLabel="พฤษภาคม" itemValue="พฤษภาคม" />
+				<f:selectItem itemLabel="มิถุนายน" itemValue="มิถุนายน" />
+				<f:selectItem itemLabel="กรกฎาคม" itemValue="กรกฎาคม" />
+				<f:selectItem itemLabel="สิงหาคม" itemValue="สิงหาคม" />
+				<f:selectItem itemLabel="กันยายน" itemValue="กันยายน" />
+				<f:selectItem itemLabel="ตุลาคม" itemValue="ตุลาคม" />
+				<f:selectItem itemLabel="พฤศจิกายน" itemValue="พฤศจิกายน" />
+				<f:selectItem itemLabel="ธันวาคม" itemValue="ธันวาคม" />
+				<p:ajax process="@this" update="@this" />
 			</p:selectOneMenu>
 		</p:panelGrid>
 
@@ -82,15 +89,14 @@ body .ui-button {
 						ui-grid-col-4"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:outputLabel for="q-selectOneRadio-status" value="สถานะการใช้งาน"
+			<p:outputLabel for="q-selectOneRadio-activeStatus" value="สถานะการใช้งาน"
 				style="float: left;" />
-
-			<p:selectOneRadio id="q-selectOneRadio-status" layout="lineDirection"
-				disabled="false">
-				<f:selectItem itemLabel="ใช้งาน" itemValue="Y" />
-				<f:selectItem itemLabel="ไม่ใช้งาน" itemValue="N" />
-
-
+			<p:selectOneRadio id="q-selectOneRadio-activeStatus"
+				layout="lineDirection" disabled="false"
+				value="#{tmp01005Bean.formEdit.activeFlag}">
+				<f:selectItem itemLabel="ใช้งาน" itemValue="ใช้งาน" />
+				<f:selectItem itemLabel="ไม่ใช้งาน" itemValue="ไม่ใช้งาน" />
+				<p:ajax process="@this" update="@this" />
 			</p:selectOneRadio>
 			<p:outputLabel />
 			<p:outputLabel />

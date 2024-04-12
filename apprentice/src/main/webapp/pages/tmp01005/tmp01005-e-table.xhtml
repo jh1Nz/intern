@@ -40,10 +40,10 @@ body .ui-button {
 
 			<p:selectOneRadio id="e-selectOneRadio-pecificDeparment"
 				layout="lineDirection" disabled="false"
-				value="#{tmp01005Bean.formEdit.resultDept}">
+				value="#{tmp01005Bean.formEdit.resultDept}" required="true">
 				<f:selectItem itemLabel="มี" itemValue="true" />
 				<f:selectItem itemLabel="ไม่มี" itemValue="false" />
-				<p:ajax process="@this" update="@form" />
+				<p:ajax process="@this" update="@form" listener="#{tmp01005Bean.resetTable}"/>
 			</p:selectOneRadio>
 
 		</p:panelGrid>
