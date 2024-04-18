@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+	<style>
+.ui-outputlabel .ui-outputlabel-rfi {
+	color: red;
+	text-decoration: none;
+}
+</style>
+
+	<div class="ui-fluid">
+		<p:panelGrid columns="8"
+			columnClasses="ui-grid-col-2,
+						   ui-grid-col-1,
+						   ui-grid-col-1,
+						   ui-grid-col-1,
+						   ui-grid-col-2,
+						   ui-grid-col-1, 
+						   ui-grid-col-2, 
+						   ui-grid-col-1"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="วันที่บันทึกคำขอ"
+				for="e-datePicker-reqDateStart" />
+			<p:datePicker id="e-datePicker-reqDateStart" pattern="dd/MM/yyyy"
+				label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
+				yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
+				locale="th">
+				<p:ajax process="@this" update="@this" />
+			</p:datePicker>
+			<p:outputLabel value="เลขที่คำขอ" for="e-inputText-reqNum" />
+			<p:inputText id="e-inputText-reqNum">
+			</p:inputText>
+			<p:outputLabel value="สถานะคำขอ" for="e-inputText-reqStat" />
+			<p:inputText id="e-inputText-reqStat">
+			</p:inputText>
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="4"
+			columnClasses="
+						   ui-grid-col-2,
+						   ui-grid-col-2, 
+						   ui-grid-col-4, 
+						   ui-grid-col-3"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ขอใช้สิทธิเนื่องจากเป็น" for="e-inputText-claim"/>
+			<p:selectOneRadio id="e-inputText-claim"  layout="lineDirection">
+            <f:selectItem itemLabel="มารดา" itemValue="มารดา"/>
+            <f:selectItem itemLabel="บิดาชอบด้วยกฏหมาย" itemValue="มารดา"/>
+        </p:selectOneRadio>
+		</p:panelGrid>
+		<p:panelGrid columns="6"
+			columnClasses="ui-grid-col-2,
+						   ui-grid-col-1,
+						   ui-grid-col-1,
+						   ui-grid-col-1, 
+						   ui-grid-col-1, 
+						   ui-grid-col-6"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ปีการศึกษา (พ.ศ.)" for="e-inputText-eduYear"/>
+			<p:inputText id="e-inputText-eduYear">
+			</p:inputText>
+			<p:outputLabel value="เทอม" for="e-inputText-Semester"/>
+			<p:inputText id="e-inputText-Semester">
+			</p:inputText>
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="6"
+			columnClasses="ui-grid-col-2,
+						   ui-grid-col-2,
+						   ui-grid-col-2.5,
+						   ui-grid-col-1, 
+						   ui-grid-col-1, 
+						   ui-grid-col-3.5"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ขอรับเงินสวัสดิการเกี่ยวกับการศึกษาบุตร" for="e-inputText-welfare"/>
+			 <p:selectOneRadio id="e-inputText-welfare"  layout="lineDirection">
+            <f:selectItem itemLabel="ตามสิทธิ" itemValue="ตามสิทธิ"/>
+            <f:selectItem itemLabel="เฉพาะส่วนที่ยังขาดจากสิทธิ" itemValue="เฉพาะส่วนที่ยังขาดจากสิทธิ"/>
+       		</p:selectOneRadio>
+			<p:outputLabel value="เป็นเงิน" style="text-align: right;" />
+			<p:inputText >
+			</p:inputText>
+			<p:outputLabel value="บาท"/>
+		</p:panelGrid>
+	</div>
+</ui:composition>

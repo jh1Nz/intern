@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+	<style>
+.ui-outputlabel .ui-outputlabel-rfi {
+	color: red;
+}
+</style>
+
+	<div class="card">
+		<div class="ui-g">
+			<div class="ui-g-8 ui-g-nopad">
+				<!-- Left -->
+				<div class="ui-g-12">
+					<p:panelGrid columns="6"
+						columnClasses="
+						ui-grid-col-2,
+					    ui-grid-col-2,
+						ui-grid-col-3,
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-1"
+						layout="grid" styleClass="ui-panelgrid-blank">
+						<p:outputLabel />
+						<p:outputLabel value="ประเภทบุคลากร" style="float: left"
+							for="e-inputText-perType" />
+						<p:inputText id="e-inputText-perType" required="true">
+							<p:ajax process="@this" update="@this" />
+						</p:inputText>
+						<p:outputLabel value="เลขที่ตำแหน่ง" style="float: left"
+							for="e-inputText-posID" />
+						<h:panelGrid columns="2">
+							<p:inputText id="e-inputText-posID" required="true">
+								<p:ajax process="@this" update="@this" />
+							</p:inputText>
+							<p:commandButton type="button" icon="pi pi-search" />
+						</h:panelGrid>
+						<p:outputLabel />
+					</p:panelGrid>
+					<p:panelGrid columns="6"
+						columnClasses="
+						ui-grid-col-2,
+					    ui-grid-col-2,
+						ui-grid-col-3,
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-1"
+						layout="grid" styleClass="ui-panelgrid-blank">
+						<p:outputLabel />
+						<p:outputLabel value="รหัสประจำตัว" style="float: left"
+							for="e-inputText-perID" />
+						<p:inputText id="e-inputText-perID" required="true">
+							<p:ajax process="@this" update="@this" />
+						</p:inputText>
+						<p:outputLabel value="เลขประจำตัวประชาชน" style="float: left"
+							for="e-inputText-idenNum" />
+						<p:inputText id="e-inputText-idenNum" required="true">
+							<p:ajax process="@this" update="@this" />
+						</p:inputText>
+						<p:outputLabel />
+					</p:panelGrid>
+					<p:panelGrid columns="4"
+						columnClasses="
+						ui-grid-col-2,
+					    ui-grid-col-2,
+						ui-grid-col-7"
+						layout="grid" styleClass="ui-panelgrid-blank">
+						<p:outputLabel />
+						<p:outputLabel value="ชื่อ - นามสกุล" for="e-inputText-FName" />
+						<h:panelGrid columns="6" style="width: 80%;"
+							columnClasses="
+						ui-grid-col-1,
+						ui-grid-col-3,
+						ui-grid-col-3,
+						ui-grid-col-1,
+					    ui-grid-col-2,
+						ui-grid-col-2">
+							<p:inputText id="e-inputText-IName">
+								<p:ajax process="@this" update="@this" />
+							</p:inputText>
+							<p:outputLabel />
+							<p:inputText id="e-inputText-FName" required="true">
+								<p:ajax process="@this" update="@this" />
+							</p:inputText>
+							<p:outputLabel />
+							<p:inputText id="e-inputText-LName">
+								<p:ajax process="@this" update="@this" />
+							</p:inputText>
+						</h:panelGrid>
+					</p:panelGrid>
+					<p:panelGrid columns="4"
+						columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-6"
+						layout="grid" styleClass="ui-panelgrid-blank">
+						<p:outputLabel />
+						<p:outputLabel value="ตำแหน่งในสายงาน" style="float: left"
+							for="e-inputText-posWork" />
+						<p:inputText id="e-inputText-posWork" required="true">
+							<p:ajax process="@this" update="@this" />
+						</p:inputText>
+						<p:outputLabel />
+					</p:panelGrid>
+					<p:panelGrid columns="3"
+						columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-8"
+						layout="grid" styleClass="ui-panelgrid-blank">
+						<p:outputLabel />
+						<p:outputLabel value="หน่วยงาน" style="float: left"
+							for="e-inputText-departMent" />
+						<p:inputText id="e-inputText-departMent" required="true"
+							style="width: 100%;">
+							<p:ajax process="@this" update="@this" />
+						</p:inputText>
+					</p:panelGrid>
+					<p:panelGrid columns="4"
+						columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-3,
+						ui-grid-col-4"
+						layout="grid" styleClass="ui-panelgrid-blank">
+						<p:outputLabel />
+						<p:outputLabel value="อีเมล" style="float: left"
+							for="e-inputText-email" />
+						<p:inputText id="e-inputText-email" required="true"
+							style="width: 80%;">
+							<p:ajax process="@this" update="@this" />
+						</p:inputText>
+						<p:outputLabel />
+					</p:panelGrid>
+				</div>
+			</div>
+
+			<!-- Right -->
+			<div class="ui-g-4">
+				<p:panelGrid columns="2"
+					columnClasses="
+						ui-grid-col-3,
+						ui-grid-col-1"
+					layout="grid" styleClass="ui-panelgrid-blank">
+					<p:outputLabel />
+					<p:graphicImage name="/resources/images/รูป2.jpg" width="172px"
+						height="172px" />
+				</p:panelGrid>
+			</div>
+		</div>
+	</div>
+</ui:composition>

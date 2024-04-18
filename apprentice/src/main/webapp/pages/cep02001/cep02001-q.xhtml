@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+	<style>
+body .ui-toolbar {
+	border: 1px solid #ffffff;
+	background: #ffffff;
+}
+</style>
+	<div class="ui-fluid">
+		<!-- Line 1 -->
+		<p:panelGrid columns="4"
+			columnClasses="
+						ui-grid-col-3,
+						ui-grid-col-1,
+						ui-grid-col-2,
+						ui-grid-col-6"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="เลขที่คำขอ" style="float: left"
+				for="q-inputText-reqNum" />
+			<p:inputText id="q-inputText-reqNum">
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
+			<p:outputLabel />
+		</p:panelGrid>
+		<!-- Line 2 -->
+		<p:panelGrid columns="6"
+			columnClasses="
+						ui-grid-col-3,
+						ui-grid-col-1,
+						ui-grid-col-1.5,
+						ui-grid-col-1,
+						ui-grid-col-1,
+						ui-grid-col-1.5"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="วันที่บันทึกคำขอ" style="float: left"
+				for="q-datePicker-reqDateStart" />
+			<p:datePicker id="q-datePicker-reqDateStart" pattern="dd/MM/yyyy"
+				label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
+				yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
+				locale="th" >
+				<p:ajax process="@this" update="@this" />
+			</p:datePicker>
+			<p:outputLabel />
+			<p:outputLabel value="ถึงวันที่" style="float: left"
+				for="q-datePicker-reqDateEnd" />
+			<p:datePicker id="q-datePicker-reqDateEnd" pattern="dd/MM/yyyy"
+				label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
+				yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
+				locale="th" >
+				<p:ajax process="@this" update="@this" />
+			</p:datePicker>
+		</p:panelGrid>
+		<!-- Line 3 -->
+		<p:panelGrid columns="6"
+			columnClasses="
+						ui-grid-col-3,
+						ui-grid-col-1,
+						ui-grid-col-1.5,
+						ui-grid-col-1,
+						ui-grid-col-1,
+						ui-grid-col-1.5"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ปีการศึกษา" style="float: left"
+				for="q-inputText-eduYear" />
+			<p:inputText id="q-inputText-eduYear">
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
+			<p:outputLabel />
+			<p:outputLabel value="เทอม" style="float: left"
+				for="q-inputText-Semester" />
+			<p:inputText id="q-inputText-Semester">
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
+		</p:panelGrid>
+		<!-- Line 4 -->
+		<p:panelGrid columns="4"
+			columnClasses="
+						ui-grid-col-3,
+						ui-grid-col-1,
+						ui-grid-col-3,
+						ui-grid-col-5"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ชื่อ-นามสกุล บุคลากร" style="float: left"
+				for="q-inputText-Name" />
+			<p:inputText id="q-inputText-Name">
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
+			<p:outputLabel />
+		</p:panelGrid>
+		<!-- Line 5 -->
+		<p:panelGrid columns="4"
+			columnClasses="
+						ui-grid-col-3,
+						ui-grid-col-1,
+						ui-grid-col-2,
+						ui-grid-col-6"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="สถานะคำขอ" style="float: left"
+				for="q-selectOneMenu-Name" />
+			<p:selectOneMenu id="q-selectOneMenu-Name">
+                    <f:selectItem itemLabel="ทั้งหมด" itemValue="ทั้งหมด"/>
+                    <f:selectItem itemLabel="อนุมัติ" itemValue="อนุมัติ"/>
+                    <f:selectItem itemLabel="ไม่อนุมัติ" itemValue="ไม่อนุมัติ"/>
+                    <f:selectItem itemLabel="ผ่านการตรวจสอบ" itemValue="ผ่านการตรวจสอบ"/>
+                   <p:ajax process="@this" update="@this" />
+                </p:selectOneMenu>
+			<p:outputLabel />
+		</p:panelGrid>
+
+
+	</div>
+</ui:composition>

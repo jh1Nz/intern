@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+	<style>
+.ui-outputlabel .ui-outputlabel-rfi {
+	color: red;
+	text-decoration: none;
+}
+</style>
+
+	<div class="ui-fluid">
+		<p:panelGrid columns="4"
+			columnClasses="ui-grid-col-2, ui-grid-col-2, ui-grid-col-8"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ชื่อ - นามสกุลคู่สมรส"
+				for="e-inputText-spouseName" />
+			<h:panelGrid columns="5" style="width: 75%;"
+				columnClasses="ui-grid-col-2, ui-grid-col-1, ui-grid-col-4, ui-grid-col-1, ui-grid-col-4">
+				<p:inputText id="e-inputText-IName" />
+				<p:outputLabel />
+				<p:inputText id="e-inputText-spouseName" required="true" />
+				<p:outputLabel />
+				<p:inputText id="e-inputText-LName" />
+			</h:panelGrid>
+		</p:panelGrid>
+
+
+		<p:panelGrid columns="6"
+			columnClasses="
+						ui-grid-col-2,
+					    ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ความสัมพันธ์" style="float: left"
+				for="e-inputText-relation" />
+			<p:inputText id="e-inputText-relation">
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
+			<p:outputLabel value="สถานภาพสมรส" style="float: left"
+				for="e-inputText-marryStatus" />
+			<p:inputText id="e-inputText-marryStatus">
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="6"
+			columnClasses="
+						ui-grid-col-2,
+					    ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="อาชีพ" style="float: left"
+				for="e-inputText-jobs" />
+			<p:inputText id="e-inputText-jobs">
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
+			<p:outputLabel value="อาชีพอื่น" style="float: left"
+				for="e-inputText-jobsOther" />
+			<p:inputText id="e-inputText-jobsOther">
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-8"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ประเภทอาชีพคู่สมรส"
+				style="float: left; font-weight: bold; text-decoration: underline;"
+				for="e-selectOneRadio-spouseType" />
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-8,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:selectOneRadio id="e-selectOneRadio-spouseType"
+				layout="lineDirection" required="true">
+				<f:selectItem itemLabel="ไม่เป็นข้าราชการประจำหรือลูกจ้างประจำ"
+					itemValue="false" />
+			</p:selectOneRadio>
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="6"
+			columnClasses="
+
+						ui-grid-col-2,
+						ui-grid-col-3,
+						ui-grid-col-1,
+						ui-grid-col-2,
+						ui-grid-col-1,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:selectOneRadio id="e-selectOneRadio-spouseBeType"
+				layout="lineDirection" required="true">
+				<f:selectItem itemLabel="เป็นข้าราชการ" itemValue="true" />
+				<f:selectItem itemLabel="เป็นลูกจ้างประจำ" itemValue="true" />
+			</p:selectOneRadio>
+			<p:outputLabel value="ตำแหน่ง" />
+			<p:inputText></p:inputText>
+			<p:outputLabel value="สังกัด" />
+			<p:inputText></p:inputText>
+		</p:panelGrid>
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-8,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:selectOneRadio id="e-selectOneRadio-spouseEmpType"
+				layout="lineDirection" required="true">
+				<f:selectItem
+					itemLabel="เป็นพนักงานหรือลูกจ้างในรัฐวิสาหกิจ/หน่วยงานของทางราชการ ราชการส่วนท้องถิ่น"
+					itemValue="false" />
+			</p:selectOneRadio>
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="6"
+			columnClasses="
+
+						ui-grid-col-2,
+						ui-grid-col-3,
+						ui-grid-col-1,
+						ui-grid-col-2,
+						ui-grid-col-1,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:selectOneRadio id="e-selectOneRadio-spouseEmp2Type"
+				layout="lineDirection" required="true">
+				<f:selectItem
+					itemLabel="กรุงเทพมหานคร องค์กรอิสระ องค์กรมหาชน หรือหน่วยงานอื่นใด"
+					itemValue="true" />
+			</p:selectOneRadio>
+			<p:outputLabel value="ตำแหน่ง" />
+			<p:inputText></p:inputText>
+			<p:outputLabel value="สังกัด" />
+			<p:inputText></p:inputText>
+		</p:panelGrid>
+	</div>
+
+
+</ui:composition>
