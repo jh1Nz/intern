@@ -32,13 +32,16 @@
 						<p:outputLabel />
 						<p:outputLabel value="ประเภทบุคลากร" style="float: left"
 							for="e-inputText-perType" />
-						<p:inputText id="e-inputText-perType" required="true">
+						<p:inputText id="e-inputText-perType" required="true"
+							value="#{cep02001Bean.formEdit.perType}" maxlength="50">
 							<p:ajax process="@this" update="@this" />
 						</p:inputText>
 						<p:outputLabel value="เลขที่ตำแหน่ง" style="float: left"
-							for="e-inputText-posID" />
+							for="e-inputText-posNumId" />
 						<h:panelGrid columns="2">
-							<p:inputText id="e-inputText-posID" required="true">
+							<p:inputText id="e-inputText-posNumId" required="true"
+								value="#{cep02001Bean.formEdit.posNumId}" maxlength="6">
+								<p:keyFilter mask="num" />
 								<p:ajax process="@this" update="@this" />
 							</p:inputText>
 							<p:commandButton type="button" icon="pi pi-search" />
@@ -57,14 +60,18 @@
 						<p:outputLabel />
 						<p:outputLabel value="รหัสประจำตัว" style="float: left"
 							for="e-inputText-perID" />
-						<p:inputText id="e-inputText-perID" required="true">
+						<p:inputText id="e-inputText-perID" required="true"
+							value="#{cep02001Bean.formEdit.perID}" maxlength="6">
+							<p:keyFilter mask="num" />
 							<p:ajax process="@this" update="@this" />
 						</p:inputText>
 						<p:outputLabel value="เลขประจำตัวประชาชน" style="float: left"
 							for="e-inputText-idenNum" />
-						<p:inputText id="e-inputText-idenNum" required="true">
+						<p:inputMask id="e-inputText-idenNum"
+							value="#{cep02001Bean.formEdit.perIdenNum}"
+							mask="9-9999-99999-99-9">
 							<p:ajax process="@this" update="@this" />
-						</p:inputText>
+						</p:inputMask>
 						<p:outputLabel />
 					</p:panelGrid>
 					<p:panelGrid columns="4"
@@ -83,15 +90,18 @@
 						ui-grid-col-1,
 					    ui-grid-col-2,
 						ui-grid-col-2">
-							<p:inputText id="e-inputText-IName">
+							<p:inputText id="e-inputText-IName"
+								value="#{cep02001Bean.formEdit.perTitleName}" maxlength="20">
 								<p:ajax process="@this" update="@this" />
 							</p:inputText>
 							<p:outputLabel />
-							<p:inputText id="e-inputText-FName" required="true">
+							<p:inputText id="e-inputText-FName" required="true"
+								value="#{cep02001Bean.formEdit.perFirstName}" maxlength="100">
 								<p:ajax process="@this" update="@this" />
 							</p:inputText>
 							<p:outputLabel />
-							<p:inputText id="e-inputText-LName">
+							<p:inputText id="e-inputText-LName"
+								value="#{cep02001Bean.formEdit.perLastName}" maxlength="100">
 								<p:ajax process="@this" update="@this" />
 							</p:inputText>
 						</h:panelGrid>
@@ -106,7 +116,8 @@
 						<p:outputLabel />
 						<p:outputLabel value="ตำแหน่งในสายงาน" style="float: left"
 							for="e-inputText-posWork" />
-						<p:inputText id="e-inputText-posWork" required="true">
+						<p:inputText id="e-inputText-posWork" required="true"
+							value="#{cep02001Bean.formEdit.perPosWork}" maxlength="100">
 							<p:ajax process="@this" update="@this" />
 						</p:inputText>
 						<p:outputLabel />
@@ -121,7 +132,8 @@
 						<p:outputLabel value="หน่วยงาน" style="float: left"
 							for="e-inputText-departMent" />
 						<p:inputText id="e-inputText-departMent" required="true"
-							style="width: 100%;">
+							style="width: 100%;" value="#{cep02001Bean.formEdit.perDept}"
+							maxlength="100">
 							<p:ajax process="@this" update="@this" />
 						</p:inputText>
 					</p:panelGrid>
@@ -136,7 +148,11 @@
 						<p:outputLabel value="อีเมล" style="float: left"
 							for="e-inputText-email" />
 						<p:inputText id="e-inputText-email" required="true"
-							style="width: 80%;">
+							style="width: 80%;" value="#{cep02001Bean.formEdit.perEmail}"
+							maxlength="50">
+							<p:keyFilter mask="email" />
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 							<p:ajax process="@this" update="@this" />
 						</p:inputText>
 						<p:outputLabel />
@@ -152,7 +168,7 @@
 						ui-grid-col-1"
 					layout="grid" styleClass="ui-panelgrid-blank">
 					<p:outputLabel />
-					<p:graphicImage name="/resources/images/รูป2.jpg" width="172px"
+					<p:graphicImage name="/resources/images/รูป.jpg" width="172px"
 						height="172px" />
 				</p:panelGrid>
 			</div>

@@ -22,7 +22,7 @@ body .ui-datatable thead th {
 
 	<ui:define name="center">
 		<!-- Mode ค้นหา -->
-		<p:panel >
+		<p:panel rendered="#{cep02001Bean.mode eq 'S'}">
 			<p:accordionPanel id="q-accordionPanel">
 				<p:tab title="เงื่อนไขการค้นหา">
 					<ui:include src="cep02001/cep02001-q.xhtml"></ui:include>
@@ -38,7 +38,7 @@ body .ui-datatable thead th {
 		</p:panel>
 
 		<!-- Mode บันทึก -->
-		<p:panel >
+		<p:panel rendered="#{cep02001Bean.mode eq 'I'}">
 			<p:accordionPanel id="e-accordionPanel-Person">
 				<p:tab title="ข้อมูลบุคลากร">
 					<ui:include src="cep02001/cep02001-e-person.xhtml"></ui:include>
@@ -49,15 +49,17 @@ body .ui-datatable thead th {
 					<ui:include src="cep02001/cep02001-e-spouse.xhtml"></ui:include>
 				</p:tab>
 			</p:accordionPanel>
-			<p:accordionPanel id="e-accordionPanel-Req">
+			<!-- <p:accordionPanel id="e-accordionPanel-Req">
 				<p:tab title="ข้อมูลรายการขอเบิกเงินค่าศึกษาบุตร">
 					<ui:include src="cep02001/cep02001-e-tuition.xhtml"></ui:include>
 				</p:tab>
-			</p:accordionPanel>
-			<p:accordionPanel id="e-accordionPanel-Doc">
+			</p:accordionPanel> -->
+			<!-- <p:accordionPanel id="e-accordionPanel-Doc">
 				<p:tab title="เอกสารแนบ">
+				<ui:include src="cep02001/cep02001-e-document.xhtml"></ui:include>
 				</p:tab>
-			</p:accordionPanel>
+			</p:accordionPanel> -->
+			<ui:include src="cep02001/cep02001-e-btn.xhtml"></ui:include>
 		</p:panel>
 
 

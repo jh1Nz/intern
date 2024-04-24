@@ -14,6 +14,10 @@
 	color: red;
 	text-decoration: none;
 }
+body .ui-datatable thead th {
+	background-color: #2196f3;
+	color: white;
+}
 </style>
 
 	<div class="ui-fluid">
@@ -52,11 +56,12 @@
 						   ui-grid-col-3"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:outputLabel value="ขอใช้สิทธิเนื่องจากเป็น" for="e-inputText-claim"/>
-			<p:selectOneRadio id="e-inputText-claim"  layout="lineDirection">
-            <f:selectItem itemLabel="มารดา" itemValue="มารดา"/>
-            <f:selectItem itemLabel="บิดาชอบด้วยกฏหมาย" itemValue="มารดา"/>
-        </p:selectOneRadio>
+			<p:outputLabel value="ขอใช้สิทธิเนื่องจากเป็น"
+				for="e-inputText-claim" />
+			<p:selectOneRadio id="e-inputText-claim" layout="lineDirection">
+				<f:selectItem itemLabel="มารดา" itemValue="มารดา" />
+				<f:selectItem itemLabel="บิดาชอบด้วยกฏหมาย" itemValue="มารดา" />
+			</p:selectOneRadio>
 		</p:panelGrid>
 		<p:panelGrid columns="6"
 			columnClasses="ui-grid-col-2,
@@ -67,10 +72,10 @@
 						   ui-grid-col-6"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:outputLabel value="ปีการศึกษา (พ.ศ.)" for="e-inputText-eduYear"/>
+			<p:outputLabel value="ปีการศึกษา (พ.ศ.)" for="e-inputText-eduYear" />
 			<p:inputText id="e-inputText-eduYear">
 			</p:inputText>
-			<p:outputLabel value="เทอม" for="e-inputText-Semester"/>
+			<p:outputLabel value="เทอม" for="e-inputText-Semester" />
 			<p:inputText id="e-inputText-Semester">
 			</p:inputText>
 			<p:outputLabel />
@@ -84,15 +89,187 @@
 						   ui-grid-col-3.5"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:outputLabel value="ขอรับเงินสวัสดิการเกี่ยวกับการศึกษาบุตร" for="e-inputText-welfare"/>
-			 <p:selectOneRadio id="e-inputText-welfare"  layout="lineDirection">
-            <f:selectItem itemLabel="ตามสิทธิ" itemValue="ตามสิทธิ"/>
-            <f:selectItem itemLabel="เฉพาะส่วนที่ยังขาดจากสิทธิ" itemValue="เฉพาะส่วนที่ยังขาดจากสิทธิ"/>
-       		</p:selectOneRadio>
+			<p:outputLabel value="ขอรับเงินสวัสดิการเกี่ยวกับการศึกษาบุตร"
+				for="e-inputText-welfare" />
+			<p:selectOneRadio id="e-inputText-welfare" layout="lineDirection">
+				<f:selectItem itemLabel="ตามสิทธิ" itemValue="ตามสิทธิ" />
+				<f:selectItem itemLabel="เฉพาะส่วนที่ยังขาดจากสิทธิ"
+					itemValue="เฉพาะส่วนที่ยังขาดจากสิทธิ" />
+			</p:selectOneRadio>
 			<p:outputLabel value="เป็นเงิน" style="text-align: right;" />
-			<p:inputText >
+			<p:inputText>
 			</p:inputText>
-			<p:outputLabel value="บาท"/>
+			<p:outputLabel value="บาท" />
+		</p:panelGrid>
+		<p:panelGrid columns="3"
+			columnClasses="
+      ui-grid-col-1,
+         ui-grid-col-10,
+      ui-grid-col-1"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:dataTable id="data-table" var="data" rowIndexVar="index" row="5"
+				emptyMessage="ไม่พบข้อมูล" style="text-align:center" value="#{data}"
+				rowKey="#{data}" showGridlines="true">
+				<p:column headerText="เลือก" width="3%" style="text-align:center">
+					<p:selectBooleanCheckbox />
+				</p:column>
+				<p:column headerText="บุตรลำดับที่ของมารดา" width="3%"
+					style="text-align:center">
+					<p:inputText>
+						<p:ajax process="@this" update="@this" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="บุตรลำดับที่ของบิดา" width="3%"
+					style="text-align:center">
+					<p:inputText>
+						<p:ajax process="@this" update="@this" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="ชื่อ-นามสกุล" width="7%"
+					style="text-align:center">
+					<p:inputText>
+						<p:ajax process="@this" update="@this" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="อายุ" width="5%" style="text-align:center">
+					<p:inputText>
+						<p:ajax process="@this" update="@this" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="ชั้น/ปีที่ศึกษา" width="3%"
+					style="text-align:center">
+					<p:inputText>
+						<p:ajax process="@this" update="@this" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="ระดับการศึกษา" width="7%"
+					style="text-align:center">
+					<p:inputText>
+						<p:ajax process="@this" update="@this" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="ชื่อสถานศึกษา" width="7%"
+					style="text-align:center">
+					<p:inputText>
+						<p:ajax process="@this" update="@this" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="ประเภทเงินเบิกจ่าย" width="7%"
+					style="text-align:center">
+					<p:selectOneMenu id="option">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItem itemLabel="Option1" itemValue="Option1" />
+						<f:selectItem itemLabel="Option2" itemValue="Option2" />
+						<f:selectItem itemLabel="Option3" itemValue="Option3" />
+					</p:selectOneMenu>
+				</p:column>
+				<p:column headerText="จำนวนเงิน" width="5%"
+					style="text-align:center">
+					<p:inputText>
+						<p:ajax process="@this" update="@this" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="ลบ" width="3%" style="text-align:center;">
+					<p:commandButton update="@this,data-table" process="@this"
+						icon="fa fa-minus" action="#" />
+				</p:column>
+			</p:dataTable>
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="3"
+			columnClasses="
+      				ui-grid-col-5,
+      				ui-grid-col-2,
+      				ui-grid-col-5"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:commandButton icon="fa fa-plus white" value="เพิ่มรายการ"
+				update="@this,data-table" immediate="true" actionListener="#">
+				<p:resetInput target=":formc" />
+			</p:commandButton>
+			<p:outputLabel />
+		</p:panelGrid>
+
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-2,
+						ui-grid-col-8"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="ข้าพเจ้าขอรับรองว่า"
+				style="float: left; font-weight: bold; text-decoration: underline;" />
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-8,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:selectOneRadio layout="lineDirection">
+				<f:selectItem
+					itemLabel="ข้าพเจ้ามีสิทธิได้รับเงินช่วยเหลือตามพระราชกฤษฏีกาเงินสวัสดีการเกี่ยวกับการศึกษาของบุตร และข้อความที่ระบุข้างต้นเป็นความจริง"
+					itemValue="false" />
+			</p:selectOneRadio>
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-8,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:selectOneRadio layout="lineDirection">
+				<f:selectItem
+					itemLabel="บุตรของข้าพเจ้าอยู่ในข่ายได้รับเงินช่วยเหลือตามพระราชกฤษฏีกาเงินสวัสดิการเกี่ยวกับการศึกษาบุตร"
+					itemValue="false" />
+			</p:selectOneRadio>
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-8,
+						ui-grid-col-2"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:selectOneRadio layout="lineDirection">
+				<f:selectItem
+					itemLabel="เป็นผู้ใช้สิทธิเบิกเงินช่วยเหลือจากรัฐวิสาหกิจ หน่วยงานของทางราชการ ราชการส่วนท้องถิ่น กรุงเทพมหานคร องค์กรอิสระ องค์การมหาชน"
+					itemValue="false" />
+			</p:selectOneRadio>
+			<p:outputLabel />
+		</p:panelGrid>
+		<p:panelGrid columns="3"
+			columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-9,
+						ui-grid-col-1"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:selectOneRadio layout="lineDirection">
+				<f:selectItem
+					itemLabel="คู่สมรสของข้าพเจ้าได้รับการช่วยเหลือจากรัฐวิสาหกิจ หน่วยงานของทางราชการ ราชการส่วนท้องถิ่น กรุงเทพมหานคร องค์กรอิสระ องค์การมหาชน "
+					itemValue="false" >
+					</f:selectItem>
+					
+			</p:selectOneRadio>
+		</p:panelGrid>
+		<p:panelGrid columns="4"
+			columnClasses="
+						ui-grid-col-2,
+						ui-grid-col-3,
+						ui-grid-col-1,
+						ui-grid-col-6"
+			layout="grid" styleClass="ui-panelgrid-blank">
+			<p:outputLabel />
+			<p:outputLabel value="หรือหน่วยงานอื่นใด ต่ำกว่าจำนวนเงินที่ได้รับจากทางราชการ &nbsp; &nbsp; &nbsp; &nbsp; จำนวน"/>
+			<p:inputText/>
+			<p:outputLabel value="บาท &nbsp; &nbsp; &nbsp; &nbsp; จริง"/>
 		</p:panelGrid>
 	</div>
 </ui:composition>
