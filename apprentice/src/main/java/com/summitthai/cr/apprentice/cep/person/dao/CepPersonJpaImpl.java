@@ -134,7 +134,7 @@ public class CepPersonJpaImpl extends AbstractJpa<CepPerson> implements CepPerso
 //		      }
 
 		  TypedQuery<Object[]> query = this.getEm().createQuery(sb.toString(), Object[].class);
-//gg
+//push
 //		  if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidRequestNum())) {
 //		   query.setParameter("kidRequestNum", req.getWithdrawReq().getKidRequestNum());
 //		  }
