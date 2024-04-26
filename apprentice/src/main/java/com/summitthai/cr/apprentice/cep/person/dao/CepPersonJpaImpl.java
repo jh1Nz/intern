@@ -68,23 +68,35 @@ public class CepPersonJpaImpl extends AbstractJpa<CepPerson> implements CepPerso
 		}
 
 	}
-	
+
 	@Override
-	public List<Object[]> search(CepPersonRequest req){
-		 StringBuilder sb = new StringBuilder();
+	public List<Object[]> search(CepPersonRequest req) {
+		StringBuilder sb = new StringBuilder();
 
-		  sb.append(
-		    "SELECT e.perUUID, s.reqID,s.reqDate,s.eduYear,s.semester,e.perTitleName,e.perFirstName,e.perLastName,s.welfareAmount,s.reqStatus ");
-		  sb.append("from CepPerson e ");
-		  sb.append("left join CepTuition s on e.perUUID = s.perUUID ");
-		  sb.append("where 1 = 1 ");
+		sb.append(
+				"SELECT e.perUUID, s.reqID,s.reqDate,s.eduYear,s.semester,e.perTitleName,e.perFirstName,e.perLastName,s.welfareAmount,s.reqStatus ");
+		sb.append("from CepPerson e ");
+		sb.append("left join CepTuition s on e.perUUID = s.perUUID ");
+		sb.append("where 1 = 1 ");
 
-		  if (!StringUtils.isNullOrEmpty(req.getPerFullName())) {
-		   sb.append("and (e.perFirstName like '%" + req.getPerFullName() + "%' ");
-		   sb.append("or e.perLastName like '%" + req.getPerFullName() + "%' ");
-		   sb.append("or e.perTitleName like '%" + req.getPerFullName() + "%') ");
-		   
-		  }
+		if (!StringUtils.isNullOrEmpty(req.getPerFullName())) {
+			sb.append("and (e.perFirstName like '%" + req.getPerFullName() + "%' ");
+			sb.append("or e.perLastName like '%" + req.getPerFullName() + "%' ");
+			sb.append("or e.perTitleName like '%" + req.getPerFullName() + "%') ");
+
+		}
+		if (!StringUtils.isNullOrEmpty(req.getCepTuitionReq().getReqID())) {
+			sb.append("and (s.reqID like '%" + req.getCepTuitionReq().getReqID() + "%') ");
+		}
+		if (!StringUtils.isNullOrEmpty(req.getCepTuitionReq().getEduYear())) {
+			sb.append("and (s.eduYear like '%" + req.getCepTuitionReq().getEduYear() + "%') ");
+		}
+		if (!StringUtils.isNullOrEmpty(req.getCepTuitionReq().getSemester())) {
+			sb.append("and (s.semester like '%" + req.getCepTuitionReq().getSemester() + "%') ");
+		}
+		if (!StringUtils.isNullOrEmpty(req.getCepTuitionReq().getReqStatus())) {
+			sb.append("and (s.reqStatus like '%" + req.getCepTuitionReq().getReqStatus() + "%') ");
+		}
 //
 //		  if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidRequestNum())) {
 //		   sb.append("and s.kidRequestNum = :kidRequestNum ");
@@ -133,7 +145,7 @@ public class CepPersonJpaImpl extends AbstractJpa<CepPerson> implements CepPerso
 //		       sb.append("and s.kidRequestNum = :kidRequestNum ");
 //		      }
 
-		  TypedQuery<Object[]> query = this.getEm().createQuery(sb.toString(), Object[].class);
+		TypedQuery<Object[]> query = this.getEm().createQuery(sb.toString(), Object[].class);
 //push
 //		  if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidRequestNum())) {
 //		   query.setParameter("kidRequestNum", req.getWithdrawReq().getKidRequestNum());
@@ -148,6 +160,6 @@ public class CepPersonJpaImpl extends AbstractJpa<CepPerson> implements CepPerso
 //		     XspUtils.convertDateToString(req.getWithdrawReq().getKidRequestDayEnd()));
 //		  }
 
-		  return query.getResultList();
+		return query.getResultList();
 	}
 }

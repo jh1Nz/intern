@@ -27,7 +27,7 @@ body .ui-toolbar {
 			<p:outputLabel />
 			<p:outputLabel value="เลขที่คำขอ" style="float: left"
 				for="q-inputText-reqNum" />
-			<p:inputText id="q-inputText-reqNum">
+			<p:inputText id="q-inputText-reqNum" value="#{cep02001Bean.formCriteria.cepTuitionReq.reqID}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -74,13 +74,13 @@ body .ui-toolbar {
 			<p:outputLabel />
 			<p:outputLabel value="ปีการศึกษา" style="float: left"
 				for="q-inputText-eduYear" />
-			<p:inputText id="q-inputText-eduYear">
+			<p:inputText id="q-inputText-eduYear" value="#{cep02001Bean.formCriteria.cepTuitionReq.eduYear}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
 			<p:outputLabel value="เทอม" style="float: left"
 				for="q-inputText-Semester" />
-			<p:inputText id="q-inputText-Semester">
+			<p:inputText id="q-inputText-Semester" value="#{cep02001Bean.formCriteria.cepTuitionReq.semester}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 		</p:panelGrid>
@@ -110,14 +110,11 @@ body .ui-toolbar {
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:outputLabel value="สถานะคำขอ" style="float: left"
-				for="q-selectOneMenu-Name" />
-			<p:selectOneMenu id="q-selectOneMenu-Name">
-                    <f:selectItem itemLabel="ทั้งหมด" itemValue="ทั้งหมด"/>
-                    <f:selectItem itemLabel="อนุมัติ" itemValue="อนุมัติ"/>
-                    <f:selectItem itemLabel="ไม่อนุมัติ" itemValue="ไม่อนุมัติ"/>
-                    <f:selectItem itemLabel="ผ่านการตรวจสอบ" itemValue="ผ่านการตรวจสอบ"/>
-                   <p:ajax process="@this" update="@this" />
-                </p:selectOneMenu>
+				for="e-inputText-reqStat" />
+			<p:inputText id="e-inputText-reqStat"
+				value="#{cep02001Bean.formCriteria.cepTuitionReq.reqStatus}">
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
 			<p:outputLabel />
 		</p:panelGrid>
 
