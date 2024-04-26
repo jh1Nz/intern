@@ -14,6 +14,7 @@
 	color: red;
 	text-decoration: none;
 }
+
 body .ui-datatable thead th {
 	background-color: #2196f3;
 	color: white;
@@ -37,14 +38,18 @@ body .ui-datatable thead th {
 			<p:datePicker id="e-datePicker-reqDateStart" pattern="dd/MM/yyyy"
 				label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
 				yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
-				locale="th">
+				locale="th" value="#{cep02001Bean.formEditTuition.reqDate}">
 				<p:ajax process="@this" update="@this" />
 			</p:datePicker>
 			<p:outputLabel value="เลขที่คำขอ" for="e-inputText-reqNum" />
-			<p:inputText id="e-inputText-reqNum">
+			<p:inputText id="e-inputText-reqNum"
+				value="#{cep02001Bean.formEditTuition.reqID}">
+				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="สถานะคำขอ" for="e-inputText-reqStat" />
-			<p:inputText id="e-inputText-reqStat">
+			<p:inputText id="e-inputText-reqStat"
+				value="#{cep02001Bean.formEditTuition.reqStatus}">
+				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
 		</p:panelGrid>
@@ -58,9 +63,12 @@ body .ui-datatable thead th {
 			<p:outputLabel />
 			<p:outputLabel value="ขอใช้สิทธิเนื่องจากเป็น"
 				for="e-inputText-claim" />
-			<p:selectOneRadio id="e-inputText-claim" layout="lineDirection">
+			<p:selectOneRadio id="e-inputText-claim" layout="lineDirection"
+				value="#{cep02001Bean.formEditTuition.reqClaim}">
 				<f:selectItem itemLabel="มารดา" itemValue="มารดา" />
-				<f:selectItem itemLabel="บิดาชอบด้วยกฏหมาย" itemValue="มารดา" />
+				<f:selectItem itemLabel="บิดาชอบด้วยกฏหมาย"
+					itemValue="บิดาชอบด้วยกฏหมาย" />
+				<p:ajax process="@this" update="@this" />
 			</p:selectOneRadio>
 		</p:panelGrid>
 		<p:panelGrid columns="6"
@@ -73,10 +81,14 @@ body .ui-datatable thead th {
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:outputLabel value="ปีการศึกษา (พ.ศ.)" for="e-inputText-eduYear" />
-			<p:inputText id="e-inputText-eduYear">
+			<p:inputText id="e-inputText-eduYear"
+				value="#{cep02001Bean.formEditTuition.eduYear}">
+				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="เทอม" for="e-inputText-Semester" />
-			<p:inputText id="e-inputText-Semester">
+			<p:inputText id="e-inputText-Semester"
+				value="#{cep02001Bean.formEditTuition.semester}">
+				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
 		</p:panelGrid>
@@ -91,88 +103,91 @@ body .ui-datatable thead th {
 			<p:outputLabel />
 			<p:outputLabel value="ขอรับเงินสวัสดิการเกี่ยวกับการศึกษาบุตร"
 				for="e-inputText-welfare" />
-			<p:selectOneRadio id="e-inputText-welfare" layout="lineDirection">
+			<p:selectOneRadio id="e-inputText-welfare" layout="lineDirection"
+				value="#{cep02001Bean.formEditTuition.welfarePick}">
 				<f:selectItem itemLabel="ตามสิทธิ" itemValue="ตามสิทธิ" />
 				<f:selectItem itemLabel="เฉพาะส่วนที่ยังขาดจากสิทธิ"
 					itemValue="เฉพาะส่วนที่ยังขาดจากสิทธิ" />
+				<p:ajax process="@this" update="@this" />
 			</p:selectOneRadio>
 			<p:outputLabel value="เป็นเงิน" style="text-align: right;" />
-			<p:inputText>
+			<p:inputText value="#{cep02001Bean.formEditTuition.welfareAmount}">
+				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="บาท" />
 		</p:panelGrid>
 		<p:panelGrid columns="3"
 			columnClasses="
-      ui-grid-col-1,
+      	 ui-grid-col-1,
          ui-grid-col-10,
-      ui-grid-col-1"
+     	 ui-grid-col-1"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:dataTable id="data-table" var="data" rowIndexVar="index" row="5"
-				emptyMessage="ไม่พบข้อมูล" style="text-align:center" value="#{data}"
-				rowKey="#{data}" showGridlines="true">
+				emptyMessage="ไม่พบข้อมูล" style="text-align:center"
+				value="#{cep02001Bean.kidList}" rowKey="#{data.kidUUID}">>
 				<p:column headerText="เลือก" width="3%" style="text-align:center">
 					<p:selectBooleanCheckbox />
 				</p:column>
 				<p:column headerText="บุตรลำดับที่ของมารดา" width="3%"
 					style="text-align:center">
-					<p:inputText>
+					<p:inputText value="#{data.kidMom}">
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="บุตรลำดับที่ของบิดา" width="3%"
 					style="text-align:center">
-					<p:inputText>
+					<p:inputText value="#{data.kidDad}">
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="ชื่อ-นามสกุล" width="7%"
 					style="text-align:center">
-					<p:inputText>
+					<p:inputText value="#{data.kidName}">
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="อายุ" width="5%" style="text-align:center">
-					<p:inputText>
+					<p:inputText value="#{data.kidAge}">
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="ชั้น/ปีที่ศึกษา" width="3%"
 					style="text-align:center">
-					<p:inputText>
+					<p:inputText value="#{data.eduClass}">
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="ระดับการศึกษา" width="7%"
 					style="text-align:center">
-					<p:inputText>
+					<p:inputText value="#{data.eduLevel}">
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="ชื่อสถานศึกษา" width="7%"
 					style="text-align:center">
-					<p:inputText>
+					<p:inputText value="#{data.eduName}">
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="ประเภทเงินเบิกจ่าย" width="7%"
 					style="text-align:center">
-					<p:selectOneMenu id="option">
-						<f:selectItem itemLabel="Select One" itemValue="" />
+					<p:selectOneMenu id="option" value="#{data.disburType}">
 						<f:selectItem itemLabel="Option1" itemValue="Option1" />
 						<f:selectItem itemLabel="Option2" itemValue="Option2" />
 						<f:selectItem itemLabel="Option3" itemValue="Option3" />
+						<p:ajax process="@this" update="@this" />
 					</p:selectOneMenu>
 				</p:column>
 				<p:column headerText="จำนวนเงิน" width="5%"
 					style="text-align:center">
-					<p:inputText>
+					<p:inputText value="#{data.eduAmount}">
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="ลบ" width="3%" style="text-align:center;">
 					<p:commandButton update="@this,data-table" process="@this"
-						icon="fa fa-minus" action="#" />
+						icon="fa fa-minus" action="#{cep02001Bean.removeDataList}" />
 				</p:column>
 			</p:dataTable>
 			<p:outputLabel />
@@ -185,7 +200,7 @@ body .ui-datatable thead th {
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:commandButton icon="fa fa-plus white" value="เพิ่มรายการ"
-				update="@this,data-table" immediate="true" actionListener="#">
+				update="@this,data-table" immediate="true" actionListener="#{cep02001Bean.setTable}">
 				<p:resetInput target=":formc" />
 			</p:commandButton>
 			<p:outputLabel />
@@ -209,10 +224,12 @@ body .ui-datatable thead th {
 						ui-grid-col-2"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:selectOneRadio layout="lineDirection">
+			<p:selectOneRadio layout="lineDirection"
+				value="#{cep02001Bean.formEditTuition.guaranteeAll}">
 				<f:selectItem
 					itemLabel="ข้าพเจ้ามีสิทธิได้รับเงินช่วยเหลือตามพระราชกฤษฏีกาเงินสวัสดีการเกี่ยวกับการศึกษาของบุตร และข้อความที่ระบุข้างต้นเป็นความจริง"
-					itemValue="false" />
+					itemValue="true" />
+				<p:ajax process="@this" update="@this" />
 			</p:selectOneRadio>
 			<p:outputLabel />
 		</p:panelGrid>
@@ -223,10 +240,12 @@ body .ui-datatable thead th {
 						ui-grid-col-2"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:selectOneRadio layout="lineDirection">
+			<p:selectOneRadio layout="lineDirection"
+				value="#{cep02001Bean.formEditTuition.guaranteeKid}">
 				<f:selectItem
 					itemLabel="บุตรของข้าพเจ้าอยู่ในข่ายได้รับเงินช่วยเหลือตามพระราชกฤษฏีกาเงินสวัสดิการเกี่ยวกับการศึกษาบุตร"
-					itemValue="false" />
+					itemValue="true" />
+				<p:ajax process="@this" update="@this" />
 			</p:selectOneRadio>
 			<p:outputLabel />
 		</p:panelGrid>
@@ -237,10 +256,12 @@ body .ui-datatable thead th {
 						ui-grid-col-2"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:selectOneRadio layout="lineDirection">
+			<p:selectOneRadio layout="lineDirection"
+				value="#{cep02001Bean.formEditTuition.guranteePer}">
 				<f:selectItem
 					itemLabel="เป็นผู้ใช้สิทธิเบิกเงินช่วยเหลือจากรัฐวิสาหกิจ หน่วยงานของทางราชการ ราชการส่วนท้องถิ่น กรุงเทพมหานคร องค์กรอิสระ องค์การมหาชน"
-					itemValue="false" />
+					itemValue="true" />
+				<p:ajax process="@this" update="@this" />
 			</p:selectOneRadio>
 			<p:outputLabel />
 		</p:panelGrid>
@@ -251,12 +272,13 @@ body .ui-datatable thead th {
 						ui-grid-col-1"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:selectOneRadio layout="lineDirection">
+			<p:selectOneRadio layout="lineDirection"
+				value="#{cep02001Bean.formEditTuition.guranteeSpouse}">
 				<f:selectItem
 					itemLabel="คู่สมรสของข้าพเจ้าได้รับการช่วยเหลือจากรัฐวิสาหกิจ หน่วยงานของทางราชการ ราชการส่วนท้องถิ่น กรุงเทพมหานคร องค์กรอิสระ องค์การมหาชน "
-					itemValue="false" >
-					</f:selectItem>
-					
+					itemValue="true">
+				</f:selectItem>
+				<p:ajax process="@this" update="@this" />
 			</p:selectOneRadio>
 		</p:panelGrid>
 		<p:panelGrid columns="4"
@@ -267,9 +289,13 @@ body .ui-datatable thead th {
 						ui-grid-col-6"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:outputLabel value="หรือหน่วยงานอื่นใด ต่ำกว่าจำนวนเงินที่ได้รับจากทางราชการ &nbsp; &nbsp; &nbsp; &nbsp; จำนวน"/>
-			<p:inputText/>
-			<p:outputLabel value="บาท &nbsp; &nbsp; &nbsp; &nbsp; จริง"/>
+			<p:outputLabel
+				value="หรือหน่วยงานอื่นใด ต่ำกว่าจำนวนเงินที่ได้รับจากทางราชการ &nbsp; &nbsp; &nbsp; &nbsp; จำนวน" />
+			<p:inputText value="#{cep02001Bean.formEditTuition.guranteeAmount}">
+
+				<p:ajax process="@this" update="@this" />
+			</p:inputText>
+			<p:outputLabel value="บาท &nbsp; &nbsp; &nbsp; &nbsp; จริง" />
 		</p:panelGrid>
 	</div>
 </ui:composition>

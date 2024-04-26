@@ -36,7 +36,7 @@ body .ui-datatable thead th {
 			                           {NextPageLink} 
 			                           {LastPageLink}"
 				reflow="true" style="text-align: center" emptyMessage="ไม่พบข้อมูล"
-				selectionMode="single">
+				selectionMode="single" value="#{cep02001Bean.QList}" rowKey="#{data.perUUID}">
 				<p:ajax event="rowSelect" process="@this" update=":formc"
 					onstart="PF('bui').show()" onsuccess="PF('bui').hide()"
 					resetValues="true" />
@@ -46,7 +46,7 @@ body .ui-datatable thead th {
 					<h:outputText
 						style="float: center !important; 
                			text-align: left !important"
-						value="" />
+						value="#{data.cepTuitionReq.reqID}" />
 				</p:column>
 				<p:column headerText="วันที่บันทึกคำขอ" style="text-align: center"
 					sortBy="">
@@ -74,7 +74,7 @@ body .ui-datatable thead th {
 					<h:outputText
 						style="float: center !important; 
                			text-align: left !important"
-						value="" />
+						value="#{data.perTitleName}  #{data.perFirstName}  #{data.perLastName}" />
 				</p:column>
 				<p:column headerText="จำนวนเงิน" style="text-align: center"
 					sortBy="">

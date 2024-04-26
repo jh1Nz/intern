@@ -14,7 +14,7 @@
 	<p:toolbar>
 		<f:facet name="left">
 			<p:commandButton icon="fa fa-search white" value="ค้นหา"
-				actionListener="#" update="@form" />
+				actionListener="#{cep02001Bean.searchButton}" update="@form" />
 			<p:commandButton icon="fa fa-refresh white" value="เริ่มใหม่"
 				update=":formc" process="@this" 
 				actionListener="#">

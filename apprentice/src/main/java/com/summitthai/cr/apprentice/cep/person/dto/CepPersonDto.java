@@ -31,22 +31,7 @@ public class CepPersonDto implements Serializable {
 			req.setPerPosWork(entity.getPerPosWork());
 			req.setPerDept(entity.getPerDept());
 			req.setPerEmail(entity.getPerEmail());
-			req.setSpouseTitleName(entity.getSpouseTitleName());
-			req.setSpouseFirstName(entity.getSpouseFirstName());
-			req.setSpouseLastName(entity.getSpouseLastName());
-			req.setSpouseRelation(entity.getSpouseRelation());
-			req.setSpouseStatus(entity.getSpouseStatus());
-			req.setSpouseJob(entity.getSpouseJob());
-			req.setSpouseOtherJob(entity.getSpouseOtherJob());
-			req.setCheckGovEmp(entity.getCheckGovEmp());
-			req.setGov(entity.getGov());
-			req.setEmp(entity.getEmp());
-			req.setEntGov(entity.getEntGov());
-			req.setOrgBkk(entity.getOrgBkk());
-			req.setPos(entity.getPos());
-			req.setAffiliationn(entity.getAffiliationn());
-			req.setPosSub(entity.getPosSub());
-			req.setAffiliationnSub(entity.getAffiliationnSub());
+			
 			return req;
 		} catch (Exception e) {
 			log.error("Show Error {}", e);
@@ -69,22 +54,7 @@ public class CepPersonDto implements Serializable {
 			entity.setPerPosWork(req.getPerPosWork());
 			entity.setPerDept(req.getPerDept());
 			entity.setPerEmail(req.getPerEmail());
-			entity.setSpouseTitleName(req.getSpouseTitleName());
-			entity.setSpouseFirstName(req.getSpouseFirstName());
-			entity.setSpouseLastName(req.getSpouseLastName());
-			entity.setSpouseRelation(req.getSpouseRelation());
-			entity.setSpouseStatus(req.getSpouseStatus());
-			entity.setSpouseJob(req.getSpouseJob());
-			entity.setSpouseOtherJob(req.getSpouseOtherJob());
-			entity.setCheckGovEmp(req.getCheckGovEmp());
-			entity.setGov(req.getGov());
-			entity.setEmp(req.getEmp());
-			entity.setEntGov(req.getEntGov());
-			entity.setOrgBkk(req.getOrgBkk());
-			entity.setPos(req.getPos());
-			entity.setAffiliationn(req.getAffiliationn());
-			entity.setPosSub(req.getPosSub());
-			entity.setAffiliationnSub(req.getAffiliationnSub());
+			
 		return entity;
 	}
 

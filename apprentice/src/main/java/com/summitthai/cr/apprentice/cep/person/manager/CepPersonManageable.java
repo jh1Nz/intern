@@ -13,4 +13,6 @@ public interface CepPersonManageable extends Serializable{
 	public CepPersonResponse update(CepPersonRequest req);
 	
 	public CepPersonResponse delete(CepPersonRequest req);
+	
+	public CepPersonResponse search(CepPersonRequest req);
 }

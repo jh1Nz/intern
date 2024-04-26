@@ -75,7 +75,6 @@ public class Cep01002Bean extends ViewBase implements Serializable {
 	@Inject
 	private  HistoryManager historyManager;
 	
-	
 
 	
 

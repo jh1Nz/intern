@@ -26,17 +26,17 @@
 			<h:panelGrid columns="5" style="width: 75%;"
 				columnClasses="ui-grid-col-2, ui-grid-col-1, ui-grid-col-4, ui-grid-col-1, ui-grid-col-4">
 				<p:inputText id="e-inputText-IName"
-					value="#{cep02001Bean.formEdit.spouseTitleName}">
+					value="#{cep02001Bean.formEditSpouse.spouseTitleName}">
 					<p:ajax process="@this" update="@this" />
 				</p:inputText>
 				<p:outputLabel />
 				<p:inputText id="e-inputText-spouseName" required="true"
-					value="#{cep02001Bean.formEdit.spouseFirstName}">
+					value="#{cep02001Bean.formEditSpouse.spouseFirstName}">
 					<p:ajax process="@this" update="@this" />
 				</p:inputText>
 				<p:outputLabel />
 				<p:inputText id="e-inputText-LName"
-					value="#{cep02001Bean.formEdit.spouseLastName}">
+					value="#{cep02001Bean.formEditSpouse.spouseLastName}">
 					<p:ajax process="@this" update="@this" />
 				</p:inputText>
 			</h:panelGrid>
@@ -56,13 +56,13 @@
 			<p:outputLabel value="ความสัมพันธ์" style="float: left"
 				for="e-inputText-relation" />
 			<p:inputText id="e-inputText-relation"
-				value="#{cep02001Bean.formEdit.spouseRelation}">
+				value="#{cep02001Bean.formEditSpouse.spouseRelation}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="สถานภาพสมรส" style="float: left"
 				for="e-inputText-marryStatus" />
 			<p:inputText id="e-inputText-marryStatus"
-				value="#{cep02001Bean.formEdit.spouseStatus}">
+				value="#{cep02001Bean.formEditSpouse.spouseStatus}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -80,13 +80,13 @@
 			<p:outputLabel value="อาชีพ" style="float: left"
 				for="e-inputText-jobs" />
 			<p:inputText id="e-inputText-jobs"
-				value="#{cep02001Bean.formEdit.spouseJob}">
+				value="#{cep02001Bean.formEditSpouse.spouseJob}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="อาชีพอื่น" style="float: left"
 				for="e-inputText-jobsOther" />
 			<p:inputText id="e-inputText-jobsOther"
-				value="#{cep02001Bean.formEdit.spouseOtherJob}">
+				value="#{cep02001Bean.formEditSpouse.spouseOtherJob}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -111,9 +111,9 @@
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:selectOneRadio id="test"
-				layout="lineDirection" value="#{cep02001Bean.formEdit.checkGovEmp}"
+				layout="lineDirection" value="#{cep02001Bean.formEditSpouse.checkGovEmp}"
 				valueChangeListener="#{cep02001Bean.changeValue}">
-				<f:selectItem itemLabel="test" itemValue="true" />
+				<f:selectItem itemLabel="ไม่เป็นข้าราชการหรือลูกจ้างประจำ" itemValue="true" />
 				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" />
 			</p:selectOneRadio>
 			<p:outputLabel />
@@ -131,23 +131,23 @@
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:selectOneRadio id="e-selectOneRadio-spouseBeType"
-				layout="lineDirection" value="#{cep02001Bean.formEdit.gov}"
+				layout="lineDirection" value="#{cep02001Bean.formEditSpouse.gov}"
 				valueChangeListener="#{cep02001Bean.changeValue}">
 				<f:selectItem itemLabel="เป็นข้าราชการ" itemValue="true" />
 				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" />
 			</p:selectOneRadio>
 			<p:selectOneRadio id="e-selectOneRadio-spouseBeType2"
-				layout="lineDirection" value="#{cep02001Bean.formEdit.emp}"
+				layout="lineDirection" value="#{cep02001Bean.formEditSpouse.emp}"
 				valueChangeListener="#{cep02001Bean.changeValue}">
 				<f:selectItem itemLabel="เป็นลูกจ้างประจำ" itemValue="true" />
 				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" />
 			</p:selectOneRadio>
 			<p:outputLabel value="ตำแหน่ง" />
-			<p:inputText value="#{cep02001Bean.formEdit.pos}">
+			<p:inputText value="#{cep02001Bean.formEditSpouse.pos}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="สังกัด" />
-			<p:inputText value="#{cep02001Bean.formEdit.affiliationn}">
+			<p:inputText value="#{cep02001Bean.formEditSpouse.affiliationn}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -160,7 +160,7 @@
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:selectOneRadio id="e-selectOneRadio-spouseEmpType"
-				layout="lineDirection" value="#{cep02001Bean.formEdit.entGov}"
+				layout="lineDirection" value="#{cep02001Bean.formEditSpouse.entGov}"
 				valueChangeListener="#{cep02001Bean.changeValue}">
 				<f:selectItem
 					itemLabel="เป็นพนักงานหรือลูกจ้างในรัฐวิสาหกิจ/หน่วยงานของทางราชการ ราชการส่วนท้องถิ่น"
@@ -181,7 +181,7 @@
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:selectOneRadio id="e-selectOneRadio-spouseEmp2Type"
-				layout="lineDirection" value="#{cep02001Bean.formEdit.orgBkk}"
+				layout="lineDirection" value="#{cep02001Bean.formEditSpouse.orgBkk}"
 				valueChangeListener="#{cep02001Bean.changeValue}">
 				<f:selectItem
 					itemLabel="กรุงเทพมหานคร องค์กรอิสระ องค์กรมหาชน หรือหน่วยงานอื่นใด"
@@ -189,11 +189,11 @@
 				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" />
 			</p:selectOneRadio>
 			<p:outputLabel value="ตำแหน่ง" />
-			<p:inputText value="#{cep02001Bean.formEdit.posSub}">
+			<p:inputText value="#{cep02001Bean.formEditSpouse.posSub}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="สังกัด" />
-			<p:inputText value="#{cep02001Bean.formEdit.affiliationnSub}">
+			<p:inputText value="#{cep02001Bean.formEditSpouse.affiliationnSub}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 		</p:panelGrid>

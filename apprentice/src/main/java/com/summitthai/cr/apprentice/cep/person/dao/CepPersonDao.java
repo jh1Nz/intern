@@ -8,4 +8,6 @@ import com.summitthai.sdd.dao.OrmDao;
 
 public interface CepPersonDao extends OrmDao<CepPerson>{
 	public List<CepPerson> findByReq(CepPersonRequest req); 
+	
+	public List<Object[]> search(CepPersonRequest req); 
 }

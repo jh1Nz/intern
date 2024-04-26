@@ -1,9 +1,15 @@
 package com.summitthai.cr.apprentice.cep.person.model;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.summitthai.cr.apprentice.cep.kid.model.CepKidRequest;
+import com.summitthai.cr.apprentice.cep.spouse.model.CepSpouseRequest;
+import com.summitthai.cr.apprentice.cep.tuition.model.CepTuitionRequest;
 
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 		includeFieldNames = true,
 		doNotUseGetters = false
 		)
-@XmlRootElement(name = "cepPersonRequest")
+@XmlRootElement(name = "cepSpouseRequest")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CepPersonRequest {
 	private static final long seriaVersionUID =1L;
@@ -58,51 +64,11 @@ public class CepPersonRequest {
 	@XmlElement(name = "perEmail")
 	private String perEmail;
 	
-	@XmlElement(name="spouseTitleName")
-	private String spouseTitleName;
+	private CepTuitionRequest cepTuitionReq;
 	
-	@XmlElement(name="spouseFirstName")
-	private String spouseFirstName;
+	private List<CepSpouseRequest> spouseList;
+	private List<CepTuitionRequest> tuitionList;
+	private List<CepKidRequest> kidList;
 	
-	@XmlElement(name="spouseLastName")
-	private String spouseLastName;
-	
-	@XmlElement(name="spouseRelation")
-	private String spouseRelation;
-	
-	@XmlElement(name="spouseStatus")
-	private String spouseStatus;
-	
-	@XmlElement(name="spouseJob")
-	private String spouseJob;
-	
-	@XmlElement(name="spouseOtherJob")
-	private String spouseOtherJob;
-	
-	@XmlElement(name="checkGovEmp")
-	private String checkGovEmp;
-	
-	@XmlElement(name = "gov")
-	private String gov;
-	
-	@XmlElement(name = "emp")
-	private String emp;
-	
-	@XmlElement(name = "entGov")
-	private String entGov;
-	
-	@XmlElement(name = "orgBkk")
-	private String orgBkk;
-	
-	@XmlElement(name = "pos")
-	private String pos;
-	
-	@XmlElement(name = "affiliationn")
-	private String affiliationn;
-	
-	@XmlElement(name = "posSub")
-	private String posSub;
-	
-	@XmlElement(name = "affiliationnSub")
-	private String affiliationnSub;
+	private String perFullName;
 }

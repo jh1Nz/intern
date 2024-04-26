@@ -49,53 +49,6 @@ public class CepPerson implements Serializable {
 	@Column(name = "PER_EMAIL")
 	private String perEmail;
 	
-	@Column(name = "SPOUSE_TITLE_NAME")
-	private String spouseTitleName;
-	
-	@Column(name = "SPOUSE_FIRST_NAME")
-	private String spouseFirstName;
-
-	@Column(name = "SPOUSE_LAST_NAME")
-	private String spouseLastName;
-	
-	@Column(name = "SPOUSE_RELATION")
-	private String spouseRelation;
-	
-	@Column(name = "SPOUSE_STATUS")
-	private String spouseStatus;
-	
-	@Column(name = "SPOUSE_JOB")
-	private String spouseJob;
-	
-	@Column(name = "SPOUSE_OTHER_JOB")
-	private String spouseOtherJob;
-	
-	@Column(name = "CHECK_GOV_EMP")
-	private String checkGovEmp;
-	
-	@Column(name = "GOV")
-	private String gov;
-	
-	@Column(name = "EMP")
-	private String emp;
-	
-	@Column(name = "ENT_GOV")
-	private String entGov;
-	
-	@Column(name = "ORG_BKK")
-	private String orgBkk;
-	
-	@Column(name = "POS")
-	private String pos;
-	
-	@Column(name = "AFFILIATION")
-	private String affiliationn;
-	
-	@Column(name = "POS_SUB")
-	private String posSub;
-	
-	@Column(name = "AFFILIATION_SUB")
-	private String affiliationnSub;
 	
 	
 	

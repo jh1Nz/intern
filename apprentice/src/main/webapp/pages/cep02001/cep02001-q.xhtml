@@ -95,7 +95,7 @@ body .ui-toolbar {
 			<p:outputLabel />
 			<p:outputLabel value="ชื่อ-นามสกุล บุคลากร" style="float: left"
 				for="q-inputText-Name" />
-			<p:inputText id="q-inputText-Name">
+			<p:inputText id="q-inputText-Name" value="#{cep02001Bean.formCriteria.perFullName}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
