@@ -85,13 +85,15 @@
 			<p:outputLabel value="อาชีพ" style="float: left"
 				for="e-inputText-jobs" />
 			<p:inputText id="e-inputText-jobs"
-				value="#{cep02001Bean.formEditSpouse.spouseJob}">
+				value="#{cep02001Bean.formEditSpouse.spouseJob}"
+				maxlength="100">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="อาชีพอื่น" style="float: left"
 				for="e-inputText-jobsOther" />
 			<p:inputText id="e-inputText-jobsOther"
-				value="#{cep02001Bean.formEditSpouse.spouseOtherJob}">
+				value="#{cep02001Bean.formEditSpouse.spouseOtherJob}"
+				maxlength="100">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -148,11 +150,11 @@
 				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" />
 			</p:selectOneRadio>
 			<p:outputLabel value="ตำแหน่ง" />
-			<p:inputText value="#{cep02001Bean.formEditSpouse.pos}">
+			<p:inputText value="#{cep02001Bean.formEditSpouse.pos}" maxlength="100">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="สังกัด" />
-			<p:inputText value="#{cep02001Bean.formEditSpouse.affiliationn}">
+			<p:inputText value="#{cep02001Bean.formEditSpouse.affiliationn}" maxlength="100">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -194,11 +196,11 @@
 				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" />
 			</p:selectOneRadio>
 			<p:outputLabel value="ตำแหน่ง" />
-			<p:inputText value="#{cep02001Bean.formEditSpouse.posSub}">
+			<p:inputText value="#{cep02001Bean.formEditSpouse.posSub}" maxlength="100">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="สังกัด" />
-			<p:inputText value="#{cep02001Bean.formEditSpouse.affiliationnSub}">
+			<p:inputText value="#{cep02001Bean.formEditSpouse.affiliationnSub}" maxlength="100">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 		</p:panelGrid>

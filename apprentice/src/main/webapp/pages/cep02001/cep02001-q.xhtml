@@ -27,7 +27,10 @@ body .ui-toolbar {
 			<p:outputLabel />
 			<p:outputLabel value="เลขที่คำขอ" style="float: left"
 				for="q-inputText-reqNum" />
-			<p:inputText id="q-inputText-reqNum" value="#{cep02001Bean.formCriteria.cepTuitionReq.reqID}">
+			<p:inputText id="q-inputText-reqNum"
+				value="#{cep02001Bean.formCriteria.cepTuitionReq.reqID}"
+				maxlength="6">
+				<p:keyFilter mask="num" />
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -48,7 +51,8 @@ body .ui-toolbar {
 			<p:datePicker id="q-datePicker-reqDateStart" pattern="dd/MM/yyyy"
 				label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
 				yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
-				locale="th" value="#{cep02001Bean.formCriteria.cepTuitionReq.reqStart}">
+				locale="th"
+				value="#{cep02001Bean.formCriteria.cepTuitionReq.reqStart}">
 				<p:ajax process="@this" update="@this" />
 			</p:datePicker>
 			<p:outputLabel />
@@ -57,7 +61,8 @@ body .ui-toolbar {
 			<p:datePicker id="q-datePicker-reqDateEnd" pattern="dd/MM/yyyy"
 				label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
 				yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
-				locale="th" value="#{cep02001Bean.formCriteria.cepTuitionReq.reqEnd}">
+				locale="th"
+				value="#{cep02001Bean.formCriteria.cepTuitionReq.reqEnd}">
 				<p:ajax process="@this" update="@this" />
 			</p:datePicker>
 		</p:panelGrid>
@@ -74,13 +79,19 @@ body .ui-toolbar {
 			<p:outputLabel />
 			<p:outputLabel value="ปีการศึกษา" style="float: left"
 				for="q-inputText-eduYear" />
-			<p:inputText id="q-inputText-eduYear" value="#{cep02001Bean.formCriteria.cepTuitionReq.eduYear}">
+			<p:inputText id="q-inputText-eduYear"
+				value="#{cep02001Bean.formCriteria.cepTuitionReq.eduYear}"
+				maxlength="4">
+				<p:keyFilter mask="num" />
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
 			<p:outputLabel value="เทอม" style="float: left"
 				for="q-inputText-Semester" />
-			<p:inputText id="q-inputText-Semester" value="#{cep02001Bean.formCriteria.cepTuitionReq.semester}">
+			<p:inputText id="q-inputText-Semester"
+				value="#{cep02001Bean.formCriteria.cepTuitionReq.semester}"
+				maxlength="1">
+				<p:keyFilter mask="num" />
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 		</p:panelGrid>
@@ -95,7 +106,8 @@ body .ui-toolbar {
 			<p:outputLabel />
 			<p:outputLabel value="ชื่อ-นามสกุล บุคลากร" style="float: left"
 				for="q-inputText-Name" />
-			<p:inputText id="q-inputText-Name" value="#{cep02001Bean.formCriteria.perFullName}">
+			<p:inputText id="q-inputText-Name"
+				value="#{cep02001Bean.formCriteria.perFullName}" maxlength="100">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -112,7 +124,8 @@ body .ui-toolbar {
 			<p:outputLabel value="สถานะคำขอ" style="float: left"
 				for="e-inputText-reqStat" />
 			<p:inputText id="e-inputText-reqStat"
-				value="#{cep02001Bean.formCriteria.cepTuitionReq.reqStatus}">
+				value="#{cep02001Bean.formCriteria.cepTuitionReq.reqStatus}"
+				maxlength="100">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />

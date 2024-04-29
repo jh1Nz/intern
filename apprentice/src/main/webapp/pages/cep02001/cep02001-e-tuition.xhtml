@@ -43,12 +43,15 @@ body .ui-datatable thead th {
 			</p:datePicker>
 			<p:outputLabel value="เลขที่คำขอ" for="e-inputText-reqNum" />
 			<p:inputText id="e-inputText-reqNum"
-				value="#{cep02001Bean.formEditTuition.reqID}">
+				value="#{cep02001Bean.formEditTuition.reqID}"
+				maxlength="6">
+				<p:keyFilter mask="num" />
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="สถานะคำขอ" for="e-inputText-reqStat" />
 			<p:inputText id="e-inputText-reqStat"
-				value="#{cep02001Bean.formEditTuition.reqStatus}">
+				value="#{cep02001Bean.formEditTuition.reqStatus}"
+				maxlength="100">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -82,12 +85,14 @@ body .ui-datatable thead th {
 			<p:outputLabel />
 			<p:outputLabel value="ปีการศึกษา (พ.ศ.)" for="e-inputText-eduYear" />
 			<p:inputText id="e-inputText-eduYear"
-				value="#{cep02001Bean.formEditTuition.eduYear}">
+				value="#{cep02001Bean.formEditTuition.eduYear}" maxlength="4">
+				<p:keyFilter mask="num" />
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="เทอม" for="e-inputText-Semester" />
 			<p:inputText id="e-inputText-Semester"
-				value="#{cep02001Bean.formEditTuition.semester}">
+				value="#{cep02001Bean.formEditTuition.semester}" maxlength="1">
+				<p:keyFilter mask="num" />
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -112,6 +117,7 @@ body .ui-datatable thead th {
 			</p:selectOneRadio>
 			<p:outputLabel value="เป็นเงิน" style="text-align: right;" />
 			<p:inputText value="#{cep02001Bean.formEditTuition.welfareAmount}">
+				<p:keyFilter mask="num" />
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="บาท" />
@@ -173,9 +179,11 @@ body .ui-datatable thead th {
 				<p:column headerText="ประเภทเงินเบิกจ่าย" width="7%"
 					style="text-align:center">
 					<p:selectOneMenu id="option" value="#{data.disburType}">
-						<f:selectItem itemLabel="Option1" itemValue="Option1" />
-						<f:selectItem itemLabel="Option2" itemValue="Option2" />
-						<f:selectItem itemLabel="Option3" itemValue="Option3" />
+						<f:selectItem itemLabel="งบบุคลากร" itemValue="งบบุคลากร" />
+						<f:selectItem itemLabel="งบดำเนินงาน" itemValue="งบดำเนินงาน" />
+						<f:selectItem itemLabel="งบลงทุน" itemValue="งบลงทุน" />
+						<f:selectItem itemLabel="งบเงินอุดหนุน" itemValue="งบเงินอุดหนุน" />
+						<f:selectItem itemLabel="งบรายจ่ายอื่น" itemValue="งบรายจ่ายอื่น" />
 						<p:ajax process="@this" update="@this" />
 					</p:selectOneMenu>
 				</p:column>
@@ -187,7 +195,7 @@ body .ui-datatable thead th {
 				</p:column>
 				<p:column headerText="ลบ" width="3%" style="text-align:center;">
 					<p:commandButton update="@this,data-table" process="@this"
-						icon="fa fa-minus" action="#{cep02001Bean.removeDataList}" />
+						icon="fa fa-minus" action="#{cep02001Bean.removeDataList(index)}" />
 				</p:column>
 			</p:dataTable>
 			<p:outputLabel />
@@ -292,7 +300,7 @@ body .ui-datatable thead th {
 			<p:outputLabel
 				value="หรือหน่วยงานอื่นใด ต่ำกว่าจำนวนเงินที่ได้รับจากทางราชการ &nbsp; &nbsp; &nbsp; &nbsp; จำนวน" />
 			<p:inputText value="#{cep02001Bean.formEditTuition.guranteeAmount}">
-
+				<p:keyFilter mask="num" />
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="บาท &nbsp; &nbsp; &nbsp; &nbsp; จริง" />
