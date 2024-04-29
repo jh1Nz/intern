@@ -16,6 +16,7 @@ import javax.persistence.criteria.Root;
 import com.summitthai.cr.apprentice.cep.person.entity.CepPerson;
 import com.summitthai.cr.apprentice.cep.person.model.CepPersonRequest;
 import com.summitthai.cr.apprentice.jpa.ApprenticeJpaService;
+import com.summitthai.cr.apprentice.utils.XspUtils;
 import com.summitthai.sdd.dao.jpa.AbstractJpa;
 import com.summitthai.sdd.sys.util.StringUtils;
 
@@ -97,68 +98,19 @@ public class CepPersonJpaImpl extends AbstractJpa<CepPerson> implements CepPerso
 		if (!StringUtils.isNullOrEmpty(req.getCepTuitionReq().getReqStatus())) {
 			sb.append("and (s.reqStatus like '%" + req.getCepTuitionReq().getReqStatus() + "%') ");
 		}
-//
-//		  if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidRequestNum())) {
-//		   sb.append("and s.kidRequestNum = :kidRequestNum ");
-//		  }
-//
-//		  if (req.getWithdrawReq().getKidRequestDayStart() != null) {
-//		   sb.append("and s.kidRequestDay >= :kidRequestDayStart ");
-//		  }
-//
-//		  if (req.getWithdrawReq().getKidRequestDayEnd() != null) {
-//		   sb.append("and s.kidRequestDay <= :kidRequestDayEnd ");
-//		  }
-//		  if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidEduYear())) {
-//		   sb.append("and s.kidEduYear = :kidEduYear ");
-//		  }
-//
-//		  if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidEduSemeter())) {
-//		   sb.append("and s.kidEduSemeter = :kidEduSemeter ");
-//		  }
-//
-//		  if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidRequestNum())) {
-//		   sb.append("and s.kidRequestNum = :kidRequestNum ");
-//		  }
-
-//		      if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidRequestNum())) {
-//		       sb.append("and s.kidRequestNum = :kidRequestNum ");
-//		      }
-
-//		      if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidRequestNum())) {
-//		       sb.append("and s.kidRequestNum = :kidRequestNum ");
-//		      }
-
-//		      if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidRequestNum())) {
-//		       sb.append("and s.kidRequestNum = :kidRequestNum ");
-//		      }
-
-//		      if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidRequestNum())) {
-//		       sb.append("and s.kidRequestNum = :kidRequestNum ");
-//		      }
-
-//		      if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidRequestNum())) {
-//		       sb.append("and s.kidRequestNum = :kidRequestNum ");
-//		      }
-
-//		      if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidRequestNum())) {
-//		       sb.append("and s.kidRequestNum = :kidRequestNum ");
-//		      }
-
+		if (req.getCepTuitionReq().getReqStart() != null) {
+			sb.append("and s.reqDate >= :reqStart ");
+		}
+		if (req.getCepTuitionReq().getReqEnd() != null) {
+			sb.append("and s.reqDate <= :reqEnd ");
+		}
 		TypedQuery<Object[]> query = this.getEm().createQuery(sb.toString(), Object[].class);
-//push
-//		  if (!StringUtils.isNullOrEmpty(req.getWithdrawReq().getKidRequestNum())) {
-//		   query.setParameter("kidRequestNum", req.getWithdrawReq().getKidRequestNum());
-//		  }
-//
-//		  if (req.getWithdrawReq().getKidRequestDayStart() != null) {
-//		   query.setParameter("kidRequestDayStart",
-//		     XspUtils.convertDateToString(req.getWithdrawReq().getKidRequestDayStart()));
-//		  }
-//		  if (req.getWithdrawReq().getKidRequestDayEnd() != null) {
-//		   query.setParameter("kidRequestDayEnd",
-//		     XspUtils.convertDateToString(req.getWithdrawReq().getKidRequestDayEnd()));
-//		  }
+		if (req.getCepTuitionReq().getReqStart() != null) {
+			query.setParameter("reqStart", XspUtils.convertDateToString(req.getCepTuitionReq().getReqStart()));
+		}
+		if (req.getCepTuitionReq().getReqEnd() != null) {
+			query.setParameter("reqEnd", XspUtils.convertDateToString(req.getCepTuitionReq().getReqEnd()));
+		}
 
 		return query.getResultList();
 	}

@@ -26,17 +26,20 @@
 			<h:panelGrid columns="5" style="width: 75%;"
 				columnClasses="ui-grid-col-2, ui-grid-col-1, ui-grid-col-4, ui-grid-col-1, ui-grid-col-4">
 				<p:inputText id="e-inputText-IName"
-					value="#{cep02001Bean.formEditSpouse.spouseTitleName}">
+					value="#{cep02001Bean.formEditSpouse.spouseTitleName}"
+					maxlength="50">
 					<p:ajax process="@this" update="@this" />
 				</p:inputText>
 				<p:outputLabel />
 				<p:inputText id="e-inputText-spouseName" required="true"
-					value="#{cep02001Bean.formEditSpouse.spouseFirstName}">
+					value="#{cep02001Bean.formEditSpouse.spouseFirstName}"
+					maxlength="100">
 					<p:ajax process="@this" update="@this" />
 				</p:inputText>
 				<p:outputLabel />
 				<p:inputText id="e-inputText-LName"
-					value="#{cep02001Bean.formEditSpouse.spouseLastName}">
+					value="#{cep02001Bean.formEditSpouse.spouseLastName}"
+					maxlength="100">
 					<p:ajax process="@this" update="@this" />
 				</p:inputText>
 			</h:panelGrid>
@@ -56,13 +59,15 @@
 			<p:outputLabel value="ความสัมพันธ์" style="float: left"
 				for="e-inputText-relation" />
 			<p:inputText id="e-inputText-relation"
-				value="#{cep02001Bean.formEditSpouse.spouseRelation}">
+				value="#{cep02001Bean.formEditSpouse.spouseRelation}"
+				maxlength="100">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="สถานภาพสมรส" style="float: left"
 				for="e-inputText-marryStatus" />
 			<p:inputText id="e-inputText-marryStatus"
-				value="#{cep02001Bean.formEditSpouse.spouseStatus}">
+				value="#{cep02001Bean.formEditSpouse.spouseStatus}"
+				maxlength="50">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -99,8 +104,7 @@
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:outputLabel value="ประเภทอาชีพคู่สมรส"
-				style="float: left; font-weight: bold; text-decoration: underline;"
-				/>
+				style="float: left; font-weight: bold; text-decoration: underline;" />
 			<p:outputLabel />
 		</p:panelGrid>
 		<p:panelGrid columns="3"
@@ -110,10 +114,11 @@
 						ui-grid-col-2"
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
-			<p:selectOneRadio id="test"
-				layout="lineDirection" value="#{cep02001Bean.formEditSpouse.checkGovEmp}"
+			<p:selectOneRadio id="test" layout="lineDirection"
+				value="#{cep02001Bean.formEditSpouse.checkGovEmp}"
 				valueChangeListener="#{cep02001Bean.changeValue}">
-				<f:selectItem itemLabel="ไม่เป็นข้าราชการหรือลูกจ้างประจำ" itemValue="true" />
+				<f:selectItem itemLabel="ไม่เป็นข้าราชการหรือลูกจ้างประจำ"
+					itemValue="true" />
 				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" />
 			</p:selectOneRadio>
 			<p:outputLabel />

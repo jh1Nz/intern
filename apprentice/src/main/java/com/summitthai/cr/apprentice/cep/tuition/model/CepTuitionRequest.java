@@ -72,4 +72,7 @@ public class CepTuitionRequest {
 	@XmlElement(name = "perUUID")
 	private String perUUID;
 	
+	private Date reqStart;
+	private Date reqEnd;
+	
 }

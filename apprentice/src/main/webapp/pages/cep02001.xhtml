@@ -38,7 +38,7 @@ body .ui-datatable thead th {
 		</p:panel>
 
 		<!-- Mode บันทึก -->
-		<p:panel rendered="#{cep02001Bean.mode eq 'I'}">
+		<p:panel rendered="#{cep02001Bean.mode eq 'I' or cep02001Bean.mode eq 'U' }">
 			<p:accordionPanel id="e-accordionPanel-Person">
 				<p:tab title="ข้อมูลบุคลากร">
 					<ui:include src="cep02001/cep02001-e-person.xhtml"></ui:include>

@@ -48,7 +48,7 @@ body .ui-toolbar {
 			<p:datePicker id="q-datePicker-reqDateStart" pattern="dd/MM/yyyy"
 				label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
 				yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
-				locale="th" >
+				locale="th" value="#{cep02001Bean.formCriteria.cepTuitionReq.reqStart}">
 				<p:ajax process="@this" update="@this" />
 			</p:datePicker>
 			<p:outputLabel />
@@ -57,7 +57,7 @@ body .ui-toolbar {
 			<p:datePicker id="q-datePicker-reqDateEnd" pattern="dd/MM/yyyy"
 				label="Date (java.util.Date; PF DatePicker)" monthNavigator="true"
 				yearNavigator="true" showIcon="true" size="20" showOnFocus="false"
-				locale="th" >
+				locale="th" value="#{cep02001Bean.formCriteria.cepTuitionReq.reqEnd}">
 				<p:ajax process="@this" update="@this" />
 			</p:datePicker>
 		</p:panelGrid>

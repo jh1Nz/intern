@@ -36,10 +36,11 @@ body .ui-datatable thead th {
 			                           {NextPageLink} 
 			                           {LastPageLink}"
 				reflow="true" style="text-align: center" emptyMessage="ไม่พบข้อมูล"
-				selectionMode="single" value="#{cep02001Bean.QList}" rowKey="#{data.perUUID}">
+				selectionMode="single" selection="#{cep02001Bean.formSelected}"
+				value="#{cep02001Bean.QList}" rowKey="#{data.perUUID}">
 				<p:ajax event="rowSelect" process="@this" update=":formc"
 					onstart="PF('bui').show()" onsuccess="PF('bui').hide()"
-					resetValues="true" />
+					resetValues="true" listener="#{cep02001Bean.onRowSelect}" />
 
 				<p:column headerText="เลขที่คำขอ" style="text-align: center"
 					sortBy="">
@@ -50,11 +51,11 @@ body .ui-datatable thead th {
 				</p:column>
 				<p:column headerText="วันที่บันทึกคำขอ" style="text-align: center"
 					sortBy="">
-					<h:outputText
-						style="float: center !important; 
-               			text-align: left !important"
-						value="" />
+					<h:outputText value="#{data.cepTuitionReq.reqDate}">
+						<f:convertDateTime pattern="dd/MM/yy" />
+					</h:outputText>
 				</p:column>
+
 				<p:column headerText="ปีการศึกษา" style="text-align: center"
 					sortBy="">
 					<h:outputText
@@ -62,15 +63,14 @@ body .ui-datatable thead th {
                			text-align: left !important"
 						value="#{data.cepTuitionReq.eduYear}" />
 				</p:column>
-				<p:column headerText="เทอม" style="text-align: center"
-					sortBy="">
+				<p:column headerText="เทอม" style="text-align: center" sortBy="">
 					<h:outputText
 						style="float: center !important; 
                			text-align: left !important"
 						value="#{data.cepTuitionReq.semester}" />
 				</p:column>
-				<p:column headerText="ชื่อ-นามสกุล บุคลากร" style="text-align: center"
-					sortBy="">
+				<p:column headerText="ชื่อ-นามสกุล บุคลากร"
+					style="text-align: center" sortBy="">
 					<h:outputText
 						style="float: center !important; 
                			text-align: left !important"
@@ -83,8 +83,8 @@ body .ui-datatable thead th {
                			text-align: left !important"
 						value="#{data.cepTuitionReq.welfareAmount}" />
 				</p:column>
-				<p:column headerText="จำนวนเงินที่เบิกได้" style="text-align: center"
-					sortBy="">
+				<p:column headerText="จำนวนเงินที่เบิกได้"
+					style="text-align: center" sortBy="">
 					<h:outputText
 						style="float: center !important; 
                			text-align: left !important"
@@ -99,10 +99,9 @@ body .ui-datatable thead th {
 				</p:column>
 				<p:column headerText="วันที่สถานะคำขอ" style="text-align: center"
 					sortBy="">
-					<h:outputText
-						style="float: center !important; 
-               			text-align: left !important"
-						value="" />
+					<h:outputText value="#{data.cepTuitionReq.reqDate}">
+						<f:convertDateTime pattern="dd/MM/yy" />
+					</h:outputText>
 				</p:column>
 			</p:dataTable>
 		</p:panelGrid>

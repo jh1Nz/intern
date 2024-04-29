@@ -12,19 +12,28 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.SelectEvent;
+
+import com.summitthai.cr.apprentice.cep.kid.manager.CepKidManager;
 import com.summitthai.cr.apprentice.cep.kid.model.CepKidRequest;
+import com.summitthai.cr.apprentice.cep.kid.model.CepKidResponse;
 import com.summitthai.cr.apprentice.cep.person.manager.CepPersonManager;
 import com.summitthai.cr.apprentice.cep.person.model.CepPersonRequest;
 import com.summitthai.cr.apprentice.cep.person.model.CepPersonResponse;
+import com.summitthai.cr.apprentice.cep.spouse.manager.CepSpouseManager;
 import com.summitthai.cr.apprentice.cep.spouse.model.CepSpouseRequest;
+import com.summitthai.cr.apprentice.cep.spouse.model.CepSpouseResponse;
+import com.summitthai.cr.apprentice.cep.tuition.manager.CepTuitionManager;
 import com.summitthai.cr.apprentice.cep.tuition.model.CepTuitionRequest;
-import com.summitthai.cr.apprentice.deptH.model.HolidayDeptRequest;
+import com.summitthai.cr.apprentice.cep.tuition.model.CepTuitionResponse;
 import com.summitthai.cr.apprentice.exception.DefaultException;
+import com.summitthai.cr.apprentice.holiday.model.HolidayResponse;
 import com.summitthai.cr.apprentice.massage.MassageComplete;
 import com.summitthai.cr.apprentice.massage.MassageError;
 import com.summitthai.cr.apprentice.status.SimpleStatus;
 import com.summitthai.cr.apprentice.utils.XspUtils;
 import com.summitthai.sdd.faces.view.base.ViewBase;
+import com.summitthai.sdd.sys.util.StringUtils;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -40,11 +49,18 @@ public class Cep02001Bean extends ViewBase implements Serializable {
 
 	private CepPersonRequest formEdit;
 	private CepPersonRequest formCriteria;
+	private CepPersonRequest formSelected;
 	private CepSpouseRequest formEditSpouse;
 	private CepTuitionRequest formEditTuition;
 
 	@Inject
 	private CepPersonManager cepPersonManager;
+	@Inject
+	private CepSpouseManager cepSpouseManager;
+	@Inject
+	private CepTuitionManager cepTuitionManager;
+	@Inject
+	private CepKidManager cepKidManager;
 
 	private List<CepTuitionRequest> tuiList;
 	private List<CepSpouseRequest> spoList;
@@ -55,6 +71,7 @@ public class Cep02001Bean extends ViewBase implements Serializable {
 	public Cep02001Bean() {
 		this.formCriteria = CepPersonRequest.builder().build();
 		this.formEdit = CepPersonRequest.builder().build();
+		this.formSelected = CepPersonRequest.builder().build();
 		this.formEditSpouse = CepSpouseRequest.builder().build();
 		this.formEditTuition = CepTuitionRequest.builder().build();
 
@@ -85,6 +102,8 @@ public class Cep02001Bean extends ViewBase implements Serializable {
 	public void preparePageInsert() {
 		log.debug("Begin PrePare Insert");
 		this.formEdit = CepPersonRequest.builder().build();
+		this.formEditSpouse = CepSpouseRequest.builder().build();
+		this.formEditTuition = CepTuitionRequest.builder().build();
 		this.spoList = new ArrayList<>();
 		this.formEdit.setSpouseList(new ArrayList<>());
 		this.tuiList = new ArrayList<>();
@@ -188,5 +207,146 @@ public class Cep02001Bean extends ViewBase implements Serializable {
 		}
 
 	}
+
+	public void prepareForUpdate() {
+		log.debug("Begin searchForUpdate");
+		CepPersonResponse res = null;
+		try {
+			res = this.cepPersonManager.findByReq(formSelected);
+			if (!res.getDataRequestList().isEmpty()) {
+				this.formEdit = res.getDataRequestList().get(0);
+
+			}
+			// หาคู่สมรส
+			CepSpouseRequest reqSpo = CepSpouseRequest.builder().perUUID(this.formEdit.getPerUUID()).build();
+			CepSpouseResponse resSpo = null;
+			resSpo = this.cepSpouseManager.findByReq(reqSpo);
+			this.formEdit.setSpouseList(resSpo.getDataRequestList());
+			if (resSpo != null && !resSpo.getDataRequestList().isEmpty()) {
+				this.spoList = resSpo.getDataRequestList();
+				this.formEditSpouse = this.spoList.get(0);
+
+			} else {
+				this.spoList = new ArrayList<>();
+			}
+			// หารายละเอียดเบิก
+			CepTuitionRequest reqTui = CepTuitionRequest.builder().perUUID(this.formEdit.getPerUUID()).build();
+			CepTuitionResponse resTui = null;
+			resTui = this.cepTuitionManager.findByReq(reqTui);
+			this.formEdit.setTuitionList(resTui.getDataRequestList());
+			if (resTui != null && !resTui.getDataRequestList().isEmpty()) {
+				this.tuiList = resTui.getDataRequestList();
+				this.formEditTuition = this.tuiList.get(0);
+			} else {
+				this.spoList = new ArrayList<>();
+			}
+			// หาตารางบุตร
+			CepKidRequest reqKid = CepKidRequest.builder().perUUID(this.formEdit.getPerUUID()).build();
+			CepKidResponse resKid = null;
+			resKid = this.cepKidManager.findByReq(reqKid);
+			this.formEdit.setKidList(resKid.getDataRequestList());
+			if (resKid != null && !resKid.getDataRequestList().isEmpty()) {
+				this.kidList = resKid.getDataRequestList();
+
+			} else {
+				this.spoList = new ArrayList<>();
+			}
+
+		} catch (Exception e) {
+			log.debug("Exception searchButtonOnclick {}", e);
+		}
+	}
+
+	public void onRowSelect(SelectEvent event) {
+		log.debug("Begin onRowSelect...");
+		try {
+			this.mode = MODE_UPDATE;
+			this.formEdit = CepPersonRequest.builder().build();
+			this.prepareForUpdate();
+
+		} catch (Exception e) {
+			log.error("Error : {}", e);
+		} finally {
+			log.debug("End onRowSelect...");
+		}
+
+	}
+
+	public void updateButton() {
+		log.debug("Begin update ButtonOnClick ");
+		CepPersonResponse cepRes = null;
+
+		try {
+			this.prepareData();
+			if (!this.tuiList.isEmpty()) {
+				this.formEdit.setTuitionList(new ArrayList<>());
+				this.formEdit.getTuitionList().addAll(this.tuiList);
+			}
+			if (!this.spoList.isEmpty()) {
+				this.formEdit.setSpouseList(new ArrayList<>());
+				this.formEdit.getSpouseList().addAll(this.spoList);
+			}
+			if (!this.kidList.isEmpty()) {
+				this.formEdit.setKidList(new ArrayList<>());
+				this.formEdit.getKidList().addAll(this.kidList);
+			}
+			
+			cepRes = this.cepPersonManager.update(this.formEdit);
+			if (cepRes.getStatus().equals("SUCCESS")) {
+
+				this.onPageSearch();
+				XspUtils.scrollToTop();
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "", MassageComplete.UPDATE_COMPLETE));
+			} else {
+				XspUtils.scrollToTop();
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "", MassageError.UPDATE_FAIL));
+				throw new DefaultException(MassageError.UPDATE_FAIL);
+
+			}
+
+		} catch (DefaultException ex) {
+			log.error("Exception :{}", ex);
+			messageError(ex);
+		} catch (Exception e) {
+			messageError(e);
+		} finally {
+			XspUtils.scrollToTop();
+
+			log.debug("End...updateButtonOnClick...");
+			cepRes = null;
+		}
+
+	}
+	public void deleteButton() {
+		log.debug("Begin deletButtonOnClick...");
+		
+		CepPersonResponse resPer = null;
+
+		try {
+			resPer = this.cepPersonManager.delete(this.formEdit);
+
+			if (resPer.getStatus().equals("SUCCESS")) {
+				this.onPageSearch();
+				XspUtils.scrollToTop();
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "", MassageComplete.DELETE_COMPLETE));
+			} else {
+				XspUtils.scrollToTop();
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "", MassageError.DELETE_FAIL));
+				throw new DefaultException(MassageError.DELETE_FAIL);
+			}
+		} catch (Exception e) {
+			log.error("Exception :{}", e);
+			messageError(e);
+		} finally {
+			log.debug("End...deletButtonOnClick...");
+			resPer = null;
+		}
+
+	}
+
 
 }

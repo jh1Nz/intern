@@ -200,6 +200,8 @@ public class Tmp01005Bean extends ViewBase implements Serializable {
 			this.mode = MODE_UPDATE;
 			this.formEdit = HolidayRequest.builder().build();
 			this.formEdit = this.formSelected;
+			
+			
 			HolidayDeptRequest req = HolidayDeptRequest.builder().holidayID(this.formEdit.getHolidayID()).build();
 			HolidayDeptResponse res = this.holidayDeptManager.findByReq(req);
 			this.formEdit.setDeptList(res.getDataRequestList());

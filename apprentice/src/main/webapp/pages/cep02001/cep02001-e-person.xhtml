@@ -67,11 +67,11 @@
 						</p:inputText>
 						<p:outputLabel value="เลขประจำตัวประชาชน" style="float: left"
 							for="e-inputText-idenNum" />
-						<p:inputMask id="e-inputText-idenNum"
-							value="#{cep02001Bean.formEdit.perIdenNum}"
-							mask="9-9999-99999-99-9">
+						<p:inputText id="e-inputText-idenNum"
+							value="#{cep02001Bean.formEdit.perIdenNum}" required="true" maxlength="13">
+							<p:keyFilter mask="num" />
 							<p:ajax process="@this" update="@this" />
-						</p:inputMask>
+						</p:inputText>
 						<p:outputLabel />
 					</p:panelGrid>
 					<p:panelGrid columns="4"

@@ -23,10 +23,13 @@ import com.summitthai.cr.apprentice.cep.tuition.dao.CepTuitionDao;
 import com.summitthai.cr.apprentice.cep.tuition.dto.CepTuitionDto;
 import com.summitthai.cr.apprentice.cep.tuition.entity.CepTuition;
 import com.summitthai.cr.apprentice.cep.tuition.model.CepTuitionRequest;
+import com.summitthai.cr.apprentice.holiday.entity.Holiday;
+import com.summitthai.cr.apprentice.holiday.model.HolidayResponse;
 import com.summitthai.cr.apprentice.jpa.ApprenticeJpaService;
 import com.summitthai.cr.apprentice.status.SimpleStatus;
 import com.summitthai.sdd.sys.util.DateUtils;
 import com.summitthai.sdd.sys.util.StringUtils;
+import com.summitthai.sdd.sys.util.TransformUtils;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -73,10 +76,106 @@ public class CepPersonManager implements CepPersonManageable {
 
 	@Override
 	public CepPersonResponse findByReq(CepPersonRequest req) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		log.debug("Begin  findByReq...");
 
+		CepPersonResponse response = null;
+		CepPersonRequest request = null;
+		// ErrorResponse error = null;
+		List<CepPerson> entityList = new ArrayList<>();
+
+		try {
+			entityList = this.cepPersonDao.findByReq(req);
+			response = CepPersonResponse.builder().dataRequestList(new ArrayList<>()).build();
+
+			for (CepPerson data : entityList) {
+				request = this.cepPersonDto.entityToReq(data);
+				response.getDataRequestList().add(request);
+			}
+
+			response.setStatus(SimpleStatus.SUCCESS);
+			return response;
+
+		} catch (Exception e) {
+			log.error("Exception findByReq : {}", e);
+			response.setError(SimpleStatus.ERROR);
+			return response;
+		} finally {
+			log.debug("End  findByReq...");
+		}
+	}
+	private void deleteSpo(CepPersonRequest req) {
+		 List<CepSpouseRequest> spoList = req.getSpouseList();
+		    if (spoList == null) {
+		        log.warn("No found in the request.");
+		        return;
+		    }
+
+		    for (CepSpouseRequest data : spoList) {
+		        String spoId = data.getSpouseUUID(); 
+		        if (spoId != null) {
+		            try {
+		                CepSpouse entitySpo = this.cepSpouseDao.find(spoId);
+		                if (entitySpo != null) {
+		                	this.cepSpouseDao.delete(entitySpo);
+		                }
+		            } catch (Exception e) {
+		                log.error("Exception while deleting  with ID {}: {}", spoId, e.getMessage());
+		            }
+		        } else {
+		            log.warn("Null found in the request data.");
+		        }
+		    }
+		
+	}
+	private void deleteTui(CepPersonRequest req) {
+		 List<CepTuitionRequest> tuiList = req.getTuitionList();
+		    if (tuiList == null) {
+		        log.warn("No found in the request.");
+		        return;
+		    }
+
+		    for (CepTuitionRequest data : tuiList) {
+		        String tuiId = data.getTuitionUUID(); 
+		        if (tuiId != null) {
+		            try {
+		                CepTuition entityTui = this.cepTuitionDao.find(tuiId);
+		                if (entityTui != null) {
+		                	this.cepTuitionDao.delete(entityTui);
+		                }
+		            } catch (Exception e) {
+		                log.error("Exception while deleting  with ID {}: {}", tuiId, e.getMessage());
+		            }
+		        } else {
+		            log.warn("Null found in the request data.");
+		        }
+		    }
+		
+	}
+	private void deleteKid(CepPersonRequest req) {
+		 List<CepKidRequest> kidList = req.getKidList();
+		    if (kidList == null) {
+		        log.warn("No found in the request.");
+		        return;
+		    }
+
+		    for (CepKidRequest data : kidList) {
+		        String kidId = data.getKidUUID(); 
+		        if (kidId != null) {
+		            try {
+		                CepKid entityKid = this.cepKidDao.find(kidId);
+		                if (entityKid != null) {
+		                	this.cepKidDao.delete(entityKid);
+		                }
+		            } catch (Exception e) {
+		                log.error("Exception while deleting  with ID {}: {}", kidId, e.getMessage());
+		            }
+		        } else {
+		            log.warn("Null found in the request data.");
+		        }
+		    }
+		
+	}
+	
 	private void insertTuition(CepPersonRequest req) {
 		log.debug("Insert Tuition");
 		try {
@@ -145,14 +244,71 @@ public class CepPersonManager implements CepPersonManageable {
 
 	@Override
 	public CepPersonResponse update(CepPersonRequest req) {
-		// TODO Auto-generated method stub
-		return null;
+		log.debug("Begin update ");
+		CepPersonResponse res = null;
+		try {
+			this.db.begin();
+
+			CepPerson newEntity = this.cepPersonDao.find(req.getPerUUID());
+			log.debug("test {}", newEntity);
+			CepPerson oldEntity = new CepPerson();
+			TransformUtils.copyProperties(oldEntity, newEntity);
+
+			newEntity = this.cepPersonDto.reqToEntity(newEntity, req);
+			
+			cepPersonDao.update(newEntity);
+			deleteSpo(req);
+			deleteTui(req);
+			deleteKid(req);
+			this.db.flush();
+			insertSpouse(req);
+			insertTuition(req);
+			insertKid(req);
+			
+			this.db.commit();
+			res = CepPersonResponse.builder().status(SimpleStatus.SUCCESS).build();
+			return res;
+
+		} catch (Exception e) {
+			this.db.rollback();
+			log.error("Exception : {}", e);
+			res.setError(SimpleStatus.ERROR);
+			return res;
+		} finally {
+			log.debug("End update....");
+			res = null;
+		}
 	}
 
 	@Override
 	public CepPersonResponse delete(CepPersonRequest req) {
-		// TODO Auto-generated method stub
-		return null;
+		log.debug("Begin delete....");
+		CepPersonResponse res = null;
+		CepPerson entity= new CepPerson();
+ 
+    	
+    	try {
+    		this.db.begin();
+    		entity = this.cepPersonDao.find(req.getPerUUID());
+    		if (entity != null) {
+				this.cepPersonDao.delete(entity);
+				deleteSpo(req);
+				deleteTui(req);
+				deleteKid(req);
+				
+			}
+    		this.db.commit();
+    		res = CepPersonResponse.builder().status(SimpleStatus.SUCCESS).build();
+    		return res;
+    	}catch (Exception e) {
+			log.error("Exception : {}", e);
+			res.setError(SimpleStatus.ERROR);
+            return res;
+		}finally {
+			log.debug("End delete....");
+			res     = null;
+		}
+    	
 	}
 	
 	
