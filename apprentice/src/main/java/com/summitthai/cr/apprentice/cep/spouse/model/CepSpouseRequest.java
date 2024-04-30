@@ -74,5 +74,8 @@ public class CepSpouseRequest {
 	
 	@XmlElement(name = "perUUID")
 	private String perUUID;
+	
+	private String checkDetail1;
+	private String checkDetail2;
 
 }

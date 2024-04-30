@@ -67,6 +67,8 @@ public class Cep02001Bean extends ViewBase implements Serializable {
 	private List<CepKidRequest> kidList;
 
 	private List<CepPersonRequest> qList;
+	
+	
 
 	public Cep02001Bean() {
 		this.formCriteria = CepPersonRequest.builder().build();
@@ -102,7 +104,7 @@ public class Cep02001Bean extends ViewBase implements Serializable {
 	public void preparePageInsert() {
 		log.debug("Begin PrePare Insert");
 		this.formEdit = CepPersonRequest.builder().build();
-		this.formEditSpouse = CepSpouseRequest.builder().build();
+		this.formEditSpouse = CepSpouseRequest.builder().checkDetail1("true").checkDetail2("true").build();
 		this.formEditTuition = CepTuitionRequest.builder().build();
 		this.spoList = new ArrayList<>();
 		this.formEdit.setSpouseList(new ArrayList<>());
@@ -146,8 +148,64 @@ public class Cep02001Bean extends ViewBase implements Serializable {
 		}
 	}
 
-	public void changeValue() {
+	public void checkGovEmp() {
+		log.debug("change value");
+		String check = this.formEditSpouse.getCheckGovEmp();
+		if(!check.isEmpty()) {
+			this.formEditSpouse.setGov(null);
+			this.formEditSpouse.setEmp(null);
+			this.formEditSpouse.setEntGov(null);
+			this.formEditSpouse.setOrgBkk(null);
+			this.formEditSpouse.setCheckDetail1("true");
+			this.formEditSpouse.setCheckDetail2("true");
+		}
+		
 	}
+	public void checkGov() {
+		String govCheck = this.formEditSpouse.getGov();
+		if(!govCheck.isEmpty()) {
+			this.formEditSpouse.setCheckGovEmp(null);
+			this.formEditSpouse.setEmp(null);
+			this.formEditSpouse.setEntGov(null);
+			this.formEditSpouse.setOrgBkk(null);
+			this.formEditSpouse.setCheckDetail1("false");
+			this.formEditSpouse.setCheckDetail2("true");
+		}
+	}
+	public void checkEmp() {
+		String empCheck = this.formEditSpouse.getEmp();
+		if(!empCheck.isEmpty()) {
+			this.formEditSpouse.setCheckGovEmp(null);
+			this.formEditSpouse.setGov(null);
+			this.formEditSpouse.setEntGov(null);
+			this.formEditSpouse.setOrgBkk(null);
+			this.formEditSpouse.setCheckDetail1("false");
+			this.formEditSpouse.setCheckDetail2("true");
+		}
+	}
+	public void entCheck() {
+		String entCheck = this.formEditSpouse.getEntGov();
+		if(!entCheck.isEmpty()) {
+			this.formEditSpouse.setCheckGovEmp(null);
+			this.formEditSpouse.setGov(null);
+			this.formEditSpouse.setEmp(null);
+			this.formEditSpouse.setOrgBkk(null);
+			this.formEditSpouse.setCheckDetail1("true");
+			this.formEditSpouse.setCheckDetail2("true");
+		}
+	}
+	public void orgCheck() {
+		String orgCheck = this.formEditSpouse.getOrgBkk();
+		if(!orgCheck.isEmpty()) {
+			this.formEditSpouse.setCheckGovEmp(null);
+			this.formEditSpouse.setGov(null);
+			this.formEditSpouse.setEmp(null);
+			this.formEditSpouse.setEntGov(null);
+			this.formEditSpouse.setCheckDetail1("true");
+			this.formEditSpouse.setCheckDetail2("false");
+		}
+	}
+	
 
 	public void insertButton() {
 		log.debug("Inserting...");

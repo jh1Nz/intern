@@ -86,7 +86,7 @@
 				for="e-inputText-jobs" />
 			<p:inputText id="e-inputText-jobs"
 				value="#{cep02001Bean.formEditSpouse.spouseJob}"
-				maxlength="100">
+				maxlength="100" >
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="อาชีพอื่น" style="float: left"
@@ -118,10 +118,10 @@
 			<p:outputLabel />
 			<p:selectOneRadio id="test" layout="lineDirection"
 				value="#{cep02001Bean.formEditSpouse.checkGovEmp}"
-				valueChangeListener="#{cep02001Bean.changeValue}">
+				>
 				<f:selectItem itemLabel="ไม่เป็นข้าราชการหรือลูกจ้างประจำ"
 					itemValue="true" />
-				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" />
+				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" listener="#{cep02001Bean.checkGovEmp}"/>
 			</p:selectOneRadio>
 			<p:outputLabel />
 		</p:panelGrid>
@@ -139,22 +139,21 @@
 			<p:outputLabel />
 			<p:selectOneRadio id="e-selectOneRadio-spouseBeType"
 				layout="lineDirection" value="#{cep02001Bean.formEditSpouse.gov}"
-				valueChangeListener="#{cep02001Bean.changeValue}">
+				>
 				<f:selectItem itemLabel="เป็นข้าราชการ" itemValue="true" />
-				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" />
+				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" listener="#{cep02001Bean.checkGov}"/>
 			</p:selectOneRadio>
 			<p:selectOneRadio id="e-selectOneRadio-spouseBeType2"
-				layout="lineDirection" value="#{cep02001Bean.formEditSpouse.emp}"
-				valueChangeListener="#{cep02001Bean.changeValue}">
+				layout="lineDirection" value="#{cep02001Bean.formEditSpouse.emp}">
 				<f:selectItem itemLabel="เป็นลูกจ้างประจำ" itemValue="true" />
-				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" />
+				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" listener="#{cep02001Bean.checkEmp}"/>
 			</p:selectOneRadio>
 			<p:outputLabel value="ตำแหน่ง" />
-			<p:inputText value="#{cep02001Bean.formEditSpouse.pos}" maxlength="100">
-				<p:ajax process="@this" update="@this" />
+			<p:inputText value="#{cep02001Bean.formEditSpouse.pos}" maxlength="100" disabled="#{cep02001Bean.formEditSpouse.checkDetail1}">
+				<p:ajax process="@this" update="@this"/>
 			</p:inputText>
 			<p:outputLabel value="สังกัด" />
-			<p:inputText value="#{cep02001Bean.formEditSpouse.affiliationn}" maxlength="100">
+			<p:inputText value="#{cep02001Bean.formEditSpouse.affiliationn}" maxlength="100" disabled="#{cep02001Bean.formEditSpouse.checkDetail1}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -168,11 +167,11 @@
 			<p:outputLabel />
 			<p:selectOneRadio id="e-selectOneRadio-spouseEmpType"
 				layout="lineDirection" value="#{cep02001Bean.formEditSpouse.entGov}"
-				valueChangeListener="#{cep02001Bean.changeValue}">
+				>
 				<f:selectItem
 					itemLabel="เป็นพนักงานหรือลูกจ้างในรัฐวิสาหกิจ/หน่วยงานของทางราชการ ราชการส่วนท้องถิ่น"
 					itemValue="true" />
-				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" />
+				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" listener="#{cep02001Bean.entCheck}"/>
 			</p:selectOneRadio>
 			<p:outputLabel />
 		</p:panelGrid>
@@ -189,18 +188,18 @@
 			<p:outputLabel />
 			<p:selectOneRadio id="e-selectOneRadio-spouseEmp2Type"
 				layout="lineDirection" value="#{cep02001Bean.formEditSpouse.orgBkk}"
-				valueChangeListener="#{cep02001Bean.changeValue}">
+				>
 				<f:selectItem
 					itemLabel="กรุงเทพมหานคร องค์กรอิสระ องค์กรมหาชน หรือหน่วยงานอื่นใด"
 					itemValue="true" />
-				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" />
+				<p:ajax process="@this" update="@this,formc:e-accordionPanel-Spouse" listener="#{cep02001Bean.orgCheck}"/>
 			</p:selectOneRadio>
 			<p:outputLabel value="ตำแหน่ง" />
-			<p:inputText value="#{cep02001Bean.formEditSpouse.posSub}" maxlength="100">
+			<p:inputText value="#{cep02001Bean.formEditSpouse.posSub}" maxlength="100" disabled="#{cep02001Bean.formEditSpouse.checkDetail2}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="สังกัด" />
-			<p:inputText value="#{cep02001Bean.formEditSpouse.affiliationnSub}" maxlength="100">
+			<p:inputText value="#{cep02001Bean.formEditSpouse.affiliationnSub}" maxlength="100" disabled="#{cep02001Bean.formEditSpouse.checkDetail2}">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 		</p:panelGrid>
