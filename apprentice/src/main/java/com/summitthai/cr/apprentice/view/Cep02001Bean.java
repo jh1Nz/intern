@@ -148,16 +148,20 @@ public class Cep02001Bean extends ViewBase implements Serializable {
 		}
 	}
 
-	public void checkGovEmp() {
+	public void checkGovEmp() {// สำหรับ ไม่เป็นอะไร
 		log.debug("change value");
-		String check = this.formEditSpouse.getCheckGovEmp();
+		String check = this.formEditSpouse.getCheckGovEmp();//ไม่เป็นs
 		if(!check.isEmpty()) {
-			this.formEditSpouse.setGov(null);
-			this.formEditSpouse.setEmp(null);
-			this.formEditSpouse.setEntGov(null);
-			this.formEditSpouse.setOrgBkk(null);
+			this.formEditSpouse.setGov(null);//ข้าราชการ
+			this.formEditSpouse.setEmp(null);//ลูกจ้าง
+			this.formEditSpouse.setEntGov(null);//พนักงาน
+			this.formEditSpouse.setOrgBkk(null);//กทม
 			this.formEditSpouse.setCheckDetail1("true");
 			this.formEditSpouse.setCheckDetail2("true");
+			this.formEditSpouse.setPos("");
+			this.formEditSpouse.setAffiliationn("");
+			this.formEditSpouse.setPosSub("");
+			this.formEditSpouse.setAffiliationnSub("");
 		}
 		
 	}
@@ -192,6 +196,10 @@ public class Cep02001Bean extends ViewBase implements Serializable {
 			this.formEditSpouse.setOrgBkk(null);
 			this.formEditSpouse.setCheckDetail1("true");
 			this.formEditSpouse.setCheckDetail2("true");
+			this.formEditSpouse.setPos("");
+			this.formEditSpouse.setAffiliationn("");
+			this.formEditSpouse.setPosSub("");
+			this.formEditSpouse.setAffiliationnSub("");
 		}
 	}
 	public void orgCheck() {

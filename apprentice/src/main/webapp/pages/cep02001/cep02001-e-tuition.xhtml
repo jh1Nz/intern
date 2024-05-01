@@ -43,15 +43,13 @@ body .ui-datatable thead th {
 			</p:datePicker>
 			<p:outputLabel value="เลขที่คำขอ" for="e-inputText-reqNum" />
 			<p:inputText id="e-inputText-reqNum"
-				value="#{cep02001Bean.formEditTuition.reqID}"
-				maxlength="6">
+				value="#{cep02001Bean.formEditTuition.reqID}" maxlength="6">
 				<p:keyFilter mask="num" />
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel value="สถานะคำขอ" for="e-inputText-reqStat" />
 			<p:inputText id="e-inputText-reqStat"
-				value="#{cep02001Bean.formEditTuition.reqStatus}"
-				maxlength="100">
+				value="#{cep02001Bean.formEditTuition.reqStatus}" maxlength="100">
 				<p:ajax process="@this" update="@this" />
 			</p:inputText>
 			<p:outputLabel />
@@ -131,48 +129,54 @@ body .ui-datatable thead th {
 			<p:outputLabel />
 			<p:dataTable id="data-table" var="data" rowIndexVar="index" row="5"
 				emptyMessage="ไม่พบข้อมูล" style="text-align:center"
-				value="#{cep02001Bean.kidList}" rowKey="#{data.kidUUID}">>
-				<p:column headerText="เลือก" width="3%" style="text-align:center">
-					<p:selectBooleanCheckbox />
-				</p:column>
+				value="#{cep02001Bean.kidList}" rowKey="#{data.kidUUID}">
+				<ui:remove>
+					<p:column headerText="เลือก" width="3%" style="text-align:center">
+						<p:selectBooleanCheckbox />
+					</p:column>
+				</ui:remove>
+
 				<p:column headerText="บุตรลำดับที่ของมารดา" width="3%"
 					style="text-align:center">
-					<p:inputText value="#{data.kidMom}">
+					<p:inputText value="#{data.kidMom}" maxlength="1">
+						<p:keyFilter mask="num"/>
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="บุตรลำดับที่ของบิดา" width="3%"
 					style="text-align:center">
-					<p:inputText value="#{data.kidDad}">
+					<p:inputText value="#{data.kidDad}" maxlength="1">
+					<p:keyFilter mask="num"/>
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="ชื่อ-นามสกุล" width="7%"
 					style="text-align:center">
-					<p:inputText value="#{data.kidName}">
+					<p:inputText value="#{data.kidName}" maxlength="100">
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="อายุ" width="5%" style="text-align:center">
-					<p:inputText value="#{data.kidAge}">
+					<p:inputText value="#{data.kidAge}" maxlength="3">
+					<p:keyFilter mask="num"/>
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="ชั้น/ปีที่ศึกษา" width="3%"
 					style="text-align:center">
-					<p:inputText value="#{data.eduClass}">
+					<p:inputText value="#{data.eduClass}" maxlength="20">
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="ระดับการศึกษา" width="7%"
 					style="text-align:center">
-					<p:inputText value="#{data.eduLevel}">
+					<p:inputText value="#{data.eduLevel}" maxlength="50">
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
 				<p:column headerText="ชื่อสถานศึกษา" width="7%"
 					style="text-align:center">
-					<p:inputText value="#{data.eduName}">
+					<p:inputText value="#{data.eduName}" maxlength="100">
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
@@ -189,7 +193,8 @@ body .ui-datatable thead th {
 				</p:column>
 				<p:column headerText="จำนวนเงิน" width="5%"
 					style="text-align:center">
-					<p:inputText value="#{data.eduAmount}">
+					<p:inputText value="#{data.eduAmount}" maxlength="10">
+					<p:keyFilter mask="num"/>
 						<p:ajax process="@this" update="@this" />
 					</p:inputText>
 				</p:column>
@@ -208,7 +213,8 @@ body .ui-datatable thead th {
 			layout="grid" styleClass="ui-panelgrid-blank">
 			<p:outputLabel />
 			<p:commandButton icon="fa fa-plus white" value="เพิ่มรายการ"
-				update="@this,data-table" immediate="true" actionListener="#{cep02001Bean.setTable}">
+				update="@this,data-table" immediate="true"
+				actionListener="#{cep02001Bean.setTable}">
 				<p:resetInput target=":formc" />
 			</p:commandButton>
 			<p:outputLabel />
